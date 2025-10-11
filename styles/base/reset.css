@@ -1,0 +1,13 @@
+body{
+    font-family: var(--fonte-texto);
+    margin:0;
+    padding: 0; 
+    background:var(--bg); 
+    color:var(--cor-texto);
+}
+
+.container {
+    max-width: var(--largura-maxima-conteudo);
+    margin: 0 auto;
+}
+
