@@ -12,7 +12,7 @@
 
 /* 3. Components (Elementos Reutilizáveis) */
 @import url('./components/button.css');
-@import url('./components/card-instructor.css');
+@import url('./components/card-categorias.css');
 /* ... outros componentes ... */
 
 /* 4. Pages (Maior Prioridade, Ajustes Finais) */

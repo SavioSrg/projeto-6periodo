@@ -2,12 +2,34 @@ body{
     font-family: var(--fonte-texto);
     margin:0;
     padding: 0; 
-    background:var(--bg); 
     color:var(--cor-texto);
+}
+
+h2 {
+    font-family: var(--fonte-titulo);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--espacamento-pequeno);
 }
 
 .container {
     max-width: var(--largura-maxima-conteudo);
     margin: 0 auto;
+    padding: 20px var(--espacamento-medio);
 }
 
+.section-size {
+    height: 87vh;
+}
+
+.section-texture {
+    background-size: cover;
+    background-position: center center;
+    background-image: url(/assets/images/fundo.svg);
+}
+
+.section-texture-2 {
+    background-size: cover;
+    background-position: center center;
+    background-image: url(/assets/images/fundo-secundario.svg);
+}
