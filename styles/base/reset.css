@@ -12,10 +12,14 @@ h2 {
     margin-bottom: var(--espacamento-pequeno);
 }
 
+p {
+    font-size: 1.1rem;
+}
+
 .container {
     max-width: var(--largura-maxima-conteudo);
     margin: 0 auto;
-    padding: 20px var(--espacamento-medio);
+    padding: 20px 100px;
 }
 
 .section-size {
@@ -25,7 +29,7 @@ h2 {
 .section-texture {
     background-size: cover;
     background-position: center center;
-    background-image: url(/assets/images/fundo.svg);
+    background-image: url(/assets/images/fundo.png);
 }
 
 .section-texture-2 {

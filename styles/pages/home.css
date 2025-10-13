@@ -27,3 +27,27 @@
   justify-content: center;
 }
 
+.container-categoria {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacamento-grande);
+  align-items: center;
+}
+
+.lead {
+    margin-bottom: 2rem;
+}
+
+.image-collage{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* grid-template-rows: repeat(2, 1fr); */
+  gap: 1rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.img-large{
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}

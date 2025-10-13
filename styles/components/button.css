@@ -21,6 +21,12 @@
     outline-offset: 3px;
 } */
 
+a.btn {
+    text-decoration: none;
+    background: var(--cor-secundaria);
+    color: var(--branco);
+}
+
 .btn-primary {
     background: var(--cor-secundaria);
     color: var(--branco);
