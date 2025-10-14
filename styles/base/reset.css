@@ -1,8 +1,8 @@
-body{
+body {
     font-family: var(--fonte-texto);
-    margin:0;
-    padding: 0; 
-    color:var(--cor-texto);
+    margin: 0;
+    padding: 0;
+    color: var(--cor-texto);
 }
 
 h2 {

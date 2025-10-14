@@ -1,8 +1,8 @@
-.header{
+.header {
     border-bottom: 1px solid #f1f1f1;
 }
 
-.header-inner{
+.header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,30 +20,30 @@
     align-items: center;
 }
 
-.nav a{
+.nav a {
     color: var(--cor-texto);
     text-decoration: none;
     font-weight: 500;
 }
 
-.actions{
+.actions {
     display: flex;
     gap: 12px;
     align-items: center;
 }
 
-.btn-login{
-    background:#000;
-    color:#fff;
-    padding:10px 14px;
-    border-radius:var(--raio-borda);
-    border:none;
-    cursor:pointer;
+.btn-login {
+    background: #000;
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: var(--raio-borda);
+    border: none;
+    cursor: pointer;
 }
 
-.bell{
-    font-size:18px;
-    background:transparent;
-    border:none;
-    cursor:pointer;
+.bell {
+    font-size: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }

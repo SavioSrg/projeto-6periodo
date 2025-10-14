@@ -1,4 +1,4 @@
-:root{
+:root {
     --cor-primaria: #F2C016;
     --cor-secundaria: #1B8EF2;
     --cor-texto: #37474F;
@@ -9,10 +9,10 @@
     --branco: #FFFFFF;
     --black: #000000;
 
-    --fonte-titulo: 'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    --fonte-titulo: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial;
     --fonte-texto: 'Lato', serif;
-   --tamanho-base: 16px;
-   
+    --tamanho-base: 16px;
+
     --espacamento-pequeno: 8px;
     --espacamento-medio: 16px;
     --espacamento-grande: 32px;
