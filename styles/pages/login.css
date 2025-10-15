@@ -1,0 +1,142 @@
+/* form */
+.form-wrap {
+    width: 100%;
+    max-width: 540px;
+    margin: 20px auto 0 auto;
+    text-align: left;
+}
+
+.title {
+    font-family: var(--fonte-titulo);
+    font-size: 2.3rem;
+    text-align: center;
+    margin: 0 0 var(--espacamento-grande);
+}
+
+/* labels & inputs */
+.field-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--cor-texto);
+}
+
+.org-input {
+    padding: 12px 14px;
+    border-radius: var(--raio-borda);
+    border: 2px solid var(--black);
+    margin-bottom: 14px;
+}
+
+.input-field {
+    width: 100%;
+    background: var(--cor-campo);
+    font-size: 18px;
+    outline: none;
+    font-family: var(--fonte-texto);
+}
+
+input#password {
+    border: none;
+}
+
+/* password wrapper to show eye btn at end */
+.password-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-password {
+    padding-right: 54px;
+}
+
+/* espaço pro botão */
+
+.btn-eye {
+    position: absolute;
+    right: 6px;
+    height: 42px;
+    width: 42px;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    color: var(--black);
+}
+
+/* submit button */
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 12px 18px;
+    border-radius: 10px;
+    background: var(--black);
+    color: var(--branco);
+    font-weight: 600;
+    font-size: 18px;
+    border: none;
+    margin-top: 6px;
+    cursor: pointer;
+}
+
+
+/* small screens
+@media (max-width: 900px) {
+    .container {
+        padding: 20px 28px;
+    }
+
+    .header-inner {
+        gap: 10px;
+    }
+
+    .main-nav {
+        gap: 14px;
+        font-size: 14px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .form-wrap {
+        max-width: 420px;
+    }
+
+    .section-size {
+        height: 51vh;
+        padding: 40px 0 120px;
+        align-items: flex-start;
+    }
+} */
+
+/* @media (max-width:420px) {
+    .logo {
+        font-size: 28px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .input-field {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .btn-submit {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 6px;
+        padding: 12px;
+    }
+} */

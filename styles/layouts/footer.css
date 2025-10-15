@@ -1,3 +1,11 @@
+.footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
 .footer {
     border-top: 6px solid #f4c400;
     padding: 36px 24px 0;
