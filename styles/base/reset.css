@@ -43,11 +43,11 @@ a {
 .section-texture {
     background-size: cover;
     background-position: center center;
-    background-image: url(/./assets/images/fundo.png);
+    background-image: url(../../assets/images/fundo.svg);
 }
 
 .section-texture-2 {
     background-size: cover;
     background-position: center center;
-    background-image: url(/./assets/images/fundo-secundario.svg);
+    background-image: url(../../assets/images/fundo-secundario.svg);
 }
