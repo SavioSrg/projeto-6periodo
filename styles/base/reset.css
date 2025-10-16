@@ -43,11 +43,13 @@ a {
 .section-texture {
     background-size: cover;
     background-position: center center;
+    background-color: var(--cor-2);
     background-image: url(/projeto-6periodo/assets/images/fundo.svg);
 }
 
 .section-texture-2 {
     background-size: cover;
     background-position: center center;
+    background-color: var(--cor-3);
     background-image: url(/projeto-6periodo/assets/images/fundo-secundario.svg);
 }
