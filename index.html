@@ -26,7 +26,7 @@
 
             <div class="actions">
                 <button class="bell" aria-label="Notificações">🔔</button>
-                <a class="btn-login" href="login.html">Entrar</a>
+                <button id="openModal" class="btn-login" type="button">Entrar</button>
             </div>
         </div>
     </header>
@@ -110,6 +110,17 @@
         </div>
     </footer>
 
+    <!-- MODAL -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 style="margin-bottom: 3rem;">Login</h2>
+            <div class="actions">
+                <a  class="btn" href="student/login.html">Login para estudante</a>
+                <a  class="btn" href="teachers/login.html">Login para instrutor</a>
+            </div>
+        </div>
+    </div>
     <script src="./scripts/main.js"></script>
 </body>
 
