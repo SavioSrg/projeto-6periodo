@@ -13,32 +13,35 @@
 <body>
     <header class="header">
         <div class="container header-inner">
-            <picture>
-                <source srcset="../assets/images/logo-150.png" media="(min-width: 1000px)">
-                <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
-                <img src="../assets/images/logo-100.png" alt="Logo do projeto">
-            </picture>
+            <a href="index.html">
+                <picture>
+                    <source srcset="assets/images/logo-150.png" media="(min-width: 1000px)">
+                    <source srcset="assets/images/logo-120.png" media="(min-width: 600px)">
+                    <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
+                </picture>
+            </a>
 
             <nav class="nav">
-                <a href="#">Encontrar professor</a>
-                <a href="#">Seja um professor</a>
+                <a href="buscar.html">Encontrar professor</a>
+                <a href="./teachers/cadastro.html">Seja um professor</a>
             </nav>
 
             <div class="actions">
                 <button class="bell" aria-label="Notificações">🔔</button>
-                <a class="btn-login" href="login.html">Entrar</a>
+                <button id="openModal" class="btn-login" type="button">Entrar</button>
             </div>
         </div>
     </header>
+
     <body>
         <main class="main">
-        <section class="container org">
-            <div class="form-wrap" role="region" aria-labelledby="tituloBusca">
-                <h1 id="tituloBusca" class="title">Busque pelo Professor Perfeito</h1>
+            <section class="container org">
+                <div class="form-wrap" role="region" aria-labelledby="tituloBusca">
+                    <h1 id="tituloBusca" class="title">Busque pelo Professor Perfeito</h1>
 
         </main>
     </body>
-    
+
 
     <footer class="footer footer-fixed">
         <div class="footer-container">
