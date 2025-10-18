@@ -13,15 +13,17 @@
 <body>
     <header class="header">
         <div class="container header-inner">
-            <picture>
-                <source srcset="assets/images/logo-150.png" media="(min-width: 1000px)">
-                <source srcset="assets/images/logo-120.png" media="(min-width: 600px)">
-                <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
-            </picture>
+            <a href="index.html">
+                <picture>
+                    <source srcset="assets/images/logo-150.png" media="(min-width: 1000px)">
+                    <source srcset="assets/images/logo-120.png" media="(min-width: 600px)">
+                    <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
+                </picture>
+            </a>
 
             <nav class="nav">
-                <a href="#">Encontrar professor</a>
-                <a href="#">Seja um professor</a>
+                <a href="buscar.html">Encontrar professor</a>
+                <a href="./teachers/cadastro.html">Seja um professor</a>
             </nav>
 
             <div class="actions">
@@ -98,9 +100,9 @@
 
             <nav class="footer-col">
                 <ul>
-                    <li><a href="#">Início</a></li>
-                    <li><a href="#">Sobre Nós</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre-nos.html">Sobre Nós</a></li>
+                    <li><a href="contato.html">Contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -116,12 +118,13 @@
             <span id="closeModal" class="close">&times;</span>
             <h2 style="margin-bottom: 3rem;">Login</h2>
             <div class="actions">
-                <a  class="btn" href="student/login.html">Login para estudante</a>
-                <a  class="btn" href="teachers/login.html">Login para instrutor</a>
+                <a  class="btn" href="./student/login.html">Login para estudante</a>
+                <a  class="btn" href="./teachers/login.html">Login para instrutor</a>
             </div>
         </div>
     </div>
-    <script src="./scripts/main.js"></script>
+    <script src="scripts/components/modal.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
 </body>
 
 </html>
