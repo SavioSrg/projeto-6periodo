@@ -27,6 +27,14 @@
   justify-content: center;
 }
 
+.hero-cta {
+    display: flex;
+    gap: var(--espacamento-grande);
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
 .container-categoria {
   display: grid;
   grid-template-columns: 1fr 1fr;

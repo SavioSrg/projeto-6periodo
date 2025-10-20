@@ -41,9 +41,42 @@
     cursor: pointer;
 }
 
-.bell {
-    font-size: 18px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
+.hamburger {
+    display: none;
+}
+
+
+
+@media (max-width: 768px) {
+    .container-header {
+        padding: 1rem 2rem;
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background-color: #fff;
+        width: 200px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .actions {
+        display: flex;
+        gap: var(--espacamento-grande);
+        align-items: center;
+    }
+
 }

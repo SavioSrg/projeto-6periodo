@@ -24,7 +24,7 @@ a {
     text-decoration: none;
 }
 
-.container {
+.container-header, .container {
     max-width: var(--largura-maxima-conteudo);
     margin: 0 auto;
     padding: 20px 100px;

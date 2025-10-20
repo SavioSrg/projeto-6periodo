@@ -4,15 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Aplicação - Home</title>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
 <body>
     <header class="header">
-        <div class="container header-inner">
+        <div class="container-header header-inner">
             <a href="index.html">
                 <picture>
                     <source srcset="assets/images/logo-150.png" media="(min-width: 1000px)">
@@ -21,14 +20,18 @@
                 </picture>
             </a>
 
-            <nav class="nav">
-                <a href="buscar.html">Encontrar professor</a>
-                <a href="./teachers/cadastro.html">Seja um professor</a>
+            <nav class="nav" id="navMenu">
+                <a href="#principal">Início</a>
+                <a href="#categoria">Categorias</a>
+                <a href="#funcionamento">Como funciona?</a>
             </nav>
 
             <div class="actions">
-                <button class="bell" aria-label="Notificações">🔔</button>
                 <button id="openModal" class="btn-login" type="button">Entrar</button>
+                <button class="btn" type="button">Cadastrar</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
             </div>
         </div>
     </header>
@@ -36,7 +39,7 @@
         <section id="principal" class="section-size section-texture">
             <div class="container hero-setion">
                 <h1 class="hero-title">
-                    Encontre o<br /><span>professor perfeito</span>
+                    Encontre o<br/>professor perfeito
                 </h1>
                 <p class="hero-sub">
                     Explore milhares de especialistas em diversas áreas, prontos para oferecer aulas personalizadas e
@@ -44,16 +47,14 @@
                     rápida e segura.
                 </p>
                 <div class="hero-cta">
-                    <button class="btn btn-primary" type="button">Clique aqui</button>
-                    <button class="btn btn-ghost" type="button">Clique aqui também</button>
-                </div>
-
-                <div class="cards-row" aria-hidden="true">
-                    <div class="card-placeholder">Esportes</div>
-                    <div class="card-placeholder">Inglês</div>
-                    <div class="card-placeholder">Matemática</div>
-                    <div class="card-placeholder">Português</div>
-                    <div class="card-placeholder">Artes</div>
+                    <button class="btn-icon btn btn-primary" type="button">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Encontrar<br> professor
+                    </button>
+                    <button class="btn-icon btn btn-ghost" type="button">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        Seja um<br> professor
+                    </button>
                 </div>
             </div>
         </section>
@@ -118,13 +119,23 @@
             <span id="closeModal" class="close">&times;</span>
             <h2 style="margin-bottom: 3rem;">Login</h2>
             <div class="actions">
-                <a  class="btn" href="./student/login.html">Login para estudante</a>
-                <a  class="btn" href="./teachers/login.html">Login para instrutor</a>
+                <a class="btn" href="./student/login.html">Login para estudante</a>
+                <a class="btn" href="./teachers/login.html">Login para instrutor</a>
             </div>
         </div>
     </div>
     <script src="scripts/components/modal.js"></script>
     <script type="module" src="./scripts/main.js"></script>
+    <script>
+        // Seleciona os elementos
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+
+        // Adiciona o evento de clique
+        hamburger.addEventListener("click", () => {
+            navMenu.classList.toggle("active");
+        });
+    </script>
 </body>
 
 </html>
