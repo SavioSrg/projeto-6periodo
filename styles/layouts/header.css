@@ -41,7 +41,7 @@
     cursor: pointer;
 }
 
-.hamburger {
+div.hamburger, .hamburger, #hamburguer {
     display: none;
 }
 
@@ -69,7 +69,7 @@
         display: flex;
     }
 
-    .hamburger {
+    div.hamburger, .hamburger, #hamburguer {
         display: block;
     }
 
