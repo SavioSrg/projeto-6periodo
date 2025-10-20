@@ -5,10 +5,14 @@
   width: 100%;
   z-index: 1000;
 }
+.footer {
+  padding: 5px 0;
+  max-height: 125px;
+}
 
 .footer {
     border-top: 6px solid #f4c400;
-    padding: 36px 24px 0;
+    padding: 5px 24px 0;
     background: #111;
     color: #ddd;
     display: flex;
@@ -32,11 +36,11 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 0px;
 }
 
 .footer-brand p {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: #ccc;
     margin: 0;
 }
@@ -44,7 +48,7 @@
 /* Navegação */
 .footer-col ul {
     display: flex;
-    gap: 24px;
+    gap: 15px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -87,3 +91,5 @@
         gap: 12px;
     }
 }
+:root { --footer-h: 96px; } /* fallback aproximado */
+body { padding-bottom: var(--footer-h); }
