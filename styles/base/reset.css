@@ -4,6 +4,7 @@
 
 body {
     font-family: var(--fonte-texto);
+    font-size: var(--font-size-base);
     margin: 0;
     padding: 0;
     color: var(--cor-texto);
@@ -24,10 +25,10 @@ a {
     text-decoration: none;
 }
 
-.container-header, .container {
+.container {
     max-width: var(--largura-maxima-conteudo);
     margin: 0 auto;
-    padding: 20px 100px;
+    padding: 20px var(--spacing-20);
 }
 
 .section-size {

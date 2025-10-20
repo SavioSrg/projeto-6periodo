@@ -6,70 +6,61 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--espacamento-medio);
+    padding: var(--spacing-4) var(--spacing-6);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* .brand{
-    font-family: var(--fonte-logo);
-    font-size: 32px;
-} */
-
-.nav {
+.nav-menu {
     display: flex;
-    gap: var(--espacamento-grande);
+    gap: var(--spacing-8);
     align-items: center;
 }
 
-.nav a {
-    color: var(--cor-texto);
+.nav-link {
     text-decoration: none;
+    color: var(--cor-texto);
     font-weight: 500;
 }
 
 .actions {
     display: flex;
-    gap: 12px;
+    gap: var(--spacing-6);
     align-items: center;
 }
 
-.btn-login {
+/* .btn-login {
     background: #000;
     color: #fff;
     padding: 10px 14px;
     border-radius: var(--raio-borda);
     border: none;
     cursor: pointer;
-}
+} */
 
-div.hamburger, .hamburger, #hamburguer {
+div.hamburger {
     display: none;
 }
 
-
-
 @media (max-width: 768px) {
-    .container-header {
-        padding: 1rem 2rem;
-    }
-
-    .nav {
+    .nav-menu {
         display: none;
         flex-direction: column;
         position: absolute;
         top: 80px;
         right: 0;
         background-color: #fff;
-        width: 200px;
+        width: 100%;
         border-radius: 8px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         padding: 1rem;
     }
 
-    .nav.active {
+    .nav-menu.active {
         display: flex;
     }
 
-    div.hamburger, .hamburger, #hamburguer {
+    div.hamburger {
         display: block;
     }
 
@@ -78,5 +69,4 @@ div.hamburger, .hamburger, #hamburguer {
         gap: var(--espacamento-grande);
         align-items: center;
     }
-
 }
