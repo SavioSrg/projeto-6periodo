@@ -47,7 +47,7 @@
     body {
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--texto);
-      margin: 24px;
+      margin: 15px;
     }
 
        /* Título sublinhado */
@@ -167,6 +167,7 @@
    
 </div>
 
+
 <div class="prof-grid">
   <!-- CARD do professor (repita este bloco para cada registro do BD) -->
   <article class="prof-card" data-id="{{id_professor}}">
@@ -184,12 +185,31 @@
 
       <p class="prof-card__bio">{{bio_curta}}</p>
 
-      <div class="prof-card__tags">
-        <!-- repita conforme necessário -->
-        <span class="tag">{{tag1}}</span>
-        <span class="tag">{{tag2}}</span>
-        <span class="tag">{{tag3}}</span>
+      <div class="prof-card__acoes">
+        <button class="btn btn--primario">Ver perfil</button>
+        <button class="btn btn--secundario">Agendar aula</button>
       </div>
+    </div>
+  </article>
+</div>
+<div class="prof-grid">
+  <!-- CARD do professor (repita este bloco para cada registro do BD) -->
+  <article class="prof-card" data-id="{{id_professor}}">
+    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
+
+    <div class="prof-card__body">
+      <h3 class="prof-card__nome">{{nome}}</h3>
+      <p class="prof-card__materia">{{materia}}</p>
+
+      <ul class="prof-card__meta">
+        <li>📍 {{cidade}}</li>
+        <li>💼 {{experiencia_anos}} anos</li>
+        <li>💲 {{preco_hora}}/h</li>
+      </ul>
+
+      <p class="prof-card__bio">{{bio_curta}}</p>
+
+      
 
       <div class="prof-card__acoes">
         <button class="btn btn--primario">Ver perfil</button>
@@ -198,17 +218,71 @@
     </div>
   </article>
 </div>
+<div class="prof-grid">
+  <!-- CARD do professor (repita este bloco para cada registro do BD) -->
+  <article class="prof-card" data-id="{{id_professor}}">
+    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
 
+    <div class="prof-card__body">
+      <h3 class="prof-card__nome">{{nome}}</h3>
+      <p class="prof-card__materia">{{materia}}</p>
+
+      <ul class="prof-card__meta">
+        <li>📍 {{cidade}}</li>
+        <li>💼 {{experiencia_anos}} anos</li>
+        <li>💲 {{preco_hora}}/h</li>
+      </ul>
+
+      <p class="prof-card__bio">{{bio_curta}}</p>
+
+      
+
+      <div class="prof-card__acoes">
+        <button class="btn btn--primario">Ver perfil</button>
+        <button class="btn btn--secundario">Agendar aula</button>
+      </div>
+    </div>
+  </article>
+</div>
+<div class="prof-grid">
+  <!-- CARD do professor (repita este bloco para cada registro do BD) -->
+  <article class="prof-card" data-id="{{id_professor}}">
+    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
+
+    <div class="prof-card__body">
+      <h3 class="prof-card__nome">{{nome}}</h3>
+      <p class="prof-card__materia">{{Formação}}</p>
+
+      <ul class="prof-card__meta">
+        <li>📍 {{cidade}}</li>
+        <li>💼 {{experiencia_anos}} anos</li>
+        <li>💲 {{preco_hora}}/h</li>
+      </ul>
+
+      <p class="prof-card__bio">{{bio_curta}}</p>
+    
+
+      <div class="prof-card__acoes">
+        <button class="btn btn--primario">Ver perfil</button>
+        <button class="btn btn--secundario">Agendar aula</button>
+      </div>
+    </div>
+  </article>
+</div>
 <!-- CSS mínimo do card -->
 <style>
+  
   .prof-grid {
-    display: grid;
+    display: inline-block;
+    width: 20% - 5px;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
+    gap: 10px;
+    margin-top: 10px;
+    
   }
 
   .prof-card {
-    background: #fff;
+    background: gray;
     border: 1px solid #e5e7eb;
     border-radius: 16px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
@@ -225,7 +299,7 @@
   }
 
   .prof-card__body {
-    padding: 12px 14px;
+    padding: 10px 14px;
   }
 
   .prof-card__nome {
