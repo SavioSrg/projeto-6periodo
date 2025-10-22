@@ -8,6 +8,7 @@ body {
     margin: 0;
     padding: 0;
     color: var(--cor-texto);
+    height: 100vh;
 }
 
 h2 {
@@ -35,12 +36,6 @@ a {
     min-height: 87vh;
 }
 
-.org {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .section-texture {
     background-size: cover;
     background-position: center center;
@@ -53,4 +48,10 @@ a {
     background-position: center center;
     background-color: var(--cor-3);
     background-image: url(/projeto-6periodo/assets/images/fundo-secundario.svg);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
 }
