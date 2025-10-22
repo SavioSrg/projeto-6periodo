@@ -11,33 +11,33 @@
 
 <body>
     <header class="header">
-            <div class="container-header header-inner">
-                <a href="index.html">
-                    <picture>
-                        <source srcset="assets/images/logo-150.png" media="(min-width: 1000px)">
-                        <source srcset="assets/images/logo-120.png" media="(min-width: 600px)">
-                        <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
-                    </picture>
-                </a>
-                <nav class="nav-menu" id="navMenu">
-                    <a href="#principal" class="nav-link">Início</a>
-                    <a href="#categoria" class="nav-link">Categorias</a>
-                    <a href="#funcionamento" class="nav-link">Como funciona?</a>
-                </nav>
-                <div class="actions">
-                    <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                    <button class="btn btn-secondary" type="button ">Cadastrar</button>
-                </div>
-                <div class="hamburger" id="hamburger">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
+        <div class="container-header header-inner">
+            <a href="index.html">
+                <picture>
+                    <source srcset="assets/images/logo-150.png" media="(min-width: 1000px)">
+                    <source srcset="assets/images/logo-120.png" media="(min-width: 600px)">
+                    <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
+                </picture>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#principal" class="nav-link">Início</a>
+                <a href="#categoria" class="nav-link">Categorias</a>
+                <a href="#funcionamento" class="nav-link">Como funciona?</a>
+            </nav>
+            <div class="actions">
+                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+                <button class="btn btn-secondary" type="button ">Cadastrar</button>
             </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
     </header>
     <main class="main">
         <section id="principal" class="section-size section-texture">
             <div class="container hero-setion">
                 <h1 class="hero-title">
-                    Encontre o<br/>professor perfeito
+                    Encontre o<br />professor perfeito
                 </h1>
                 <p class="hero-sub">
                     Explore milhares de especialistas em diversas áreas, prontos para oferecer aulas personalizadas e
@@ -57,32 +57,70 @@
             </div>
         </section>
 
-        <section id="categoria" class="section-size">
-            <div class="container-categoria container">
+        <section id="categoria" class="org section-size">
+            <div class="container">
                 <div class="content-text">
-                    <h2>Categorias Populares</h2>
-                    <p class="lead">
+                    <h2 class="title">Categorias Populares</h2>
+                    <p class="descricao-categoria">
                         Do reforço escolar ao seu novo hobby, temos especialistas prontos para ensinar.
                         Encontre a categoria que mais inspira você ou explore todas as nossas áreas de conhecimento.
                     </p>
-                    <a class="btn" href="#" aria-label="Ver categorias">Quero participar</a>
                 </div>
-                <!-- <div class="image-collage">
-                    <div class="img-wrap img-large">
-                        <img src="assets/images/colinaria-categoria.jpg" alt="Mesa com objetos e alimentos" />
-                    </div>
-                    <div class="img-wrap img-top">
-                        <img src="assets/images/escolar-categoria.jpg" alt="Detalhe de prato" />
-                    </div>
-                    <div class="img-wrap img-bottom">
-                        <img src="assets/images/esporte-categoria.jpg" alt="Outro detalhe do prato" />
-                    </div>
-                </div> -->
+
+                <div class="grid-categorias">
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                    <div class="card"></div>
+                </div>
+                <button class="btn btn-secondary" id="btn-categoria">🔍 Buscar outras categorias</button>
+            </div>
         </section>
 
-        <section id="funcionamento" class=" section-size section-texture-2">
+        <section id="funcionamento" class=" section-size">
             <div class="container">
                 <h2>Como Funciona?</h2>
+
+                <p>
+                    Em apenas 3 passos simples, você encontra e agenda sua aula ideal
+                </p>
+
+                <div class="passos">
+                    <!-- Passo 1 -->
+                    <div class="card-func">
+                        <div class="numero">1</div>
+                        <h3>Busque e Descubra</h3>
+                        <p>
+                            Utilize nossa busca para encontrar especialistas na área que você
+                            deseja. Filtre por preço, modalidade (online ou presencial),
+                            avaliações e disponibilidade para achar o perfil perfeito.
+                        </p>
+                    </div>
+
+                    <!-- Passo 2 -->
+                    <div class="card-func">
+                        <div class="numero">2</div>
+                        <h3>Agende com Facilidade</h3>
+                        <p>
+                            Encontrou o professor ideal? Verifique a agenda de horários
+                            disponíveis e envie uma solicitação de aula com apenas alguns
+                            cliques. A comunicação é direta e segura dentro da plataforma.
+                        </p>
+                    </div>
+
+                    <!-- Passo 3 -->
+                    <div class="card-func">
+                        <div class="numero">3</div>
+                        <h3>Aprenda e Evolua</h3>
+                        <p>
+                            Realize sua aula e dê o próximo passo na sua jornada de conhecimento.
+                            Ao final, não se esqueça de avaliar a experiência para fortalecer
+                            nossa comunidade e ajudar outros alunos!
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

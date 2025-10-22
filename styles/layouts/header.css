@@ -69,4 +69,8 @@ div.hamburger {
         gap: var(--espacamento-grande);
         align-items: center;
     }
+
+    .btn {
+        padding: 0.5rem 1rem;
+    }
 }

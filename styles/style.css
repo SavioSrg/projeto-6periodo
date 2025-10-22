@@ -19,4 +19,6 @@
 /* 4. Pages (Maior Prioridade, Ajustes Finais) */
 @import url('./pages/home.css');
 @import url('./pages/login.css');
+@import url('./pages/secao-categoria.css');
+@import url('./pages/secao-funcionamento.css');
 /* ... outras páginas ... */

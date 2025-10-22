@@ -1,0 +1,51 @@
+/* Grid de passos */
+.passos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Card */
+.card-func {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 30px 20px;
+  width: 300px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-func:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Número azul */
+.numero {
+  background-color: #2196f3;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.3rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+
+/* Título do card */
+.card-func h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Texto do card */
+.card-func p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
