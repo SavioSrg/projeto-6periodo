@@ -1,14 +1,10 @@
-.footer-fixed {
+/* .footer-fixed {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
-}
-.footer {
-  padding: 5px 0;
-  max-height: 125px;
-}
+} */
 
 .footer {
     border-top: 6px solid #f4c400;
@@ -22,8 +18,8 @@
 }
 
 .footer-container {
-    width: 100%;
-    max-width: 1100px;
+    width: var(----largura-maxima-conteudo);
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,7 +64,7 @@
 .footer-bottom {
     background: #0d0d0d;
     color: #aaa;
-    width: 100%;
+    width: var(----largura-maxima-conteudo);;
     text-align: center;
     padding: 12px 0;
     font-size: 0.9rem;

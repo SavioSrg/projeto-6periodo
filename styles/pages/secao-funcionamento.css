@@ -1,3 +1,10 @@
+.secao-funcionamento {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  text-align: center;
+}
+
 /* Grid de passos */
 .passos {
   display: flex;
@@ -26,7 +33,7 @@
   background-color: #2196f3;
   color: #fff;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -38,6 +45,7 @@
 
 /* Título do card */
 .card-func h3 {
+  text-align: center;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: 10px;
@@ -45,6 +53,7 @@
 
 /* Texto do card */
 .card-func p {
+  text-align: center;
   color: #666;
   font-size: 0.95rem;
   line-height: 1.6;
