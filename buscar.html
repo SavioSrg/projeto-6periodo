@@ -19,13 +19,13 @@
         <img src="../assets/images/logo-100.png" alt="Logo do projeto">
         </picture>
         <nav class="nav-menu" id="navMenu">
-                <a href="#principal" class="nav-link">Início</a>
+                <a href="index.html" class="nav-link">Início</a>
                 <a href="#categoria" class="nav-link">Categorias</a>
                 <a href="#funcionamento" class="nav-link">Como funciona?</a>
             </nav>
         <div class="actions">
           <button class="bell" aria-label="Notificações">🔔</button>
-          <a class="btn-login" href="login.html">Entrar</a>
+          <a class="btn-login" href="teachers/login.html">Entrar</a>
         </div>
     </div>
   </header>
@@ -192,7 +192,34 @@
       
 
       <div class="prof-card__acoes">
-        <button class="btn btn--primario">Ver perfil</button>
+        <a href="Contratar.html" class="btn btn-primary">
+          Ver Perfil
+        </a>
+      <button class="btn btn--secundario">Agendar aula</button>
+      </div>
+    </div>
+  </article>
+
+ <article class="prof-card" data-id="{{id_professor}}">
+    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
+
+    <div class="prof-card__body">
+      <h3 class="prof-card__nome">{{nome}}</h3>
+      <p class="prof-card__materia">{{materia}}</p>
+
+      <ul class="prof-card__meta">
+        <li>📍 {{cidade}}</li>
+        <li>💼 {{experiencia_anos}} anos</li>
+        <li>💲 {{preco_hora}}/h</li>
+      </ul>
+
+      <p class="prof-card__bio">{{bio_curta}}</p>
+
+      
+
+      <div class="prof-card__acoes">
+        <a href="Contratar.html" class="btn btn-primary">
+          Ver Perfil</a>
         <button class="btn btn--secundario">Agendar aula</button>
       </div>
     </div>
@@ -216,7 +243,8 @@
       
 
       <div class="prof-card__acoes">
-        <button class="btn btn--primario">Ver perfil</button>
+        <a href="Contratar.html" class="btn btn-primary">
+          Ver Perfil</a>
         <button class="btn btn--secundario">Agendar aula</button>
       </div>
     </div>
@@ -240,31 +268,8 @@
       
 
       <div class="prof-card__acoes">
-        <button class="btn btn--primario">Ver perfil</button>
-        <button class="btn btn--secundario">Agendar aula</button>
-      </div>
-    </div>
-  </article>
-
- <article class="prof-card" data-id="{{id_professor}}">
-    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
-
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__materia">{{materia}}</p>
-
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-
-      <p class="prof-card__bio">{{bio_curta}}</p>
-
-      
-
-      <div class="prof-card__acoes">
-        <button class="btn btn--primario">Ver perfil</button>
+        <a href="Contratar.html" class="btn btn-primary">
+          Ver Perfil</a>
         <button class="btn btn--secundario">Agendar aula</button>
       </div>
     </div>
