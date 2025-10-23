@@ -1,7 +1,7 @@
 /* style.css */
 
 /* 1. Base (Menor Prioridade, Afeta Tudo) */
-@import url('./base/reset.css');
+@import url('./base/global.css');
 @import url('./base/variables.css');
 @import url('./base/typography.css');
 
@@ -11,7 +11,6 @@
 
 /* 3. Components (Elementos Reutilizáveis) */
 @import url('./components/button.css');
-@import url('./components/card-categorias.css');
 @import url('./components/modal-login.css');
 /* ... outros componentes ... */
 
@@ -20,7 +19,4 @@
 @import url('./pages/login.css');
 @import url('./pages/perfil.css');
 @import url('./pages/dashboard.css');
-@import url('./pages/secao-categoria.css');
-@import url('./pages/secao-funcionamento.css');
-@import url('./pages/secao-anuncio.css');
 /* ... outras páginas ... */

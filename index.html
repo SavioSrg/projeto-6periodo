@@ -11,23 +11,25 @@
 
 <body>
     <header class="header">
-        <div class="container-header header-inner">
-            <a href="index.html">
-                <picture>
-                    <source srcset="assets/images/logo-120.png" media="(min-width: 1000px)">
-                    <source srcset="assets/images/logo-100.png" media="(min-width: 600px)">
-                    <img src="assets/images/logo-80.png" alt="Exemplo responsivo">
-                </picture>
-            </a>
+        <div class="header-inner">
+            <div class="header-linha1">
+                <a href="index.html">
+                    <picture>
+                        <source srcset="assets/images/logo-120.png" media="(min-width: 1000px)">
+                        <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
+                    </picture>
+                </a>
+
+            </div>
             <nav class="nav-menu" id="navMenu">
                 <a href="#principal" class="nav-link">Início</a>
                 <a href="#categoria" class="nav-link">Categorias</a>
                 <a href="#funcionamento" class="nav-link">Como funciona?</a>
+                <div class="actions">
+                    <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+                    <button class="btn btn-secondary" type="button ">Cadastrar</button>
+                </div>
             </nav>
-            <div class="actions">
-                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                <button class="btn btn-secondary" type="button ">Cadastrar</button>
-            </div>
             <div class="hamburger" id="hamburger">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -45,18 +47,18 @@
                     rápida e segura.
                 </p>
                 <div class="hero-cta">
-                  
+
                     </button>
                     <div class="hero-cta">
-                     <a href="buscar.html" class="btn-icon btn btn-primary">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <a href="buscar.html" class="btn-icon btn btn-primary">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                             Encontrar<br> professor
-                    </a>
+                        </a>
 
-                    <button class="btn-icon btn btn-secondary" type="button">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                    Seja um<br> professor
-                    </button>
+                        <button class="btn-icon btn btn-secondary" type="button">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            Seja um<br> professor
+                        </button>
                     </div>
                 </div>
             </div>
@@ -72,13 +74,13 @@
                     </p>
                 </div>
 
-                <div class="grid-categorias">
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
+                <div class="grid-categorias--home">
+                    <div class="card--home"></div>
+                    <div class="card--home"></div>
+                    <div class="card--home"></div>
+                    <div class="card--home"></div>
+                    <div class="card--home"></div>
+                    <div class="card--home"></div>
                 </div>
             </div>
             <button class="btn btn-secondary" id="btn-categoria">🔍 Buscar outras categorias</button>
@@ -86,26 +88,24 @@
 
         <section id="funcionamento" class="secao-funcionamento">
             <div class="container">
-                <h2>Como Funciona?</h2>
+                <h2 class="title">Como Funciona?</h2>
 
-                <p>
-                    Em apenas 3 passos simples, você encontra e agenda sua aula ideal
-                </p>
+                <p>Em apenas 3 passos simples, você encontra e agenda sua aula ideal.</p>
 
                 <div class="passos">
                     <!-- Passo 1 -->
-                    <div class="card-func">
+                    <div class="card-funcionamento">
                         <div class="numero">1</div>
                         <h3>Busque e Descubra</h3>
                         <p>
                             Utilize nossa busca para encontrar especialistas na área que você
-                            deseja. Filtre por preço, modalidade (online ou presencial),
-                            avaliações e disponibilidade para achar o perfil perfeito.
+                            deseja. Para buscar o perfil perfeito, filtre por preço, modalidade (online ou presencial),
+                            avaliações e disponibilidade.
                         </p>
                     </div>
 
                     <!-- Passo 2 -->
-                    <div class="card-func">
+                    <div class="card-funcionamento">
                         <div class="numero">2</div>
                         <h3>Agende com Facilidade</h3>
                         <p>
@@ -116,7 +116,7 @@
                     </div>
 
                     <!-- Passo 3 -->
-                    <div class="card-func">
+                    <div class="card-funcionamento">
                         <div class="numero">3</div>
                         <h3>Aprenda e Evolua</h3>
                         <p>
@@ -131,11 +131,11 @@
 
         <section class="section-texture-2">
             <div class="container secao-anuncio">
-                <h2>Pronto para começar sua jornada de aprendizado?</h2>
-                <p>Junte-se a milhares de alunos que já transformaram suas vidas através da educação</p>
+                <h2 class="title">Pronto para começar sua jornada de aprendizado?</h2>
+                <p>Junte-se a milhares de alunos que já transformaram suas vidas através da educação.</p>
                 <div class="actions">
-                    <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                    <button class="btn btn-secondary" type="button ">Cadastrar</button>
+                    <button class="btn btn-primary" type="button">Começar agora</button>
+                    <button class="btn btn-secondary" type="button ">Ver professores</button>
                 </div>
             </div>
         </section>
@@ -148,7 +148,7 @@
                     <source srcset="assets/images/logo-150.png" media="(min-width: 600px)">
                     <img src="assets/images/logo-100.png" alt="Logo do site">
                 </picture>
-                <p>O conhecimento que você procura, a um clique de distância</p>
+                <p>O conhecimento que você procura, a um clique de distância.</p>
             </div>
 
             <nav class="footer-col">
@@ -169,13 +169,24 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span id="closeModal" class="close">&times;</span>
-            <h2 style="margin-bottom: 3rem;">Login</h2>
+            <h2>Login</h2>
+
             <div class="actions">
-                <a class="btn" href="./student/login.html">Login para estudante</a>
-                <a class="btn" href="./teachers/login.html">Login para instrutor</a>
+                <!-- Login para estudante -->
+                <div class="login-option">
+                    <img src="./img/student.png" alt="Estudante" class="login-img">
+                    <a class="btn" href="./student/login.html">Login para estudante</a>
+                </div>
+
+                <!-- Login para instrutor -->
+                <div class="login-option">
+                    <img src="./img/teacher.png" alt="Instrutor" class="login-img">
+                    <a class="btn" href="./teachers/login.html">Login para instrutor</a>
+                </div>
             </div>
         </div>
     </div>
+
     <script src="scripts/components/modal.js"></script>
     <script type="module" src="./scripts/main.js"></script>
     <script>
