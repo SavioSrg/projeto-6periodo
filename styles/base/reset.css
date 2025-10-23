@@ -9,6 +9,15 @@ body {
     padding: 0;
     color: var(--cor-texto);
     min-height: 100vh;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-between; */
+}
+
+.body-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 h2 {
@@ -24,6 +33,7 @@ p {
 
 a {
     text-decoration: none;
+    color: var(--black);
 }
 
 .container {

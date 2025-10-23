@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aplicação - Home</title>
+
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body class="body-flex">
+    <header class="header">
+        <div class="container-header header-inner">
+            <a href="../index.html">
+                <picture>
+                    <source srcset="../../assets/images/logo-120.png" media="(min-width: 1000px)">
+                    <source srcset="../../assets/images/logo-100.png" media="(min-width: 600px)">
+                    <img src="../../assets/images/logo-80.png" alt="Exemplo responsivo">
+                </picture>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#principal" class="nav-link">Início</a>
+                <a href="#categoria" class="nav-link">Categorias</a>
+                <a href="#funcionamento" class="nav-link">Como funciona?</a>
+            </nav>
+            <div class="actions">
+                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+                <button class="btn btn-secondary" type="button ">Cadastrar</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="section-size">
+            <div class="container formulario-cadastro">
+                <div class="form-wrap" role="region" aria-labelledby="tituloCadastro">
+                    <h1 id="tituloCadastro" class="title">Cadastro de Professor</h1>
+                    <p>Não possui uma conta? <a href="./login.html">Login</a></p>
+                    <form id="multiStepForm" class="cadastro-form" novalidate>
+                        <!-- Progress -->
+                        <div id="progress" aria-hidden="true" style="margin-bottom:12px;">
+                            <span id="progressText">Etapa 1 de 2</span>
+                            <div style="height:6px;background:#e6e6e6;border-radius:6px;margin-top:6px;">
+                                <div id="progressBar" style="height:100%;width:50%;background:#000;border-radius:6px;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 1 -->
+                        <fieldset data-step="1">
+                            <label class="field-label" for="nome">Nome completo *</label>
+                            <input id="nome" class="input-field org-input--field" type="text" name="nome" required />
+
+                            <label class="field-label" for="email">E-mail *</label>
+                            <input id="email" class="input-field org-input--field" type="email" name="email" required />
+
+                            <label class="field-label" for="senha">Senha *</label>
+                            <div class="password-wrapper org-input--field">
+                                <input id="password" class="input-field input-password" type="password"
+                                    placeholder="Sua senha" required autocomplete="current-password" />
+                                <button type="button" aria-label="Mostrar senha" class="btn-eye"
+                                    id="togglePassword">%</button>
+                            </div>
+
+                            <label class="field-label" for="senha">Confirmar senha *</label>
+                            <div class="password-wrapper org-input--field">
+                                <input id="password" class="input-field input-password" type="password"
+                                    placeholder="Sua senha" required autocomplete="current-password" />
+                                <button type="button" aria-label="Mostrar senha" class="btn-eye"
+                                    id="togglePassword">%</button>
+                            </div>
+
+                            <div>
+                                <button type="button" class="btn btn-secondary" id="nextBtn1">Próximo</button>
+                            </div>
+                        </fieldset>
+
+                        <!-- STEP 2 -->
+                        <fieldset data-step="2" hidden>
+                            <label class="field-label" for="cpf">CPF *</label>
+                            <input id="cpf" class="input-field org-input--field" type="text" name="cpf" required
+                                placeholder="000.000.000-00" />
+
+                            <label class="field-label" for="descricao">Descrição *</label>
+                            <textarea id="descricao" class="input-field org-input--field" name="descricao" rows="4"
+                                required></textarea>
+
+                            <label class="field-label" for="certificacoes">Certificações * <small>(separe por
+                                    vírgula)</small></label>
+                            <input id="certificacoes" class="input-field org-input--field" type="text"
+                                name="certificacoes" required placeholder="Cisco, Google" />
+
+                            <label class="field-label" for="competencias">Competências * <small>(separe por
+                                    vírgula)</small></label>
+                            <input id="competencias" class="input-field org-input--field" type="text"
+                                name="competencias" required placeholder="JavaScript, Python" />
+
+                            <label class="field-label" for="valorHora">Valor por Hora (R$) *</label>
+                            <input id="valorHora" class="input-field org-input--field" type="number" name="valorHora"
+                                required min="0" step="0.01" placeholder="75.50" />
+
+                            <div class="actions">
+                                <button type="button" class="btn btn-secondary" id="backBtn2">Voltar</button>
+                                <button type="submit" class="btn btn-submit" id="submitBtn">Cadastrar</button>
+                            </div>
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <picture>
+                    <source srcset="../../assets/images/logo-200.png" media="(min-width: 1000px)">
+                    <source srcset="../../assets/images/logo-150.png" media="(min-width: 600px)">
+                    <img src="../../assets/images/logo-100.png" alt="Logo do site">
+                </picture>
+                <p>O conhecimento que você procura, a um clique de distância</p>
+            </div>
+
+            <nav class="footer-col">
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../sobre-nos.html">Sobre Nós</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Grupo 2. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script type="module" src="../scripts/main.js"></script>
+</body>
+
+</html>
