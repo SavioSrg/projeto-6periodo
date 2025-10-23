@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aplicação - Home</title>
+
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+
+<body class="body-flex">
+    <header class="header">
+        <div class="container-header header-inner">
+            <a href="../index.html">
+                <picture>
+                    <source srcset="/projeto-6periodo/assets/images/logo-120.png" media="(min-width: 1000px)">
+                    <source srcset="/projeto-6periodo/assets/images/logo-100.png" media="(min-width: 600px)">
+                    <img src="/projeto-6periodo/assets/images/logo-80.png" alt="Exemplo responsivo">
+                </picture>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#principal" class="nav-link">Início</a>
+                <a href="#categoria" class="nav-link">Categorias</a>
+                <a href="#funcionamento" class="nav-link">Como funciona?</a>
+            </nav>
+            <div class="actions">
+                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+                <button class="btn btn-secondary" type="button ">Cadastrar</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- ======== DASHBOARD HEADER ======== -->
+            <header class="dashboard-header">
+                <div class="welcome-section">
+                    <h1>Olá, <span id="userName">Ana Silva</span>! 👋</h1>
+                    <p>Bem-vinda de volta ao seu painel de controle</p>
+                </div>
+
+                <nav class="quick-actions">
+                    <button class="btn-primary" onclick="quickSchedule()">
+                        <i class="fas fa-plus"></i> Agendar Aula
+                    </button>
+                    <button class="btn-outline" onclick="findTeacher()">
+                        <i class="fas fa-search"></i> Buscar Professor
+                    </button>
+                </nav>
+            </header>
+
+            <!-- ======== STATS CARDS ======== -->
+            <section class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="stat-info">
+                        <h3>12</h3>
+                        <p>Aulas Agendadas</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="stat-info">
+                        <h3>45</h3>
+                        <p>Aulas Concluídas</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="stat-info">
+                        <h3>8</h3>
+                        <p>Professores</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-info">
+                        <h3>67h</h3>
+                        <p>Horas de Estudo</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======== DASHBOARD CONTENT ======== -->
+            <section class="dashboard-content">
+                <!-- ======== COLUNA ESQUERDA ======== -->
+                <aside class="dashboard-left">
+                    <!-- Próximas Aulas -->
+                    <div class="dashboard-card">
+                        <header class="card-header">
+                            <h2>Próximas Aulas</h2>
+                            <a href="#" class="view-all">Ver todas</a>
+                        </header>
+                        <div class="lessons-list" id="upcomingLessons">
+                            <!-- Conteúdo carregado dinamicamente -->
+                        </div>
+                    </div>
+
+                    <!-- Atividade Recente -->
+                    <div class="dashboard-card">
+                        <header class="card-header">
+                            <h2>Atividade Recente</h2>
+                        </header>
+                        <div class="activity-list" id="recentActivity">
+                            <!-- Conteúdo carregado dinamicamente -->
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- ======== COLUNA DIREITA ======== -->
+                <aside class="dashboard-right">
+                    <!-- Calendário -->
+                    <div class="dashboard-card">
+                        <header class="card-header">
+                            <h2>Calendário</h2>
+                        </header>
+                        <div class="calendar-widget" id="calendarWidget">
+                            <!-- Conteúdo carregado dinamicamente -->
+                        </div>
+                    </div>
+                    </div>
+                </aside>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <picture>
+                    <source srcset="/projeto-6periodo/assets/images/logo-200.png" media="(min-width: 1000px)">
+                    <source srcset="/projeto-6periodo/assets/images/logo-150.png" media="(min-width: 600px)">
+                    <img src="/projeto-6periodo/assets/images/logo-100.png" alt="Logo do site">
+                </picture>
+                <p>O conhecimento que você procura, a um clique de distância</p>
+            </div>
+
+            <nav class="footer-col">
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../sobre-nos.html">Sobre Nós</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 Grupo 2. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script type="module" src="../scripts/main.js"></script>
+</body>
+
+</html>
