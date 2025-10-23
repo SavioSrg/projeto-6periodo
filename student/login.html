@@ -10,70 +10,71 @@
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
-<body>
-    <header class="header">
-        <div class="container header-inner">
-            <picture>
-                <source srcset="../assets/images/logo-150.png" media="(min-width: 1000px)">
-                <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
-                <img src="../assets/images/logo-100.png" alt="Logo do projeto">
-            </picture>
-
-            <nav class="nav">
-                <a href="#">Encontrar professor</a>
-                <a href="#">Seja um professor</a>
+<body class="body-flex">
+<header class="header">
+        <div class="container-header header-inner">
+            <a href="../index.html">
+                <picture>
+                    <source srcset="../../assets/images/logo-120.png" media="(min-width: 1000px)">
+                    <source srcset="../../assets/images/logo-100.png" media="(min-width: 600px)">
+                    <img src="../../assets/images/logo-80.png" alt="Exemplo responsivo">
+                </picture>
+            </a>
+            <nav class="nav-menu" id="navMenu">
+                <a href="#principal" class="nav-link">Início</a>
+                <a href="#categoria" class="nav-link">Categorias</a>
+                <a href="#funcionamento" class="nav-link">Como funciona?</a>
             </nav>
-
             <div class="actions">
-                <button class="bell" aria-label="Notificações">🔔</button>
-                <button id="openLoginModal" class="btn-login" type="button">Entrar</button>
+                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+                <button class="btn btn-secondary" type="button ">Cadastrar</button>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fa-solid fa-bars"></i>
             </div>
         </div>
     </header>
 
-    <main class="main">
-        <section class="container org">
-            <div class="form-wrap" role="region" aria-labelledby="tituloLogin">
-                <h1 id="tituloLogin" class="title">Entrar no perfil</h1>
-
-                <form class="login-form">
-
-                    <label class="field-label" for="email">E-mail</label>
-
-                    <input id="email" class="input-field org-input" type="email" placeholder="Seu e-mail" required
-                        autocomplete="email" />
-
-                    <label class="field-label" for="password">Senha</label>
-                    <div class="password-wrapper org-input">
-
-                        <input id="password" class="input-field input-password" type="password" placeholder="Sua senha"
-                            required autocomplete="current-password" />
-
-                        <button type="button" aria-label="Mostrar senha" class="btn-eye" id="togglePassword">%</button>
-                    </div>
-
-                    <button class="btn-submit" type="submit">Cadastrar</button>
-                </form>
+    <main class="main-login">
+        <section class="secao-login">
+            <div class="container">
+                <div class="form-wrap" role="region" aria-labelledby="tituloLogin">
+                    <h1 id="tituloLogin" class="title">Entrar no perfil</h1>
+                    <p>Não possui uma conta? <a href="./cadastrar.html">Criar cadastro</a></p>
+                    <form class="login-form">
+                        <label class="field-label" for="email">E-mail</label>
+                        <input id="email" class="input-field org-input--field" type="email" placeholder="Seu e-mail" required
+                            autocomplete="email" />
+                        <label class="field-label" for="password">Senha</label>
+                        <div class="password-wrapper org-input--field">
+                            <input id="password" class="input-field input-password" type="password"
+                                placeholder="Sua senha" required autocomplete="current-password" />
+                            <button type="button" aria-label="Mostrar senha" class="btn-eye"
+                                id="togglePassword">%</button>
+                        </div>
+                        <button class="btn btn-submit" type="submit">Cadastrar</button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="footer footer-fixed">
+        <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <picture>
-                    <source srcset="../assets/images/logo-200.png" media="(min-width: 1000px)">
-                    <source srcset="../assets/images/logo-150.png" media="(min-width: 600px)">
-                    <img src="../assets/images/logo-120.png" alt="Logo do site">
+                    <source srcset="../../assets/images/logo-200.png" media="(min-width: 1000px)">
+                    <source srcset="../../assets/images/logo-150.png" media="(min-width: 600px)">
+                    <img src="../../assets/images/logo-100.png" alt="Logo do site">
                 </picture>
                 <p>O conhecimento que você procura, a um clique de distância</p>
             </div>
 
             <nav class="footer-col">
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="#">Sobre Nós</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../sobre-nos.html">Sobre Nós</a></li>
+                    <li><a href="../contato.html">Contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -82,7 +83,8 @@
             © 2025 Grupo 2. Todos os direitos reservados.
         </div>
     </footer>
-    <script type="module" src="./scripts/main.js"></script>
+
+    <script type="module" src="../scripts/main.js"></script>
 </body>
 
 </html>
