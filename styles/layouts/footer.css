@@ -87,5 +87,3 @@
         gap: 12px;
     }
 }
-:root { --footer-h: 96px; } /* fallback aproximado */
-body { padding-bottom: var(--footer-h); }

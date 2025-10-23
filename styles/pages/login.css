@@ -1,8 +1,14 @@
+.body-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 /* form */
 .form-wrap {
     width: 100%;
     max-width: 540px;
-    margin: 20px auto 0 auto;
+    margin: 0 auto;
     text-align: left;
 }
 

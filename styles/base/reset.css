@@ -8,7 +8,7 @@ body {
     margin: 0;
     padding: 0;
     color: var(--cor-texto);
-    height: 100vh;
+    min-height: 100vh;
 }
 
 h2 {
