@@ -18,8 +18,8 @@
         <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
         <img src="../assets/images/logo-100.png" alt="Logo do projeto">
         </picture>
-        <nav class="nav-menu" id="navMenu">
-                <a href="#principal" class="nav-link">Início</a>
+         <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Início</a>
                 <a href="#categoria" class="nav-link">Categorias</a>
                 <a href="#funcionamento" class="nav-link">Como funciona?</a>
             </nav>
@@ -149,27 +149,7 @@
 </head>
 
 
-<div class="wrap">
-    <h1 class="titulo">Busque pelo Professor Perfeito.</h1>
 
-    <form class="search" role="search" onsubmit="event.preventDefault()">
-      <input id="q" name="q" type="search" placeholder="Pesquisar..." />
-      <button type="submit" aria-label="Buscar">
-        <!-- Ícone de lupa (SVG) -->
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" fill="none" stroke="#111" stroke-width="2" />
-        </svg>
-      </button>
-    </form>
-
-    <div class="filtros">
-      <button class="filtro-btn" type="button">Categoria</button>
-      <button class="filtro-btn" type="button">Formação</button>
-      <button class="filtro-btn" type="button">Modelo Aula</button>
-      <button class="filtro-btn" type="button">Promoção</button>
-    </div>
-   
-</div>
 
 
 <div class="prof-grid">
@@ -189,80 +169,6 @@
 
       <p class="prof-card__bio">{{bio_curta}}</p>
 
-      
-
-      <div class="prof-card__acoes">
-        <button class="btn btn--primario">Ver perfil</button>
-        <button class="btn btn--secundario">Agendar aula</button>
-      </div>
-    </div>
-  </article>
-
- <article class="prof-card" data-id="{{id_professor}}">
-    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
-
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__materia">{{materia}}</p>
-
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-
-      <p class="prof-card__bio">{{bio_curta}}</p>
-
-      
-
-      <div class="prof-card__acoes">
-        <button class="btn btn--primario">Ver perfil</button>
-        <button class="btn btn--secundario">Agendar aula</button>
-      </div>
-    </div>
-  </article>
-
- <article class="prof-card" data-id="{{id_professor}}">
-    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
-
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__materia">{{materia}}</p>
-
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-
-      <p class="prof-card__bio">{{bio_curta}}</p>
-
-      
-
-      <div class="prof-card__acoes">
-        <button class="btn btn--primario">Ver perfil</button>
-        <button class="btn btn--secundario">Agendar aula</button>
-      </div>
-    </div>
-  </article>
-
- <article class="prof-card" data-id="{{id_professor}}">
-    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
-
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__materia">{{materia}}</p>
-
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-
-      <p class="prof-card__bio">{{bio_curta}}</p>
-
-      
-
       <div class="prof-card__acoes">
         <button class="btn btn--primario">Ver perfil</button>
         <button class="btn btn--secundario">Agendar aula</button>
@@ -271,7 +177,6 @@
   </article>
 </div>
 
-<!-- CSS mínimo do card -->
 <style>
   
   .prof-grid {
