@@ -4,31 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Aplicação - Home</title>
+    <title>Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../styles/style.css">
 </head>
 
 <body class="body-flex">
-<header class="header">
-        <div class="container-header header-inner">
-            <a href="../index.html">
-                <picture>
-                    <source srcset="../../assets/images/logo-120.png" media="(min-width: 1000px)">
-                    <source srcset="../../assets/images/logo-100.png" media="(min-width: 600px)">
-                    <img src="../../assets/images/logo-80.png" alt="Exemplo responsivo">
-                </picture>
-            </a>
+        <header class="header">
+        <div class="header-inner">
+                <a href="../index.html">
+                    <picture>
+                        <source srcset="../assets/images/logo-120.png" media="(min-width: 1000px)">
+                        <img src="../assets/images/logo-100.png" alt="Exemplo responsivo">
+                    </picture>
+                </a>
             <nav class="nav-menu" id="navMenu">
                 <a href="#principal" class="nav-link">Início</a>
                 <a href="#categoria" class="nav-link">Categorias</a>
                 <a href="#funcionamento" class="nav-link">Como funciona?</a>
+                <div class="actions">
+                    <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+                    <button class="btn btn-secondary" type="button ">Cadastrar</button>
+                </div>
             </nav>
-            <div class="actions">
-                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                <button class="btn btn-secondary" type="button ">Cadastrar</button>
-            </div>
             <div class="hamburger" id="hamburger">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -40,11 +39,14 @@
             <div class="container">
                 <div class="form-wrap" role="region" aria-labelledby="tituloLogin">
                     <h1 id="tituloLogin" class="title">Entrar no perfil</h1>
-                    <p>Não possui uma conta? <a href="./cadastrar.html">Criar cadastro</a></p>
+                    <p>
+                        Não possui uma conta? 
+                        <a href="./cadastrar.html"><u>Criar cadastro</u></a>
+                    </p>
                     <form class="login-form">
                         <label class="field-label" for="email">E-mail</label>
-                        <input id="email" class="input-field org-input--field" type="email" placeholder="Seu e-mail" required
-                            autocomplete="email" />
+                        <input id="email" class="input-field org-input--field" type="email" placeholder="Seu e-mail"
+                            required autocomplete="email" />
                         <label class="field-label" for="password">Senha</label>
                         <div class="password-wrapper org-input--field">
                             <input id="password" class="input-field input-password" type="password"
@@ -59,7 +61,7 @@
         </section>
     </main>
 
-        <footer class="footer">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-brand">
                 <picture>

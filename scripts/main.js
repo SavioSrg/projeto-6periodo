@@ -1,2 +1,2 @@
-import "./components/form.js";
-import "./components/modal.js";
+import "./global.js";
+import "./form.js";

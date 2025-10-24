@@ -12,22 +12,19 @@
 <body>
     <header class="header">
         <div class="header-inner">
-            <div class="header-linha1">
                 <a href="index.html">
                     <picture>
                         <source srcset="assets/images/logo-120.png" media="(min-width: 1000px)">
                         <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
                     </picture>
                 </a>
-
-            </div>
             <nav class="nav-menu" id="navMenu">
                 <a href="#principal" class="nav-link">Início</a>
                 <a href="#categoria" class="nav-link">Categorias</a>
                 <a href="#funcionamento" class="nav-link">Como funciona?</a>
                 <div class="actions">
                     <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                    <button class="btn btn-secondary" type="button ">Cadastrar</button>
+                    <button id="openModalCadastro" class="btn btn-secondary" type="button ">Cadastrar</button>
                 </div>
             </nav>
             <div class="hamburger" id="hamburger">
@@ -165,7 +162,7 @@
         </div>
     </footer>
 
-    <!-- MODAL -->
+    <!-- MODAL 1 -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span id="closeModal" class="close">&times;</span>
@@ -187,18 +184,29 @@
         </div>
     </div>
 
-    <script src="scripts/components/modal.js"></script>
-    <script type="module" src="./scripts/main.js"></script>
-    <script>
-        // Seleciona os elementos
-        const hamburger = document.getElementById("hamburger");
-        const navMenu = document.getElementById("navMenu");
+        <!-- MODAL 2 -->
+        <div id="modalCadastro" class="modal">
+        <div class="modal-content">
+            <span id="closeModalCadastro" class="close">&times;</span>
+            <h2>Cadastro</h2>
 
-        // Adiciona o evento de clique
-        hamburger.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-        });
-    </script>
+            <div class="actions">
+                <!-- Login para estudante -->
+                <div class="login-option">
+                    <img src="./img/student.png" alt="Estudante" class="login-img">
+                    <a class="btn" href="./student/cadastrar.html">Cadastro para estudante</a>
+                </div>
+
+                <!-- Login para instrutor -->
+                <div class="login-option">
+                    <img src="./img/teacher.png" alt="Instrutor" class="login-img">
+                    <a class="btn" href="./teachers/cadastrar.html">Cadastro para instrutor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="./scripts/main.js"></script>
 </body>
 
 </html>
