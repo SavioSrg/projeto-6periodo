@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
     <title>Aplicação - Home</title>
 
@@ -12,23 +13,20 @@
 
 <body class="body-flex">
     <header class="header">
-        <div class="container-header header-inner">
+        <div class="header-inner">
             <a href="../index.html">
                 <picture>
-                    <source srcset="/projeto-6periodo/assets/images/logo-120.png" media="(min-width: 1000px)">
-                    <source srcset="/projeto-6periodo/assets/images/logo-100.png" media="(min-width: 600px)">
-                    <img src="/projeto-6periodo/assets/images/logo-80.png" alt="Exemplo responsivo">
+                    <source srcset="../assets/images/logo-120.png" media="(min-width: 1000px)">
+                    <img src="../assets/images/logo-100.png" alt="Exemplo responsivo">
                 </picture>
             </a>
             <nav class="nav-menu" id="navMenu">
-                <a href="#principal" class="nav-link">Início</a>
-                <a href="#categoria" class="nav-link">Categorias</a>
-                <a href="#funcionamento" class="nav-link">Como funciona?</a>
+                <a href="index.html" class="nav-link">Como funciona?</a>
+                <div class="actions">
+                    <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+                    <button class="btn btn-secondary" type="button ">Cadastrar</button>
+                </div>
             </nav>
-            <div class="actions">
-                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                <button class="btn btn-secondary" type="button ">Cadastrar</button>
-            </div>
             <div class="hamburger" id="hamburger">
                 <i class="fa-solid fa-bars"></i>
             </div>

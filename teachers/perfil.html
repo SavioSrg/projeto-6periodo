@@ -53,8 +53,8 @@
                             </button>
                         </div> -->
                         <div class="profile-basic-info">
-                            <h1 id="profileName">Ana Silva</h1>
-                            <p id="profileType" class="profile-type">Estudante</p>
+                            <h1 id="profileName">Sávio Sérgio</h1>
+                            <p id="profileType" class="profile-type">Professor</p>
                             <p class="profile-join-date">
                                 Membro desde <time datetime="2023-06">Junho 2023</time>
                             </p>
@@ -63,10 +63,10 @@
                                     <strong id="totalLessons">45</strong> <span>Aulas</span>
                                 </li>
                                 <li class="stat-item">
-                                    <strong id="totalHours">67h</strong> <span>Estudadas</span>
+                                    <strong id="totalTeachers">8</strong> <span>Alunos</span>
                                 </li>
                                 <li class="stat-item">
-                                    <strong id="totalTeachers">8</strong> <span>Professores</span>
+                                    <strong id="totalAvaliacao">45</strong> <span>Avaliações</span>
                                 </li>
                             </ul>
                         </div>
@@ -94,25 +94,39 @@
                         </header>
                         <div class="card-content">
                             <ul class="interests-list" id="interestsList">
-                                <li>Matemática</li>
-                                <li>Física</li>
+                                <li>Remoto</li>
+                                <li>Presencial</li>
                                 <li>Programação</li>
-                                <li>Inglês</li>
+                                <li>Desenvolvimento Web</li>
                             </ul>
                         </div>
                     </article>
 
                     <article class="profile-card">
                         <header class="card-header">
-                            <h2>Objetivos de Aprendizado</h2>
+                            <h2>Objetivos de Ensino</h2>
                             <button class="edit-section-btn" onclick="editSection('goals')">
                                 <i class="fas fa-edit"></i>
                             </button>
                         </header>
                         <ul class="card-content goals-list" id="goalsList">
-                            <li><i class="fas fa-target"></i> Passar no vestibular de Engenharia</li>
-                            <li><i class="fas fa-target"></i> Melhorar fluência em inglês</li>
+                            <!-- <li><i class="fas fa-target"></i> Passar no vestibular de Engenharia</li>
+                            <li><i class="fas fa-target"></i> Melhorar fluência em inglês</li> -->
                             <li><i class="fas fa-target"></i> Aprender programação web</li>
+                        </ul>
+                    </article>
+
+                    <article class="profile-card">
+                        <header class="card-header">
+                            <h2>Certificações</h2>
+                            <button class="edit-section-btn" onclick="editSection('goals')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </header>
+                        <ul class="card-content goals-list" id="goalsList">
+                            <!-- <li><i class="fas fa-target"></i> Passar no vestibular de Engenharia</li>
+                            <li><i class="fas fa-target"></i> Melhorar fluência em inglês</li> -->
+                            <li><i class="fas fa-target"></i>Sistema de Informação - PUC Minas</li>
                         </ul>
                     </article>
 
@@ -139,18 +153,18 @@
                                     <p>Completou sua primeira aula</p>
                                 </div>
                             </li>
-                            <li class="achievement-item earned">
+                            <!-- <li class="achievement-item earned">
                                 <i class="fas fa-fire"></i>
                                 <div>
                                     <h3>Sequência de 7 dias</h3>
                                     <p>Estudou por 7 dias seguidos</p>
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="achievement-item earned">
                                 <i class="fas fa-star"></i>
                                 <div>
-                                    <h3>Aluno 5 Estrelas</h3>
-                                    <p>Recebeu avaliação 5⭐ de um professor</p>
+                                    <h3>Professor 5 Estrelas</h3>
+                                    <p>Recebeu avaliação 5⭐ de um aluno</p>
                                 </div>
                             </li>
                             <li class="achievement-item">
@@ -236,16 +250,6 @@
 
     <script src="scripts/components/modal.js"></script>
     <script type="module" src="./scripts/main.js"></script>
-    <script>
-        // Seleciona os elementos
-        const hamburger = document.getElementById("hamburger");
-        const navMenu = document.getElementById("navMenu");
-
-        // Adiciona o evento de clique
-        hamburger.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-        });
-    </script>
 </body>
 
 </html>
