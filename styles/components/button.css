@@ -48,6 +48,12 @@
     color: var(--white);
 }
 
+.btn > a {
+    text-decoration: none;
+    background: var(--cor-secundaria);
+    color: var(--white);
+}
+
 .btn-primary {
     background: var(--cor-secundaria);
     color: var(--white);

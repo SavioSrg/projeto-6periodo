@@ -14,20 +14,18 @@
         <div class="container-header header-inner">
             <a href="../index.html">
                 <picture>
-                    <source srcset="assets/images/logo-120.png" media="(min-width: 1000px)">
-                    <source srcset="assets/images/logo-100.png" media="(min-width: 600px)">
-                    <img src="assets/images/logo-80.png" alt="Exemplo responsivo">
+                    <source srcset="../assets/images/logo-120.png" media="(min-width: 1000px)">
+                    <img src="../assets/images/logo-100.png" alt="Exemplo responsivo">
                 </picture>
             </a>
             <nav class="nav-menu" id="navMenu">
-                <a href="#principal" class="nav-link">Início</a>
                 <a href="#categoria" class="nav-link">Categorias</a>
                 <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <div class="actions">
+                    <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+                </div>
             </nav>
-            <div class="actions">
-                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                <button class="btn btn-secondary" type="button ">Cadastrar</button>
-            </div>
+
             <div class="hamburger" id="hamburger">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -36,55 +34,50 @@
     <main class="profile-main">
         <section class="profile-header-section">
             <header class="profile-header">
-                <!-- <figure class="profile-cover">
-                    <div class="cover-overlay">
-                        <button class="change-cover-btn" onclick="changeCover()">
-                            <i class="fas fa-camera"></i>
-                            Alterar Capa
-                        </button>
+                <div class="container">
+                    <!-- <figure class="profile-cover">
+                        <div class="cover-overlay">
+                            <button class="change-cover-btn" onclick="changeCover()">
+                                <i class="fas fa-camera"></i>
+                                Alterar Capa
+                            </button>
+                        </div>
+                    </figure> -->
+                    <div class="profile-info-header">
+                        <!-- <div class="profile-avatar-section">
+                            <figure class="profile-avatar">
+                                <img id="profileAvatar" alt="Foto do perfil de Ana Silva">
+                            </figure>
+                            <button class="change-avatar-btn" onclick="changeAvatar()">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                        </div> -->
+                        <div class="profile-basic-info">
+                            <h1 id="profileName">Ana Silva</h1>
+                            <p id="profileType" class="profile-type">Estudante</p>
+                            <p class="profile-join-date">
+                                Membro desde <time datetime="2023-06">Junho 2023</time>
+                            </p>
+                            <ul class="profile-stats">
+                                <li class="stat-item">
+                                    <strong id="totalLessons">45</strong> <span>Aulas</span>
+                                </li>
+                                <li class="stat-item">
+                                    <strong id="totalHours">67h</strong> <span>Estudadas</span>
+                                </li>
+                                <li class="stat-item">
+                                    <strong id="totalTeachers">8</strong> <span>Professores</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <nav class="profile-actions">
+                            <button class="btn-outline" onclick="toggleEditMode()">
+                                <i class="fas fa-edit"></i> Editar Perfil
+                            </button>
+                        </nav>
                     </div>
-                </figure> -->
-
-                <div class="profile-info-header">
-                    <!-- <div class="profile-avatar-section">
-                        <figure class="profile-avatar">
-                            <img id="profileAvatar" alt="Foto do perfil de Ana Silva">
-                        </figure>
-                        <button class="change-avatar-btn" onclick="changeAvatar()">
-                            <i class="fas fa-camera"></i>
-                        </button>
-                    </div> -->
-
-                    <div class="profile-basic-info">
-                        <h1 id="profileName">Ana Silva</h1>
-                        <p id="profileType" class="profile-type">Estudante</p>
-                        <p class="profile-join-date">
-                            Membro desde <time datetime="2023-06">Junho 2023</time>
-                        </p>
-
-                        <ul class="profile-stats">
-                            <li class="stat-item">
-                                <strong id="totalLessons">45</strong> <span>Aulas</span>
-                            </li>
-                            <li class="stat-item">
-                                <strong id="totalHours">67h</strong> <span>Estudadas</span>
-                            </li>
-                            <li class="stat-item">
-                                <strong id="totalTeachers">8</strong> <span>Professores</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <nav class="profile-actions">
-                        <button class="btn-outline" onclick="toggleEditMode()">
-                            <i class="fas fa-edit"></i> Editar Perfil
-                        </button>
-                        <button class="btn-primary" onclick="shareProfile()">
-                            <i class="fas fa-share"></i> Compartilhar
-                        </button>
-                    </nav>
-                </div>
             </header>
+            </div>
         </section>
 
         <!-- Conteúdo principal do perfil -->
@@ -220,9 +213,9 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <picture>
-                    <source srcset="assets/images/logo-200.png" media="(min-width: 1000px)">
-                    <source srcset="assets/images/logo-150.png" media="(min-width: 600px)">
-                    <img src="assets/images/logo-100.png" alt="Logo do site">
+                    <source srcset="../assets/images/logo-200.png" media="(min-width: 1000px)">
+                    <source srcset="../assets/images/logo-150.png" media="(min-width: 600px)">
+                    <img src="../assets/images/logo-100.png" alt="Logo do site">
                 </picture>
                 <p>O conhecimento que você procura, a um clique de distância</p>
             </div>

@@ -1,5 +1,5 @@
 /* ======== VARIÁVEIS DE TEMA ======== */
-:root {
+/* :root {
   --color-primary: #3b82f6;
   --color-primary-hover: #2563eb;
   --color-bg: #f9fafb;
@@ -11,7 +11,7 @@
   --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.1);
   --transition: 0.2s ease-in-out;
-}
+} */
 
 /* ======== HEADER DO PERFIL ======== */
 .profile-header {
@@ -214,18 +214,38 @@
     flex-direction: column;
   }
 
+  .profile-basic-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
   .profile-info-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .profile-actions {
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
+    margin-top: var(--spacing-4);
   }
 
   .profile-columns {
     grid-template-columns: 1fr;
     /* colunas empilhadas */
+  }
+
+  .quick-actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .welcome-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 }
