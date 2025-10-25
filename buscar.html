@@ -1,37 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Aplicação - buscar</title>
-
-  <link rel="stylesheet" href="../styles/style.css">
-</head>
-
-<body>
-  <header class="header">
-    <div class="container header-inner">
-      <picture>
-        <source srcset="../assets/images/logo-150.png" media="(min-width: 1000px)">
-        <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
-        <img src="../assets/images/logo-100.png" alt="Logo do projeto">
-        </picture>
-        <nav class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Início</a>
-                <a href="#categoria" class="nav-link">Categorias</a>
-                <a href="#funcionamento" class="nav-link">Como funciona?</a>
-            </nav>
-        <div class="actions">
-          <button class="bell" aria-label="Notificações">🔔</button>
-          <a class="btn-login" href="teachers/login.html">Entrar</a>
-        </div>
-    </div>
-  </header>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="stylesheet" href="../styles/style.css">
   <title>Busca de Professores</title>
   <style>
     :root {
@@ -149,7 +121,29 @@
 </head>
 
 
-<div class="wrap">
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <picture>
+        <source srcset="../assets/images/logo-150.png" media="(min-width: 1000px)">
+        <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
+        <img src="../assets/images/logo-100.png" alt="Logo do projeto">
+        </picture>
+        <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Início</a>
+                <a href="#categoria" class="nav-link">Categorias</a>
+                <a href="#funcionamento" class="nav-link">Como funciona?</a>
+            </nav>
+        <div class="actions">
+          <button class="bell" aria-label="Notificações">🔔</button>
+          <a class="btn-login" href="teachers/login.html">Entrar</a>
+        </div>
+    </div>
+  </header>
+
+
+
+<section class="wrap">
     <h1 class="titulo">Busque pelo Professor Perfeito.</h1>
 
     <form class="search" role="search" onsubmit="event.preventDefault()">
@@ -169,10 +163,10 @@
       <button class="filtro-btn" type="button">Promoção</button>
     </div>
    
-</div>
+</section>  
 
 
-<div class="prof-grid">
+<section class="prof-lista">
   <!-- CARD do professor (repita este bloco para cada registro do BD) -->
   <article class="prof-card" data-id="{{id_professor}}">
     <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
@@ -274,7 +268,7 @@
       </div>
     </div>
   </article>
-</div>
+</section>
 
 <!-- CSS mínimo do card -->
 <style>
