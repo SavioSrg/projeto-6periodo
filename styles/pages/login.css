@@ -1,3 +1,10 @@
+.formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 /* form */
 .form-wrap {
     width: 100%;
@@ -92,4 +99,8 @@ fieldset:not([hidden]) {
 
 .formulario-cadastro {
     margin: 2rem 0;
+}
+
+#senha, #confirmarSenha {
+    border: 0;
 }
