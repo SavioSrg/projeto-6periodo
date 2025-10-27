@@ -8,9 +8,317 @@
   <title>Aplicação - Agendar Aula</title>
 
   <link rel="stylesheet" href="../styles/style.css">
+
+  <style>
+    /* ====== ÁREA CENTRAL: AGENDAMENTO ====== */
+
+    .agendar-wrapper {
+      width: 100%;
+      min-height: calc(100vh - 180px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem 6rem;
+      background: #f5f5f5;
+    }
+
+    .agendar-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 420px;
+      border-radius: 1rem;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+      padding: 1.5rem 1.5rem 2rem;
+      border: 1px solid rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+    }
+
+    /* Bloco com o professor */
+    .agendar-prof {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .agendar-prof-foto {
+      width: 72px;
+      height: 72px;
+      border-radius: 0.75rem;
+      object-fit: cover;
+      background: #ddd;
+      flex-shrink: 0;
+    }
+
+    .agendar-prof-dados {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .agendar-prof-nome {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .agendar-prof-Conteudo {
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .agendar-prof-local {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.2;
+      margin: 0;
+    }
+
+    .agendar-divisor {
+      border: 0;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      margin: 0.5rem 0 1rem;
+    }
+
+    /* Formulário */
+    .agendar-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .agendar-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .agendar-campo {
+      flex: 1;
+      min-width: 120px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .agendar-campo-full {
+      min-width: 100%;
+      flex: 1 1 100%;
+    }
+
+    .agendar-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #222;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .agendar-opcional {
+      font-weight: 400;
+      color: #777;
+      font-size: 0.8rem;
+    }
+
+    .agendar-input {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      padding: 0.6rem 0.75rem;
+      font-size: 1rem;
+      line-height: 1.4;
+      color: #222;
+      outline: none;
+      box-shadow: 0 0 0 0 rgba(0, 128, 0, 0);
+      transition: border-color .2s, box-shadow .2s;
+      width: 100%;
+      font-family: inherit;
+    }
+
+    .agendar-input:focus {
+      border-color: #00c8f5;
+      box-shadow: 0 0 0 3px rgba(43, 191, 211, 0.15);
+    }
+
+    .agendar-textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    /* Ações finais (voltar/confirmar) */
+    .acoes-extra {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-voltar-perfil {
+      font-size: .85rem;
+      font-weight: 600;
+      background: transparent;
+      border: none;
+      color: #00c8f5;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1.2;
+    }
+
+    .btn-agendar-aula {
+      appearance: none;
+      border: 0;
+      border-radius: 0.6rem;
+      background-color: #00c8f5;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 0.9rem 1rem;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color .2s, box-shadow .2s;
+      width: 100%;
+    }
+
+    .btn-agendar-aula:hover,
+    .btn-agendar-aula:focus {
+      background-color: #1411bd;
+      box-shadow: 0 12px 28px rgba(27,94,32,0.35);
+    }
+
+    @media (min-width: 480px) {
+      .agendar-card {
+        padding: 2rem;
+        border-radius: 1.25rem;
+      }
+      .agendar-prof-foto {
+        width: 80px;
+        height: 80px;
+        border-radius: 1rem;
+      }
+      .agendar-prof-nome {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Header/Footer aparência base do seu projeto (não alterei estilo global) */
+    .header {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+      border: 1px solid #e5e7eb;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bell {
+      background: #5e2a2a;
+      border: 1px solid #0b316b;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .btn-login {
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.25);
+    }
+
+    .footer.footer-fixed {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+      border: 1px solid #e5e7eb;
+      padding: 16px;
+      margin-top: 3rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .footer-brand p {
+      font-size: .9rem;
+      color: #374151;
+      max-width: 260px;
+      line-height: 1.4;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: .9rem;
+      line-height: 1.4;
+    }
+
+    .footer-col a {
+      color: #111827;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      margin-top: 16px;
+      font-size: .8rem;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- HEADER (mesmo padrão visual do projeto) -->
   <header class="header">
     <div class="container header-inner">
       <picture>
@@ -23,7 +331,6 @@
         <a href="index.html" class="nav-link">Início</a>
         <a href="#categoria" class="nav-link">Categorias</a>
         <a href="#funcionamento" class="nav-link">Como funciona?</a>
-        
       </nav>
 
       <div class="actions">
@@ -31,208 +338,33 @@
         <a class="btn-login" href="login.html">Entrar</a>
       </div>
     </div>
-    <style>
-    /* ====== AGENDAR AULA ====== */
-
-.agendar-wrapper {
-  width: 100%;
-  min-height: calc(100vh - 180px); /* ocupa a tela menos header/footer fixo */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem 1rem 6rem; /* espaço pro footer fixo */
-  background: #f5f5f5;
-}
-
-.agendar-card {
-  background: #ffffff;
-  width: 100%;
-  max-width: 420px;
-  border-radius: 1rem;
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-  padding: 1.5rem 1.5rem 2rem;
-  border: 1px solid rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  position: relative;
-}
-
-.agendar-prof {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.agendar-prof-foto {
-  width: 72px;
-  height: 72px;
-  border-radius: 0.75rem;
-  object-fit: cover;
-  background: #ddd;
-  flex-shrink: 0;
-}
-
-.agendar-prof-dados {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.agendar-prof-nome {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1a1a1a;
-  line-height: 1.3;
-  margin: 0;
-}
-
-.agendar-prof-materia {
-  font-size: 0.9rem;
-  color: #444;
-  line-height: 1.3;
-  margin: 0;
-}
-
-.agendar-prof-local {
-  font-size: 0.8rem;
-  color: #666;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.agendar-divisor {
-  border: 0;
-  border-top: 1px solid rgba(0,0,0,0.07);
-  margin: 0.5rem 0 1rem;
-}
-
-/* form */
-.agendar-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.agendar-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.agendar-campo {
-  flex: 1;
-  min-width: 120px;
-  display: flex;
-  flex-direction: column;
-}
-
-.agendar-campo-full {
-  min-width: 100%;
-  flex: 1 1 100%;
-}
-
-.agendar-label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 0.4rem;
-  line-height: 1.2;
-}
-
-.agendar-opcional {
-  font-weight: 400;
-  color: #777;
-  font-size: 0.8rem;
-}
-
-.agendar-input {
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  padding: 0.6rem 0.75rem;
-  font-size: 1rem;
-  line-height: 1.4;
-  color: #222;
-  outline: none;
-  box-shadow: 0 0 0 0 rgba(0, 128, 0, 0);
-  transition: border-color .2s, box-shadow .2s;
-  width: 100%;
-  font-family: inherit;
-}
-
-.agendar-input:focus {
-  border-color: #00c8f5;
-  box-shadow: 0 0 0 3px rgba(43, 191, 211, 0.15);
-}
-
-.agendar-textarea {
-  resize: vertical;
-  min-height: 70px;
-}
-
-/* botão */
-.btn-agendar-aula {
-  appearance: none;
-  border: 0;
-  border-radius: 0.6rem;
-  background-color: #00c8f5; /* verde principal */
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.2;
-  padding: 0.9rem 1rem;
-  cursor: pointer;
-  text-align: center;
-  transition: background-color .2s, box-shadow .2s;
-  width: 100%;
-}
-
-.btn-agendar-aula:hover,
-.btn-agendar-aula:focus {
-  background-color: #1411bd;
-  box-shadow: 0 12px 28px rgba(27,94,32,0.35);
-}
-
-/* responsividade */
-@media (min-width: 480px) {
-  .agendar-card {
-    padding: 2rem;
-    border-radius: 1.25rem;
-  }
-
-  .agendar-prof-foto {
-    width: 80px;
-    height: 80px;
-    border-radius: 1rem;
-  }
-
-  .agendar-prof-nome {
-    font-size: 1.2rem;
-  }
-}
-    </style>
   </header>
 
-  <!-- ========= CONTEÚDO PRINCIPAL ========= -->
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="agendar-wrapper">
     <section class="agendar-card">
-      <!-- topo com dados do professor -->
+
+      <!-- Professor escolhido (dinâmico) -->
       <header class="agendar-prof">
-        <img class="agendar-prof-foto" src="../assets/images/professor-exemplo.jpg" alt="Foto do professor">
+        <img
+          class="agendar-prof-foto"
+          id="profFoto"
+          src=""
+          alt="Foto do professor"
+        >
 
         <div class="agendar-prof-dados">
-          <h2 class="agendar-prof-nome">Prof. João Pereira</h2>
-          <p class="agendar-prof-Conteúdo">Matemática • Cálculo • Álgebra Linear</p>
-          <p class="agendar-prof-local">📍 Fortaleza / Online</p>
+          <h2 class="agendar-prof-nome" id="profNome">Carregando...</h2>
+          <p class="agendar-prof-Conteudo" id="profConteudo"></p>
+          <p class="agendar-prof-local" id="profLocal"></p>
         </div>
       </header>
 
       <hr class="agendar-divisor">
 
-      <!-- formulário de agendamento -->
-      <form class="agendar-form">
-        <!-- Linha: mês + dia -->
+      <!-- Formulário de agendamento -->
+      <form class="agendar-form" id="formAgendar">
+        <!-- Data -->
         <div class="agendar-row">
           <div class="agendar-campo">
             <label for="mes" class="agendar-label">Mês</label>
@@ -263,11 +395,12 @@
               min="1"
               max="31"
               placeholder="15"
-              required>
+              required
+            >
           </div>
         </div>
 
-        <!-- Linha: hora -->
+        <!-- Hora -->
         <div class="agendar-row">
           <div class="agendar-campo agendar-campo-full">
             <label for="hora" class="agendar-label">Horário</label>
@@ -276,40 +409,78 @@
               id="hora"
               name="hora"
               class="agendar-input"
-              required>
+              required
+            >
           </div>
         </div>
 
-        <!-- Linha: mensagem -->
+        <!-- Observações -->
         <div class="agendar-row">
           <div class="agendar-campo agendar-campo-full">
             <label for="mensagem" class="agendar-label">
-              Observações para o professor <span class="agendar-opcional">(opcional)</span>
+              Observações para o professor
+              <span class="agendar-opcional">(opcional)</span>
             </label>
             <textarea
               id="mensagem"
               name="mensagem"
               class="agendar-input agendar-textarea"
               rows="3"
-              placeholder="Ex: Quero revisar integrais da última aula."></textarea>
+              placeholder="Ex: Quero revisar integrais da última aula."
+            ></textarea>
           </div>
         </div>
 
-        <!-- Botão -->
-        <button type="submit" class="btn-agendar-aula">
-          Confirmar Agendamento
-        
-        </button>
-         <a href="Buscar.html" class="btn btn--primario">Encontrar</a>
-        <button>
+        <!-- Dados do aluno (vão pro professor aprovar) -->
+        <div class="agendar-row">
+          <div class="agendar-campo">
+            <label for="alunoNome" class="agendar-label">Seu nome</label>
+            <input
+              type="text"
+              id="alunoNome"
+              name="alunoNome"
+              class="agendar-input"
+              placeholder="Seu nome completo"
+              required
+            >
+          </div>
 
-        </button>
+          <div class="agendar-campo">
+            <label for="alunoContato" class="agendar-label">Seu contato</label>
+            <input
+              type="text"
+              id="alunoContato"
+              name="alunoContato"
+              class="agendar-input"
+              placeholder="WhatsApp / e-mail"
+              required
+            >
+          </div>
+        </div>
+
+        <!-- Ações -->
+        <div class="acoes-extra">
+          <button
+            type="button"
+            class="btn-voltar-perfil"
+            id="btnVoltarPerfil"
+          >
+            ← Voltar ao perfil
+          </button>
+
+          <button
+            type="submit"
+            class="btn-agendar-aula"
+            id="btnAgendarEnvio"
+          >
+            Confirmar Agendamento
+          </button>
+        </div>
       </form>
     </section>
   </main>
-  <!-- ========= /CONTEÚDO PRINCIPAL ========= -->
 
-
+  <!-- FOOTER (mesmo padrão visual do projeto) -->
   <footer class="footer footer-fixed">
     <div class="footer-container">
       <div class="footer-brand">
@@ -328,7 +499,6 @@
           <li><a href="#">Contato</a></li>
         </ul>
       </nav>
-
     </div>
 
     <div class="footer-bottom">
@@ -336,7 +506,159 @@
     </div>
   </footer>
 
+  <!-- Script global do projeto -->
   <script type="module" src="./scripts/main.js"></script>
-</body>
 
+  <!-- Integração com a API -->
+  <script>
+    // Ajuste aqui para seu backend real
+    const API_BASE = 'http://localhost:5041/api';
+
+    // Lê ?id=123 da URL
+    function getProfessorIdFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    // Monta "YYYY-MM-DDTHH:mm" com base em mês/dia/hora informados
+    function montarDataHoraISO(mes, dia, hora) {
+      const agora = new Date();
+      const anoAtual = agora.getFullYear();
+      const diaStr = String(dia).padStart(2, '0');
+      return `${anoAtual}-${mes}-${diaStr}T${hora}`;
+    }
+
+    // Carrega e mostra dados do professor escolhido
+    async function carregarProfessorResumo() {
+      const idProf = getProfessorIdFromQuery();
+
+      const nomeEl = document.getElementById('profNome');
+      const fotoEl = document.getElementById('profFoto');
+      const conteudoEl = document.getElementById('profConteudo');
+      const localEl = document.getElementById('profLocal');
+
+      if (!idProf) {
+        nomeEl.textContent = 'Professor não informado';
+        conteudoEl.textContent = 'Volte e selecione um professor.';
+        return;
+      }
+
+      nomeEl.textContent = 'Carregando...';
+
+      try {
+        const resp = await fetch(`${API_BASE}/professores/${idProf}`, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!resp.ok) {
+          throw new Error('Erro ao buscar professor (' + resp.status + ')');
+        }
+
+        const prof = await resp.json();
+
+        nomeEl.textContent = prof.nome ?? '(Sem nome)';
+        fotoEl.src = prof.fotoUrl || '../assets/images/default-prof.png';
+        fotoEl.alt = 'Foto de ' + (prof.nome || 'Professor');
+
+        conteudoEl.textContent =
+          prof.descricao ||
+          prof.area ||
+          prof.materia ||
+          'Professor disponível para aulas';
+
+        const cidade = prof.cidade || 'Local não informado';
+        const detalheLocal =
+          prof.informacaoExtra ||
+          prof.infoExtra ||
+          'Atendimento presencial / online';
+
+        localEl.textContent = `📍 ${cidade} / ${detalheLocal}`;
+
+        // guarda o id do professor no form p/ o POST
+        document.getElementById('formAgendar').dataset.professorId = idProf;
+
+        // botão "← Voltar ao perfil" volta pro perfil do prof
+        document
+          .getElementById('btnVoltarPerfil')
+          .addEventListener('click', () => {
+            window.location.href = 'contratar.html?id=' + encodeURIComponent(idProf);
+          });
+
+      } catch (err) {
+        console.error(err);
+        nomeEl.textContent = 'Erro ao carregar professor';
+        conteudoEl.textContent = err.message;
+      }
+    }
+
+    // Envia o agendamento como pendente para aprovação do professor
+    async function enviarAgendamento(e) {
+      e.preventDefault();
+
+      const form = document.getElementById('formAgendar');
+      const professorId = form.dataset.professorId;
+
+      const mes = document.getElementById('mes').value;
+      const dia = document.getElementById('dia').value;
+      const hora = document.getElementById('hora').value;
+      const mensagem = document.getElementById('mensagem').value.trim();
+      const alunoNome = document.getElementById('alunoNome').value.trim();
+      const alunoContato = document.getElementById('alunoContato').value.trim();
+
+      if (!professorId) {
+        alert('Professor não identificado.');
+        return;
+      }
+
+      if (!mes || !dia || !hora || !alunoNome || !alunoContato) {
+        alert('Preencha todos os campos obrigatórios.');
+        return;
+      }
+
+      const dataHoraISO = montarDataHoraISO(mes, dia, hora);
+
+      const payload = {
+        professorId: professorId,
+        dataHora: dataHoraISO,
+        observacoes: mensagem,
+        alunoNome: alunoNome,
+        alunoContato: alunoContato,
+        status: 'pendente' // isso permite que o professor veja e aprove depois
+      };
+
+      const btnEnviar = document.getElementById('btnAgendarEnvio');
+      btnEnviar.disabled = true;
+      btnEnviar.textContent = 'Enviando...';
+
+      try {
+        const resp = await fetch(`${API_BASE}/agendamentos`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!resp.ok) {
+          const txt = await resp.text();
+          alert('Não foi possível enviar o agendamento:\n' + txt);
+        } else {
+          alert('Solicitação enviada! O professor vai analisar e confirmar.');
+          form.reset();
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erro de rede ao enviar agendamento: ' + err.message);
+      } finally {
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = 'Confirmar Agendamento';
+      }
+    }
+
+    // Listeners
+    document.getElementById('formAgendar').addEventListener('submit', enviarAgendamento);
+
+    // Inicia carregando o professor
+    carregarProfessorResumo();
+  </script>
+</body>
 </html>

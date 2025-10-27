@@ -5,44 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Aplicação - buscar</title>
+  <title>Perfil do Professor</title>
 
   <link rel="stylesheet" href="../styles/style.css">
-</head>
 
-<body>
-  <header class="header">
-    <div class="container header-inner">
-      <picture>
-        <source srcset="../assets/images/logo-150.png" media="(min-width: 1000px)">
-        <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
-        <img src="../assets/images/logo-100.png" alt="Logo do projeto">
-        </picture>
-         <nav class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Início</a>
-                <a href="#categoria" class="nav-link">Categorias</a>
-                <a href="#funcionamento" class="nav-link">Como funciona?</a>
-            </nav>
-        <div class="actions">
-          <button class="bell" aria-label="Notificações">🔔</button>
-          <a class="btn-login" href="login.html">Entrar</a>
-        </div>
-    </div>
-  </header>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Busca de Professores</title>
   <style>
     :root {
       --azul: #6ee6ff;
-      /* botão da lupa */
       --cinza: #e6e6e6;
-      /* fundo do input */
       --laranja: #e39a05;
-      /* botões */
       --laranja-dk: #c98403;
-      /* hover */
       --texto: #111;
       --borda: #cfcfcf;
       --radius: 10px;
@@ -54,7 +26,6 @@
       margin: 15px;
     }
 
-       /* Título sublinhado */
     .titulo {
       font-size: 1.6rem;
       font-weight: 700;
@@ -62,9 +33,6 @@
       text-decoration: underline;
     }
 
-    /* Barra de busca com botão anexado */
-    
-    /* Linha de filtros */
     .filtros {
       display: flex;
       gap: 16px;
@@ -88,281 +56,533 @@
     }
 
     .wrap {
-  max-width: 640px;       /* largura máxima */
-  margin: 0 auto;          /* centraliza horizontalmente */
-  text-align: center;      /* centraliza textos e botões dentro */
-  padding: 20px 0;         /* espaçamento vertical */
-}
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 20px 0;
+    }
 
-/* Ajuste da barra de pesquisa */
-.search {
-  display: flex;
-  align-items: center;
-  background: #e9e9e9;
-  border-radius: 12px;
-  padding: 4px;
-  max-width: 640px;
-  margin: 0 auto;
-  box-shadow: 0 0 3px rgba(0, 0, 0, .01);
-}
+    .search {
+      display: flex;
+      align-items: center;
+      background: #e9e9e9;
+      border-radius: 12px;
+      padding: 4px;
+      max-width: 640px;
+      margin: 0 auto;
+      box-shadow: 0 0 3px rgba(0, 0, 0, .01);
+    }
 
-.search input[type="search"] {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 10px 12px;
-  font-size: 1rem;
-}
+    .search input[type="search"] {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 10px 12px;
+      font-size: 1rem;
+    }
 
-.search button {
-  background: #00c8f5;
-  border: none;
-  border-radius: 10px;
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-  cursor: pointer;
-}
-.search button:hover{
-  background: #1bbde8;
-}
-/* Centraliza e estiliza os botões de filtro */
-.filtros {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+    .search button {
+      background: #00c8f5;
+      border: none;
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
 
-.filtros button {
-  background: #f4b400;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .search button:hover {
+      background: #1bbde8;
+    }
+
+    .filtros {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filtros button {
+      background: #f4b400;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* CARD PERFIL */
+    .prof-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 100%;
+    }
+
+    .prof-card {
+      display: flex;
+      align-items: flex-start;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+      overflow: hidden;
+      gap: 20px;
+      padding: 16px;
+    }
+
+    .prof-card__foto {
+      flex: 0 0 300px;
+    }
+
+    .prof-card__foto img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+      background: #ccc;
+    }
+
+    .prof-card__body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .prof-card__nome {
+      margin: 0;
+      font-size: 1.4rem;
+      color: #111827;
+    }
+
+    .prof-card__Conteudo,
+    .prof-card__Certificacao,
+    .prof-card__Competencias {
+      margin: 4px 0;
+      color: #111827;
+      font-weight: 500;
+      font-size: .95rem;
+      line-height: 1.4;
+    }
+
+    .prof-card__meta {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: #374151;
+      font-size: .95rem;
+    }
+
+    .prof-card__bio {
+      margin: 6px 0 10px;
+      color: #4b5563;
+      font-size: .93rem;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+
+    .endereco {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #374151;
+    }
+
+    .mensagem {
+      margin-top: 16px;
+      max-width: 900px;
+    }
+
+    .mensagem label {
+      font-size: .8rem;
+      font-weight: 600;
+      color: #111827;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .mensagem textarea {
+      width: 100%;
+      min-height: 70px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      padding: 6px;
+      resize: vertical;
+      font-family: inherit;
+      font-size: .9rem;
+      line-height: 1.3;
+    }
+
+    /* BOTÕES */
+    .prof-card__acoes {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      font-size: .9rem;
+      line-height: 1.2;
+    }
+
+    .btn--primario {
+      background: #38bdf8;
+      color: #fff;
+    }
+
+    .btn--primario:hover {
+      background: #0ea5e9;
+    }
+
+    .btn--secundario {
+      background: var(--laranja);
+      color: #111827;
+    }
+
+    .btn--secundario:hover {
+      background: var(--laranja-dk);
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 700px) {
+      .prof-card {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .prof-card__foto {
+        width: 100%;
+        flex: 0 0 auto;
+      }
+
+      .prof-card__foto img {
+        height: 220px;
+      }
+
+      .prof-card__acoes {
+        justify-content: center;
+      }
+    }
+
+    /* Footer */
+    .footer.footer-fixed {
+      margin-top: 40px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+      border: 1px solid #e5e7eb;
+      padding: 16px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .footer-brand p {
+      font-size: .9rem;
+      color: #374151;
+      max-width: 260px;
+      line-height: 1.4;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: .9rem;
+      line-height: 1.4;
+    }
+
+    .footer-col a {
+      color: #111827;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      margin-top: 16px;
+      font-size: .8rem;
+      color: #6b7280;
+      text-align: center;
+    }
   </style>
 </head>
-<div class="prof-grid">
-  <!-- CARD do professor (repita este bloco para cada registro do BD) -->
-  <article class="prof-card" data-id="{{id_professor}}">
-    
-    <!-- FOTO À ESQUERDA -->
-    <div class="prof-card__foto">
-      <img src="{{foto_url}}" alt="Foto de {{nome}}">
-    </div>
 
-    <!-- CONTEÚDO À DIREITA -->
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__Conteúdo">{{Conteúdo}}</p>
-      <p class="prof-card__Certificação">{{Certificações}}</p>
-      <p class="prof-card__Competencias">{{Competencias}}</p>
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-            
-        <p><strong>Endereço:</strong> {{endereco}}</p>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <picture>
+        <source srcset="../assets/images/logo-150.png" media="(min-width: 1000px)">
+        <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
+        <img src="../assets/images/logo-100.png" alt="Logo do projeto">
+      </picture>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">Início</a>
+        <a href="buscar.html" class="nav-link">Buscar Professor</a>
+        <a href="#funcionamento" class="nav-link">Como funciona?</a>
+      </nav>
+
+      <div class="actions">
+        <button class="bell" aria-label="Notificações">🔔</button>
+        <a class="btn-login" href="login.html">Entrar</a>
       </div>
-      
-      <div class="endereco">
-        <p><strong>Informações:</strong> {{Informação}}</p>
-      <div class="mensagem">
-        <label for="msg">Envie uma mensagem:</label>
-        <textarea id="msg" placeholder="Digite sua mensagem..."></textarea>
-      </div>     
-      
-      <div class="prof-card__acoes">
-        <a href="Buscar.html" class="btn btn--primario">Encontrar</a>
-        <a href="agendar.html" class="btn btn--secundario">Agendar</a>
-                
-      </div>
-  
-
-      
     </div>
-  </article>
-</div>
+  </header>
 
+  <!-- PERFIL DO PROFESSOR -->
+  <div class="prof-grid">
+    <article class="prof-card" id="profCard" data-id="">
+      <!-- FOTO À ESQUERDA -->
+      <div class="prof-card__foto">
+        <img id="profFoto" src="" alt="Foto do professor">
+      </div>
 
-<style>
- .prof-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  margin: 30px auto;
-  max-width: 100%;
-}
+      <!-- CONTEÚDO À DIREITA -->
+      <div class="prof-card__body">
+        <h3 class="prof-card__nome" id="profNome">Carregando...</h3>
 
-.prof-card {
-  display: flex;
-  align-items: flex-start;
-  background: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
-  overflow: hidden;
-  gap: 20px;
-  padding: 16px;
-}
+        <p class="prof-card__Conteudo" id="profConteudo"></p>
+        <p class="prof-card__Certificacao" id="profCertificacao"></p>
+        <p class="prof-card__Competencias" id="profCompetencias"></p>
 
-/* FOTO À ESQUERDA */
-.prof-card__foto {
-  flex: 0 0 300px; /* largura fixa da área da foto */
-}
+        <ul class="prof-card__meta">
+          <li id="profCidade">📍 </li>
+          <li id="profExperiencia">💼 </li>
+          <li id="profPreco">💲 </li>
+        </ul>
 
-.prof-card__foto img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
-}
+        <p class="prof-card__bio" id="profBio"></p>
 
-/* CONTEÚDO À DIREITA */
-.prof-card__body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.prof-card__nome {
-  margin: 0;
-  font-size: 1.4rem;
-  color: #111827;
-}
-
-.prof-card__materia {
-  margin: 4px 0 8px;
-  color: #2563eb;
-  font-weight: 600;
-}
-
-.prof-card__meta {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  color: #374151;
-  font-size: .95rem;
-}
-
-.prof-card__bio {
-  margin: 6px 0 10px;
-  color: #4b5563;
-  font-size: .93rem;
-  line-height: 1.4;
-}
-
-/* BOTÕES */
-.prof-card__acoes {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.btn {
-  border: none;
-  cursor: pointer;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: 700;
-  transition: 0.2s;
-}
-
-.btn--primario {
-  background: #38bdf8;
-  color: #fff;
-}
-
-.btn--primario:hover {
-  background: #0ea5e9;
-}
-
-.btn--secundario {
-  background: var(--laranja);
-  color: #111827;
-}
-
-.btn--secundario:hover {
-  background: var(--laranja-dk);
-}
-
-/* MENSAGEM E ENDEREÇO */
-.mensagem {
-  margin-top: 10px;
-  max-width: 900px;
-}
-
-.mensagem textarea {
-  width: 100%;
-  min-height: 70px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  padding: 6px;
-  resize: vertical;
-}
-
-.endereco {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: #374151;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 700px) {
-  .prof-card {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .prof-card__foto {
-    width: 100%;
-  }
-
-  .prof-card__foto img {
-    height: 220px;
-  }
-}
-</style>
-
-<footer class="footer footer-fixed">
-      <div class="footer-container">
-        <div class="footer-brand">
-          <picture>
-            <source srcset="assets/images/logo-200.png" media="(min-width: 1000px)">
-            <source srcset="assets/images/logo-150.png" media="(min-width: 600px)">
-            <img src="assets/images/logo-120.png" alt="Logo do site">
-          </picture>
-         <p>O Conhecimento que você procura, a um clique de distância
-         </p>
+        <div class="endereco">
+          <p><strong>Endereço:</strong> <span id="profEndereco"></span></p>
+          <p><strong>Informações:</strong> <span id="profInfoExtra"></span></p>
         </div>
-         <nav class="footer-col" aria-label="Links institucionais">
-          <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="#">Sobre Nós</a></li>
-            <li><a href="#">Contato</a></li>
-          </ul>
-        </nav>
-       
+
+        <div class="mensagem">
+          <label for="msg">Envie uma mensagem:</label>
+          <textarea id="msg" placeholder="Digite sua mensagem..."></textarea>
+        </div>
+
+        <div class="prof-card__acoes">
+          <a href="buscar.html" class="btn btn--primario" id="btnVoltarBusca">Voltar para busca</a>
+          <a href="#" class="btn btn--secundario" id="btnAgendar">Agendar</a>
+          <button class="btn btn--primario" id="btnEnviarMensagem" type="button">Enviar mensagem</button>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer class="footer footer-fixed">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <picture>
+          <source srcset="assets/images/logo-200.png" media="(min-width: 1000px)">
+          <source srcset="assets/images/logo-150.png" media="(min-width: 600px)">
+          <img src="assets/images/logo-120.png" alt="Logo do site">
+        </picture>
+        <p>O Conhecimento que você procura, a um clique de distância</p>
       </div>
 
-      <div class="footer-bottom">
-        © 2025 Grupo 2. Todos os direitos reservados.
-      </div>
-    </footer>
+      <nav class="footer-col" aria-label="Links institucionais">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
 
-    <script type="module" src="./scripts/main.js"></script>
-  </body>
+    <div class="footer-bottom">
+      © 2025 Grupo 2. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <script type="module" src="./scripts/main.js"></script>
+
+  <!-- Integração com API -->
+  <script>
+    // Ajuste isto para o endereço base real da sua API:
+    const API_BASE = 'http://localhost:5041/api';
+
+    // 1. pegar o ID da URL (?id=123)
+    function getProfessorIdFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id');
+    }
+
+    // 2. carregar dados do professor e preencher na tela
+    async function carregarProfessor() {
+      const idProf = getProfessorIdFromQuery();
+      const nomeEl = document.getElementById('profNome');
+      const fotoEl = document.getElementById('profFoto');
+      const conteudoEl = document.getElementById('profConteudo');
+      const certEl = document.getElementById('profCertificacao');
+      const compEl = document.getElementById('profCompetencias');
+      const cidadeEl = document.getElementById('profCidade');
+      const expEl = document.getElementById('profExperiencia');
+      const precoEl = document.getElementById('profPreco');
+      const bioEl = document.getElementById('profBio');
+      const endEl = document.getElementById('profEndereco');
+      const infoEl = document.getElementById('profInfoExtra');
+
+      const cardEl = document.getElementById('profCard');
+      const btnAgendar = document.getElementById('btnAgendar');
+      const contatoFormBtn = document.getElementById('btnEnviarMensagem');
+
+      if (!idProf) {
+        nomeEl.textContent = 'Professor não encontrado';
+        bioEl.textContent = 'Volte para a busca e selecione um professor.';
+        return;
+      }
+
+      nomeEl.textContent = 'Carregando...';
+
+      try {
+        const resp = await fetch(`${API_BASE}/professores/${idProf}`, {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (!resp.ok) {
+          throw new Error('Erro ao buscar professor (' + resp.status + ')');
+        }
+
+        const prof = await resp.json();
+
+        // coloca o id no card
+        cardEl.dataset.id = prof.id || idProf;
+
+        // nome / foto
+        nomeEl.textContent = prof.nome ?? '(Sem nome)';
+        fotoEl.src = prof.fotoUrl || '../assets/images/default-prof.png';
+        fotoEl.alt = 'Foto de ' + (prof.nome || 'Professor');
+
+        // Conteúdo principal, certificações, competências
+        conteudoEl.textContent =
+          prof.descricao ||
+          prof.area ||
+          prof.materia ||
+          '';
+
+        certEl.textContent = Array.isArray(prof.certificacoes)
+          ? prof.certificacoes.join(', ')
+          : (prof.certificacoes || '');
+
+        compEl.textContent = Array.isArray(prof.competencias)
+          ? prof.competencias.join(', ')
+          : (prof.competencias || '');
+
+        // Cidade / experiência / preço hora
+        cidadeEl.textContent = '📍 ' + (prof.cidade || 'Local não informado');
+
+        expEl.textContent = '💼 ' + (
+          prof.experiencia_anos != null
+            ? prof.experiencia_anos + ' anos'
+            : 'Experiência não informada'
+        );
+
+        precoEl.textContent = '💲 ' + (
+          prof.valorHora != null
+            ? `R$ ${Number(prof.valorHora).toFixed(2)}/h`
+            : 'Valor não informado'
+        );
+
+        // Bio longa
+        bioEl.textContent =
+          prof.bio ||
+          prof.sobre ||
+          'Este professor ainda não adicionou uma descrição detalhada.';
+
+        // Endereço e info extra (se existirem)
+        endEl.textContent = prof.endereco || 'Não informado';
+        infoEl.textContent = prof.informacaoExtra || prof.infoExtra || '';
+
+        // Botão Agendar aponta para página de agendamento, passando o id
+        btnAgendar.href = 'agendar.html?id=' + encodeURIComponent(prof.id ?? idProf);
+
+        // Guardar o id no botão de mensagem
+        contatoFormBtn.dataset.professorId = prof.id ?? idProf;
+
+      } catch (err) {
+        console.error(err);
+        nomeEl.textContent = 'Erro ao carregar professor';
+        bioEl.textContent = err.message;
+      }
+    }
+
+    // 3. enviar mensagem rápida ao professor
+    async function enviarMensagem() {
+      const btn = document.getElementById('btnEnviarMensagem');
+      const msgBox = document.getElementById('msg');
+      const professorId = btn.dataset.professorId;
+      const mensagem = msgBox.value.trim();
+
+      if (!mensagem) {
+        alert('Digite uma mensagem antes de enviar.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+
+      const payload = {
+        professorId: professorId,
+        mensagem: mensagem
+        // se você precisar mandar também nome/email do aluno,
+        // você pode incluir aqui: alunoNome, alunoContato, etc.
+      };
+
+      try {
+        const resp = await fetch(`${API_BASE}/mensagens`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!resp.ok) {
+          const txt = await resp.text();
+          alert('Não foi possível enviar a mensagem:\n' + txt);
+        } else {
+          alert('Mensagem enviada para o professor!');
+          msgBox.value = '';
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erro de rede ao enviar mensagem: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Enviar mensagem';
+      }
+    }
+
+    // 4. listeners
+    document.getElementById('btnEnviarMensagem').addEventListener('click', enviarMensagem);
+
+    // 5. inicializa carregando os dados do professor
+    carregarProfessor();
+  </script>
+</body>
 </html>

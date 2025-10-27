@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Solicitações de Aula - Professor</title>
+
+  <link rel="stylesheet" href="../styles/style.css">
+
+  <style>
+    /* ====== LISTA DE SOLICITAÇÕES (PAINEL DO PROFESSOR) ====== */
+
+    .painel-wrapper {
+      width: 100%;
+      min-height: calc(100vh - 180px);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 1rem 6rem;
+      background: #f5f5f5;
+    }
+
+    .painel-card {
+      background: #ffffff;
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 1rem;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+      padding: 1.5rem 1.5rem 2rem;
+      border: 1px solid rgba(0,0,0,0.05);
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .painel-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+
+    .painel-titulo {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .painel-legenda {
+      font-size: .85rem;
+      color: #555;
+      line-height: 1.4;
+      max-width: 600px;
+    }
+
+    /* Lista de solicitações */
+    .solicitacoes-lista {
+      display: grid;
+      gap: 1rem;
+    }
+
+    /* Cada solicitação */
+    .solicitacao-card {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: .75rem;
+      padding: 1rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+      display: grid;
+      gap: .75rem;
+    }
+
+    /* Topo da solicitação: data/hora + status/contagem */
+    .solicitacao-topo {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+
+    .solicitacao-horario {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #111;
+      line-height: 1.4;
+    }
+
+    .solicitacao-info-aulas {
+      font-size: .8rem;
+      color: #444;
+      line-height: 1.4;
+    }
+
+    .tag-status {
+      display: inline-block;
+      font-size: .7rem;
+      font-weight: 600;
+      line-height: 1.2;
+      border-radius: 999px;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      color: #444;
+    }
+
+    .tag-status.pendente {
+      background: #fff7d1;
+      border-color: #e6c94c;
+      color: #7a5e00;
+    }
+    .tag-status.aprovado {
+      background: #dcfce7;
+      border-color: #86efac;
+      color: #065f46;
+    }
+    .tag-status.recusado {
+      background: #fee2e2;
+      border-color: #fca5a5;
+      color: #7f1d1d;
+    }
+
+    /* Bloco Aluno */
+    .solicitacao-bloco {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: .75rem;
+      padding: .75rem .9rem;
+      display: grid;
+      gap: .5rem;
+    }
+
+    .solicitacao-subtitulo {
+      font-size: .8rem;
+      font-weight: 600;
+      color: #111;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .solicitacao-aluno-nome {
+      font-size: .95rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      line-height: 1.3;
+    }
+
+    .solicitacao-aluno-contato {
+      font-size: .85rem;
+      color: #444;
+      line-height: 1.4;
+      word-break: break-word;
+    }
+
+    .solicitacao-msg {
+      font-size: .85rem;
+      color: #333;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+
+    /* Ações */
+    .solicitacao-acoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
+    .btn-acao {
+      appearance: none;
+      border: 0;
+      border-radius: 0.6rem;
+      cursor: pointer;
+      text-align: center;
+      font-size: .85rem;
+      font-weight: 600;
+      line-height: 1.2;
+      padding: 0.7rem 1rem;
+      transition: background .2s, box-shadow .2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-aprovar {
+      background-color: #00c8f5;
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .btn-aprovar:hover {
+      background-color: #1411bd;
+      box-shadow: 0 12px 28px rgba(27,94,32,0.35);
+    }
+
+    .btn-recusar {
+      background-color: #111;
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .btn-recusar[disabled],
+    .btn-aprovar[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 600px) {
+      .solicitacao-topo {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* Header / Footer reaproveitando identidade */
+    .header {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+      border: 1px solid #e5e7eb;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .bell {
+      background: #5e2a2a;
+      border: 1px solid #0b316b;
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 1rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .btn-login {
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.25);
+    }
+
+    .footer.footer-fixed {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+      border: 1px solid #e5e7eb;
+      padding: 16px;
+      margin-top: 3rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .footer-brand p {
+      font-size: .9rem;
+      color: #374151;
+      max-width: 260px;
+      line-height: 1.4;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: .9rem;
+      line-height: 1.4;
+    }
+
+    .footer-col a {
+      color: #111827;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      margin-top: 16px;
+      font-size: .8rem;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER padrão -->
+  <header class="header">
+    <div class="container header-inner">
+      <picture>
+        <source srcset="../assets/images/logo-150.png" media="(min-width: 1000px)">
+        <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
+        <img src="../assets/images/logo-100.png" alt="Logo do projeto">
+      </picture>
+
+      <nav class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link">Início</a>
+        <a href="#categoria" class="nav-link">Categorias</a>
+        <a href="#funcionamento" class="nav-link">Como funciona?</a>
+      </nav>
+
+      <div class="actions">
+        <button class="bell" aria-label="Notificações">🔔</button>
+        <a class="btn-login" href="login.html">Entrar</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="painel-wrapper">
+    <section class="painel-card">
+      <header class="painel-header">
+        <div>
+          <h1 class="painel-titulo">Solicitações de Aula</h1>
+          <p class="painel-legenda">
+            As aulas abaixo estão com status "pendente". Você pode aprovar ou recusar.
+            É comum o mesmo aluno pedir vários horários (ex: revisão pré-prova).
+          </p>
+        </div>
+        <div id="profResumoMini" style="font-size:.8rem;color:#555;line-height:1.4;">
+          <!-- Ex: "Você está logado como Prof. João Pereira" -->
+        </div>
+      </header>
+
+      <!-- Lista dinâmica -->
+      <div class="solicitacoes-lista" id="solicitacoesLista">
+        <!-- Os cards entram via JS -->
+        <div class="solicitacao-card">
+          <div class="solicitacao-topo">
+            <div>
+              <div class="solicitacao-horario">Carregando solicitações...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER padrão -->
+  <footer class="footer footer-fixed">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <picture>
+          <source srcset="assets/images/logo-200.png" media="(min-width: 1000px)">
+          <source srcset="assets/images/logo-150.png" media="(min-width: 600px)">
+          <img src="assets/images/logo-120.png" alt="Logo do site">
+        </picture>
+        <p>O Conhecimento que você procura, a um clique de distância</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Links institucionais">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Grupo 2. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- Script global do projeto -->
+  <script type="module" src="./scripts/main.js"></script>
+
+  <!-- Script da página -->
+  <script>
+    const API_BASE = 'http://localhost:5041/api'; // ajuste pro seu backend real
+
+    // 1. Obter professorId
+    // Aqui estou assumindo que o professor acessa com ?professorId=123
+    // Se você tiver isso via login/tokens depois, é só trocar.
+    function getProfessorIdFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('professorId');
+    }
+
+    // 2. Formata data/hora ISO -> "28/10/2025 às 14:00"
+    function formatarDataHora(isoStr) {
+      if (!isoStr) return 'Data não informada';
+      // isoStr esperado: "2025-10-28T14:00"
+      const [dataParte, horaParte] = isoStr.split('T');
+      const [ano, mes, dia] = dataParte.split('-');
+      return `${dia}/${mes}/${ano} às ${horaParte}`;
+    }
+
+    // 3. Gera HTML de uma solicitação
+    function criarSolicitacaoCard(ag, totalDoAluno) {
+      // Campos esperados no objeto "ag":
+      // ag.id
+      // ag.professorId
+      // ag.alunoNome
+      // ag.alunoContato
+      // ag.dataHora (ISO)
+      // ag.observacoes
+      // ag.status ("pendente", "aprovado", "recusado")
+
+      const statusClass = ag.status || 'pendente';
+
+      return `
+        <div class="solicitacao-card" data-agendamento-id="${ag.id}">
+          <div class="solicitacao-topo">
+            <div>
+              <div class="solicitacao-horario">
+                ${formatarDataHora(ag.dataHora)}
+              </div>
+              <div class="solicitacao-info-aulas">
+                Esse aluno já pediu <strong>${totalDoAluno}</strong> aula(s)
+                ${ag.alunoNome ? ` (${ag.alunoNome})` : ''}.
+              </div>
+            </div>
+            <div class="solicitacao-status">
+              <span class="tag-status ${statusClass}">${statusClass}</span>
+            </div>
+          </div>
+
+          <div class="solicitacao-bloco">
+            <p class="solicitacao-subtitulo">Perfil do aluno</p>
+            <div class="solicitacao-aluno-nome">${ag.alunoNome || 'Nome não informado'}</div>
+            <div class="solicitacao-aluno-contato">
+              Contato: ${ag.alunoContato || '—'}
+            </div>
+          </div>
+
+          <div class="solicitacao-bloco">
+            <p class="solicitacao-subtitulo">Mensagem / Objetivo</p>
+            <div class="solicitacao-msg">
+              ${ag.observacoes ? ag.observacoes : 'Sem mensagem adicional.'}
+            </div>
+          </div>
+
+          <div class="solicitacao-acoes">
+            <button
+              class="btn-acao btn-aprovar"
+              data-action="aprovar"
+              data-id="${ag.id}"
+            >
+              Aprovar
+            </button>
+
+            <button
+              class="btn-acao btn-recusar"
+              data-action="recusar"
+              data-id="${ag.id}"
+            >
+              Recusar
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    // 4. Renderiza todas as solicitações pendentes
+    function renderSolicitacoes(agendamentos) {
+      const listaEl = document.getElementById('solicitacoesLista');
+
+      if (!Array.isArray(agendamentos) || agendamentos.length === 0) {
+        listaEl.innerHTML = `
+          <div class="solicitacao-card">
+            <div class="solicitacao-topo">
+              <div class="solicitacao-horario">Nenhuma solicitação pendente.</div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // Calcula quantas solicitações cada aluno fez (contagem por alunoNome+alunoContato)
+      const contagemPorAluno = {};
+      for (const ag of agendamentos) {
+        const chaveAluno = (ag.alunoNome || '') + '|' + (ag.alunoContato || '');
+        contagemPorAluno[chaveAluno] = (contagemPorAluno[chaveAluno] || 0) + 1;
+      }
+
+      // Monta cards
+      const htmlTotal = agendamentos.map(ag => {
+        const chaveAluno = (ag.alunoNome || '') + '|' + (ag.alunoContato || '');
+        const totalDoAluno = contagemPorAluno[chaveAluno] || 1;
+        return criarSolicitacaoCard(ag, totalDoAluno);
+      }).join('');
+
+      listaEl.innerHTML = htmlTotal;
+
+      // Depois de desenhar os cards, ligar botões Aprovar/Recusar
+      listaEl.querySelectorAll('button[data-action]').forEach(btn => {
+        btn.addEventListener('click', onAcaoAgendamento);
+      });
+    }
+
+    // 5. Busca as solicitações pendentes na API
+    async function carregarSolicitacoes() {
+      const professorId = getProfessorIdFromQuery();
+      const listaEl = document.getElementById('solicitacoesLista');
+      const resumoMini = document.getElementById('profResumoMini');
+
+      listaEl.innerHTML = `
+        <div class="solicitacao-card">
+          <div class="solicitacao-topo">
+            <div class="solicitacao-horario">Carregando solicitações...</div>
+          </div>
+        </div>
+      `;
+
+      try {
+        // Aqui assumimos que a API aceita filtro por professor e status
+        const resp = await fetch(
+          \`${API_BASE}/agendamentos?professorId=\${encodeURIComponent(professorId)}&status=pendente\`,
+          {
+            method: 'GET',
+            headers: { 'Accept': 'application/json' }
+          }
+        );
+
+        if (!resp.ok) {
+          throw new Error('Erro HTTP ' + resp.status);
+        }
+
+        const agendamentos = await resp.json();
+
+        // Mostra um mini resumo do "professor logado"
+        resumoMini.textContent = `Professor ID ${professorId} — você tem ${agendamentos.length} pedido(s) pendente(s).`;
+
+        renderSolicitacoes(agendamentos);
+      } catch (err) {
+        console.error(err);
+        listaEl.innerHTML = `
+          <div class="solicitacao-card">
+            <div class="solicitacao-topo">
+              <div class="solicitacao-horario">Erro ao carregar solicitações</div>
+            </div>
+            <div class="solicitacao-bloco">
+              <div class="solicitacao-msg">${err.message}</div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // 6. Lidar com Aprovar / Recusar
+    async function onAcaoAgendamento(e) {
+      const btn = e.currentTarget;
+      const idAgendamento = btn.dataset.id;
+      const acao = btn.dataset.action; // "aprovar" ou "recusar"
+
+      const novoStatus = acao === 'aprovar' ? 'aprovado' : 'recusado';
+
+      btn.disabled = true;
+      const txtOriginal = btn.textContent;
+      btn.textContent = 'Enviando...';
+
+      try {
+        const resp = await fetch(\`${API_BASE}/agendamentos/\${idAgendamento}\`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: novoStatus })
+        });
+
+        if (!resp.ok) {
+          const txt = await resp.text();
+          alert('Falha ao atualizar agendamento:\n' + txt);
+        } else {
+          alert('Status atualizado para "' + novoStatus + '".');
+          // recarrega a lista de solicitações pendentes
+          carregarSolicitacoes();
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erro de rede: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = txtOriginal;
+      }
+    }
+
+    // Inicia
+    carregarSolicitacoes();
+  </script>
+</body>
+</html>
+ 
