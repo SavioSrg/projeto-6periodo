@@ -111,6 +111,8 @@ document.getElementById("nextBtn1").addEventListener("click", () => {
 /* ---- Voltar ---- */
 document.getElementById("backBtn2").addEventListener("click", () => showStep(0));
 
+
+import { createProfessor } from "./services/professoresService.js";
 /* ----------- Submit ----------- */
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -130,7 +132,7 @@ form.addEventListener("submit", async (e) => {
         email: form.email.value.trim(),
         password: form.senha.value.trim(),
         cpf: form.cpf.value.trim(),
-        tipo: 1, // professor fixo
+        //tipo: 1, // professor fixo
         descricao: form.descricao.value.trim(),
         certificacoes: form.certificacoes.value.split(',').map(s => s.trim()),
         competencias: form.competencias.value.split(',').map(s => s.trim()),
@@ -144,14 +146,7 @@ form.addEventListener("submit", async (e) => {
     console.log(payload)
 
     try {
-        const response = await fetch('/api/professores', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) throw new Error(await response.text());
-
+        await createProfessor(payload);
         alert('Cadastro realizado com sucesso!');
         form.reset();
         showStep(0);

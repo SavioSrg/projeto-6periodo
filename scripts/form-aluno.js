@@ -111,6 +111,7 @@ document.getElementById("nextBtn1").addEventListener("click", () => {
 /* ---- Voltar ---- */
 document.getElementById("backBtn2").addEventListener("click", () => showStep(0));
 
+import { createAluno } from "./services/alunosService.js";
 /* ----------- Submit ----------- */
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -131,7 +132,7 @@ form.addEventListener("submit", async (e) => {
         password: form.senha.value.trim(),
         cpf: form.cpf.value.trim(),
         descricao: form.descricao.value.trim(),
-        tipo: 2 // ALUNO
+        //tipo: 2 // ALUNO
     };
 
     const submitBtn = document.getElementById("submitBtn");
@@ -141,14 +142,7 @@ form.addEventListener("submit", async (e) => {
     console.log(payload)
 
     try {
-        const response = await fetch("/api/alunos", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) throw new Error(await response.text());
-
+        await createAluno(payload);
         alert("Cadastro realizado com sucesso!");
         form.reset();
         showStep(0);
