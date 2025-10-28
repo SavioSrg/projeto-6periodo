@@ -1,0 +1,67 @@
+.modal--perfil {
+  position: fixed;
+  /* ou absolute */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 720px;
+  width: 95%;
+  border: none;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  font-family: inherit;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.dialog-fallback {
+  background: white;
+  border-radius: 8px;
+  max-width: 720px;
+  width: 95%;
+  padding: 0;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* header e botões (ajuste para seu CSS existente) */
+.modal--perfil .modal-header--perfil,
+.dialog-fallback .modal-header--perfil {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.modal--perfil .modal-body--perfil,
+.dialog-fallback .modal-body {
+  padding: 1rem;
+}
+
+.close {
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.form-actions--perfil {
+  display: flex;
+  gap: 0.8rem;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.close--perfil {
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}

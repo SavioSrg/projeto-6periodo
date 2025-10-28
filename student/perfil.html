@@ -19,33 +19,23 @@
                     <img src="assets/images/logo-80.png" alt="Exemplo responsivo">
                 </picture>
             </a>
-            <nav class="nav-menu" id="navMenu">
-                <a href="#principal" class="nav-link">Início</a>
-                <a href="#categoria" class="nav-link">Categorias</a>
-                <a href="#funcionamento" class="nav-link">Como funciona?</a>
-            </nav>
-            <div class="actions">
-                <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                <button class="btn btn-secondary" type="button ">Cadastrar</button>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <i class="fa-solid fa-bars"></i>
+
+            <div class="user-menu">
+                <button class="user-avatar btn-primary" onclick="toggleUserMenu()">A</button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="./perfil.html">Meu Perfil</a>
+                    <a href="./dashboard.html">Dashboard</a>
+                    <a href="#" class="nav-link" onclick="logout()">Sair</a>
+                </div>
             </div>
         </div>
+
+
     </header>
-    <main class="profile-main">
+    <main class="main">
         <section class="profile-header-section">
             <header class="profile-header">
-                <div class="profile-info-header">
-                    <!-- <div class="profile-avatar-section">
-                        <figure class="profile-avatar">
-                            <img id="profileAvatar" alt="Foto do perfil de Ana Silva">
-                        </figure>
-                        <button class="change-avatar-btn" onclick="changeAvatar()">
-                            <i class="fas fa-camera"></i>
-                        </button>
-                    </div> -->
-
+                <div class="profile-info-header container">
                     <div class="profile-basic-info">
                         <h1 id="profileName">Ana Silva</h1>
                         <p id="profileType" class="profile-type">Estudante</p>
@@ -58,19 +48,19 @@
                                 <strong id="totalLessons">45</strong> <span>Aulas</span>
                             </li>
                             <li class="stat-item">
-                                <strong id="totalHours">67h</strong> <span>Estudadas</span>
+                                <strong id="totalTeachers">8</strong> <span>Professores</span>
                             </li>
                             <li class="stat-item">
-                                <strong id="totalTeachers">8</strong> <span>Professores</span>
+                                <strong id="totalHours">67h</strong> <span>Estudadas</span>
                             </li>
                         </ul>
                     </div>
 
                     <nav class="profile-actions">
-                        <button class="btn-outline" onclick="toggleEditMode()">
+                        <button class="btn-outline" style="gap: 0.3rem;" onclick="toggleEditMode()">
                             <i class="fas fa-edit"></i> Editar Perfil
                         </button>
-                        <button class="btn-primary" onclick="shareProfile()">
+                        <button class="btn btn-primary" style="gap: 0.3rem;" onclick="shareProfile()">
                             <i class="fas fa-share"></i> Compartilhar
                         </button>
                     </nav>
@@ -86,16 +76,14 @@
 
                     <article class="profile-card">
                         <header class="card-header">
-                            <h2>Objetivos de Aprendizado</h2>
-                            <button class="edit-section-btn" onclick="editSection('goals')">
-                                <i class="fas fa-edit"></i>
-                            </button>
+                            <h2>Sobre</h2>
                         </header>
-                        <ul class="card-content goals-list" id="goalsList">
+                        <p class="card-content" id="profileBio" class="profile-bio">Fale um pouco sobre você...</p>
+                        <!-- <ul class="card-content goals-list" id="goalsList">
                             <li><i class="fas fa-target"></i> Passar no vestibular de Engenharia</li>
                             <li><i class="fas fa-target"></i> Melhorar fluência em inglês</li>
                             <li><i class="fas fa-target"></i> Aprender programação web</li>
-                        </ul>
+                        </ul> -->
                     </article>
 
                     <article class="profile-card">
@@ -150,20 +138,41 @@
     </main>
 
     <!-- Modal de Edição de Perfil -->
-    <dialog id="editProfileModal" class="modal">
+    <div id="overlay" class="modal-overlay" hidden></div>
+    <dialog id="editProfileModal" class="modal--perfil">
         <form id="editProfileForm" class="edit-profile-form" method="dialog">
-            <header class="modal-header">
-                <h2>Editar Perfil</h2>
-                <button type="button" class="close" onclick="closeModal('editProfileModal')">&times;</button>
+            <header class="modal-header--perfil">
+                <h2 class="title">Editar Perfil</h2>
+                <button type="button" class="close--perfil" id="closeEditProfileModal">&times;</button>
             </header>
 
-            <section class="modal-body">
-                <!-- Conteúdo do formulário (mantém sua estrutura atual) -->
+            <section class="modal-body--perfil">
+
+                <!-- Nome -->
+                <div class="form-group--perfil">
+                    <label class="field-label" for="profileNameInput">Nome</label>
+                    <input type="text" id="profileNameInput" class="org-input input-field" value="Ana Silva" required>
+                </div>
+
+                <!-- Descrição -->
+                <div class="form-group--perfil">
+                    <label class="field-label" for="profileBioInput">Descrição</label>
+                    <textarea id="profileBioInput" class="org-input input-field" rows="3"
+                        placeholder="Fale um pouco sobre você..."></textarea>
+                </div>
+
+                <!-- Interesses / Objetivos -->
+                <!-- <div class="form-group">
+                    <label class="field-label" for="profileGoalsInput">Interesses / Objetivos</label>
+                    <textarea id="profileGoalsInput" class="org-input input-field" rows="3"
+                        placeholder="Ex: Melhorar inglês, aprender programação"></textarea>
+                </div> -->
+
             </section>
 
-            <footer class="form-actions">
+            <footer class="form-actions--perfil">
                 <button type="button" class="btn-outline" onclick="closeModal('editProfileModal')">Cancelar</button>
-                <button type="submit" class="btn-primary">
+                <button type="submit" class="btn btn-primary" style="gap: 0.35rem;">
                     <i class="fas fa-save"></i> Salvar Alterações
                 </button>
             </footer>
@@ -196,17 +205,8 @@
     </footer>
 
     <script src="scripts/components/modal.js"></script>
-    <script type="module" src="./scripts/main.js"></script>
-    <script>
-        // Seleciona os elementos
-        const hamburger = document.getElementById("hamburger");
-        const navMenu = document.getElementById("navMenu");
-
-        // Adiciona o evento de clique
-        hamburger.addEventListener("click", () => {
-            navMenu.classList.toggle("active");
-        });
-    </script>
+    <script src="../scripts/perfil-aluno.js"></script>
+    <script type="module" src="../scripts/main.js"></script>
 </body>
 
 </html>
