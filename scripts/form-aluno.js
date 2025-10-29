@@ -146,6 +146,7 @@ form.addEventListener("submit", async (e) => {
         alert("Cadastro realizado com sucesso!");
         form.reset();
         showStep(0);
+        window.location.href = "../login.html";
 
     } catch (err) {
         alert("Erro ao cadastrar: " + err.message);

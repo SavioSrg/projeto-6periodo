@@ -143,13 +143,12 @@ form.addEventListener("submit", async (e) => {
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando...';
     
-    console.log(payload)
-
     try {
         await createProfessor(payload);
         alert('Cadastro realizado com sucesso!');
         form.reset();
         showStep(0);
+        window.location.href = "../login.html";
 
     } catch (err) {
         alert('Erro ao cadastrar: ' + err.message);
