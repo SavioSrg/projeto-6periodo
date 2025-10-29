@@ -42,11 +42,11 @@
     outline-offset: 3px;
 } */
 
- a.btn {
+ /* a.btn {
     text-decoration: none;
     background: var(--cor-secundaria);
     color: var(--white);
-}
+} */
 
 .btn > a {
     text-decoration: none;

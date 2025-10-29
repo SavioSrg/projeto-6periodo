@@ -4,404 +4,359 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Aplicação - buscar</title>
-
-  <link rel="stylesheet" href="../styles/style.css">
+  <title>Buscar</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/style.css">
 </head>
 
-<body>
+<body class="body-flex">
   <header class="header">
-    <div class="container header-inner">
-      <picture>
-        <source srcset="../assets/images/logo-150.png" media="(min-width: 1000px)">
-        <source srcset="../assets/images/logo-120.png" media="(min-width: 600px)">
-        <img src="../assets/images/logo-100.png" alt="Logo do projeto">
+    <div class="header-inner">
+      <a href="index.html">
+        <picture>
+          <source srcset="assets/images/logo-120.png" media="(min-width: 1000px)">
+          <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
         </picture>
-        <nav class="nav-menu" id="navMenu">
-                <a href="index.html" class="nav-link">Início</a>
-                <a href="#categoria" class="nav-link">Categorias</a>
-                <a href="#funcionamento" class="nav-link">Como funciona?</a>
-            </nav>
+      </a>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#principal" class="nav-link">Início</a>
+        <a href="#categoria" class="nav-link">Categorias</a>
+        <a href="#funcionamento" class="nav-link">Como funciona?</a>
         <div class="actions">
-          <button class="bell" aria-label="Notificações">🔔</button>
-          <a class="btn-login" href="teachers/login.html">Entrar</a>
+          <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+          <button id="openModalCadastro" class="btn btn-secondary" type="button ">Cadastrar</button>
         </div>
+      </nav>
+      <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+      </div>
     </div>
   </header>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Busca de Professores</title>
-  <style>
-    :root {
-      --azul: #6ee6ff;
-      /* botão da lupa */
-      --cinza: #e6e6e6;
-      /* fundo do input */
-      --laranja: #e39a05;
-      /* botões */
-      --laranja-dk: #c98403;
-      /* hover */
-      --texto: #111;
-      --borda: #cfcfcf;
-      --radius: 10px;
-    }
+  <main class="main">
 
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--texto);
-      margin: 15px;
-    }
+    <section class="secao-buscar">
+      <div class="container">
+        <h1 class="title">Busque pelo Professor Perfeito</h1>
 
-       /* Título sublinhado */
-    .titulo {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin: 0 0 10px;
-      text-decoration: underline;
-    }
-
-    /* Barra de busca com botão anexado */
-    
-    /* Linha de filtros */
-    .filtros {
-      display: flex;
-      gap: 16px;
-      margin-top: 15px;
-      flex-wrap: wrap;
-    }
-
-    .filtro-btn {
-      background: var(--laranja);
-      color: #111;
-      border: none;
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 1px 0 rgba(0, 0, 0, .15);
-    }
-
-    .filtro-btn:hover {
-      background: var(--laranja-dk);
-    }
-
-    .wrap {
-  max-width: 640px;       /* largura máxima */
-  margin: 0 auto;          /* centraliza horizontalmente */
-  text-align: center;      /* centraliza textos e botões dentro */
-  padding: 20px 0;         /* espaçamento vertical */
-}
-
-/* Ajuste da barra de pesquisa */
-.search {
-  display: flex;
-  align-items: center;
-  background: #e9e9e9;
-  border-radius: 12px;
-  padding: 4px;
-  max-width: 640px;
-  margin: 0 auto;
-  box-shadow: 0 0 3px rgba(0, 0, 0, .01);
-}
-
-.search input[type="search"] {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 10px 12px;
-  font-size: 1rem;
-}
-
-.search button {
-  background: #00c8f5;
-  border: none;
-  border-radius: 10px;
-  padding: 8px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-  cursor: pointer;
-}
-.search button:hover{
-  background: #1bbde8;
-}
-/* Centraliza e estiliza os botões de filtro */
-.filtros {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.filtros button {
-  background: #f4b400;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-  </style>
-</head>
-
-
-<div class="wrap">
-    <h1 class="titulo">Busque pelo Professor Perfeito.</h1>
-
-    <form class="search" role="search" onsubmit="event.preventDefault()">
-      <input id="q" name="q" type="search" placeholder="Pesquisar..." />
-      <button type="submit" aria-label="Buscar">
-        <!-- Ícone de lupa (SVG) -->
-        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" fill="none" stroke="#111" stroke-width="2" />
-        </svg>
-      </button>
-    </form>
-
-    <div class="filtros">
-      <button class="filtro-btn" type="button">Categoria</button>
-      <button class="filtro-btn" type="button">Formação</button>
-      <button class="filtro-btn" type="button">Modelo Aula</button>
-      <button class="filtro-btn" type="button">Promoção</button>
-    </div>
-   
-</div>
-
-
-<div class="prof-grid">
-  <!-- CARD do professor (repita este bloco para cada registro do BD) -->
-  <article class="prof-card" data-id="{{id_professor}}">
-    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
-
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__materia">{{materia}}</p>
-
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-
-      <p class="prof-card__bio">{{bio_curta}}</p>
-
-      
-
-      <div class="prof-card__acoes">
-        <a href="Contratar.html" class="btn btn-primary">
-          Ver Perfil
-        </a>
-      <button class="btn btn--secundario">Agendar aula</button>
-      </div>
-    </div>
-  </article>
-
- <article class="prof-card" data-id="{{id_professor}}">
-    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
-
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__materia">{{materia}}</p>
-
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-
-      <p class="prof-card__bio">{{bio_curta}}</p>
-
-      
-
-      <div class="prof-card__acoes">
-        <a href="Contratar.html" class="btn btn-primary">
-          Ver Perfil</a>
-        <button class="btn btn--secundario">Agendar aula</button>
-      </div>
-    </div>
-  </article>
-
- <article class="prof-card" data-id="{{id_professor}}">
-    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
-
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__materia">{{materia}}</p>
-
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-
-      <p class="prof-card__bio">{{bio_curta}}</p>
-
-      
-
-      <div class="prof-card__acoes">
-        <a href="Contratar.html" class="btn btn-primary">
-          Ver Perfil</a>
-        <button class="btn btn--secundario">Agendar aula</button>
-      </div>
-    </div>
-  </article>
-
- <article class="prof-card" data-id="{{id_professor}}">
-    <img class="prof-card__foto" src="{{foto_url}}" alt="Foto de {{nome}}">
-
-    <div class="prof-card__body">
-      <h3 class="prof-card__nome">{{nome}}</h3>
-      <p class="prof-card__materia">{{materia}}</p>
-
-      <ul class="prof-card__meta">
-        <li>📍 {{cidade}}</li>
-        <li>💼 {{experiencia_anos}} anos</li>
-        <li>💲 {{preco_hora}}/h</li>
-      </ul>
-
-      <p class="prof-card__bio">{{bio_curta}}</p>
-
-      
-
-      <div class="prof-card__acoes">
-        <a href="Contratar.html" class="btn btn-primary">
-          Ver Perfil</a>
-        <button class="btn btn--secundario">Agendar aula</button>
-      </div>
-    </div>
-  </article>
-</div>
-
-<!-- CSS mínimo do card -->
-<style>
-  
-  .prof-grid {
-    display: inline-block;
-    width: 20% - 5px;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
-    
-  }
-
-  .prof-card {
-    background: gray;
-    border: 1px solid #e5e7eb;
-    border-radius: 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .prof-card__foto {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .prof-card__body {
-    padding: 10px 14px;
-  }
-
-  .prof-card__nome {
-    margin: 0 0 4px;
-    font-size: 1.06rem;
-  }
-
-  .prof-card__materia {
-    margin: 0 0 8px;
-    color: #6b7280;
-    font-weight: 600;
-  }
-
-  .prof-card__meta {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 8px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    color: #374151;
-    font-size: .92rem;
-  }
-
-  .prof-card__bio {
-    margin: 6px 0 10px;
-    color: #4b5563;
-    font-size: .93rem;
-  }
-
-  .prof-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-  }
-
-  .tag {
-    background: #fee2b3;
-    border: 1px solid #f59e0b;
-    color: #7c3b00;
-    padding: 3px 8px;
-    border-radius: 999px;
-    font-size: .8rem;
-    font-weight: 600;
-  }
-
-  .prof-card__acoes {
-    display: flex;
-    gap: 8px;
-  }
-
-  .btn {
-    border: 0;
-    cursor: pointer;
-    padding: 8px 10px;
-    border-radius: 10px;
-    font-weight: 700;
-  }
-
-  .btn--primario {
-    background: #6ee6ff;
-  }
-
-  .btn--secundario {
-    background: #e5e7eb;
-  }
-</style>
-
-<footer class="footer footer-fixed">
-      <div class="footer-container">
-        <div class="footer-brand">
-          <picture>
-            <source srcset="assets/images/logo-200.png" media="(min-width: 1000px)">
-            <source srcset="assets/images/logo-150.png" media="(min-width: 600px)">
-            <img src="assets/images/logo-120.png" alt="Logo do site">
-          </picture>
-         <p>O Conhecimento que você procura, a um clique de distância
-         </p>
+        <form class="search" role="search">
+          <input id="q" name="q" type="search" placeholder="Pesquisar..." />
+          <button type="submit" aria-label="Buscar">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" fill="none" stroke="#111"
+                stroke-width="2" />
+            </svg>
+          </button>
+        </form>
+        <div class="filtros">
+          <button class="btn" type="button">Categoria</button>
+          <button class="btn" type="button">Formação</button>
+          <button class="btn" type="button">Modelo Aula</button>
+          <button class="btn" type="button">Promoção</button>
         </div>
-         <nav class="footer-col" aria-label="Links institucionais">
-          <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="#">Sobre Nós</a></li>
-            <li><a href="#">Contato</a></li>
+      </div>
+    </section>
+
+    <!-- AQUI vão entrar os cards renderizados -->
+    <section class="prof-lista container" id="profLista">
+
+      <!-- CARD MODELO -->
+      <article class="prof-card" data-id="123">
+        <div class="prof-card__body">
+          <h3 class="prof-card__nome">Maria Souza</h3>
+          <p class="prof-card__conteudo">Professora de Matemática e Física</p>
+          <p class="prof-card__certificacao">Certificação: Licenciatura em Matemática - USP</p>
+          <p class="prof-card__competencias">Competências: Didática, Metodologia ativa, Comunicação</p>
+          <ul class="prof-card__meta">
+            <li class="prof-card__cidade">📍 São Paulo, SP</li>
+            <li class="prof-card__experiencia">💼 5 anos de experiência</li>
+            <li class="prof-card__preco">💲 R$ 60,00/h</li>
           </ul>
-        </nav>
-       
+          <div class="prof-card__acoes">
+            <a href="Contratar.html?id=123" class="btn btn-primary">Ver Perfil</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="teacher-card">
+        <div class="teacher-header">
+          <div class="teacher-basic-info">
+            <h3>Prof. Maria Souza</h3>
+            <p class="teacher-specialty">Matemática</p>
+            <div class="teacher-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </div>
+              <span>4.9 (127 avaliações)</span>
+            </div>
+          </div>
+          <div class="teacher-price">
+            <span class="price">R$ 60</span>
+            <span class="price-unit">/hora</span>
+          </div>
+        </div>
+
+        <p class="teacher-description">Especialista em matemática com foco em vestibular e ENEM. Metodologia
+          personalizada para cada aluno.</p>
+
+        <div class="card-actions">
+          <button id="perfilModalOpen" class="btn btn-primary btn-icon">
+            Ver perfil
+          </button>
+          <button class="btn btn-primary" style="gap:4px;">
+            <i class="fas fa-calendar-plus"></i>
+            Agendar Aula
+          </button>
+        </div>
+      </div>
       </div>
 
-      <div class="footer-bottom">
-        © 2025 Grupo 2. Todos os direitos reservados.
-      </div>
-    </footer>
+    </section>
 
-    <script type="module" src="./scripts/main.js"></script>
-  </body>
+    <!-- Template invisível de card -->
+    <template id="profCardTemplate">
+      <article class="prof-card" data-id="">
+        <img class="prof-card__foto" src="" alt="">
+
+        <div class="prof-card__body">
+          <h3 class="prof-card__nome"></h3>
+          <p class="prof-card__Conteúdo"></p>
+          <p class="prof-card__Certificação"></p>
+          <p class="prof-card__Competencias"></p>
+
+          <ul class="prof-card__meta">
+            <li class="prof-card__cidade"></li>
+            <li class="prof-card__experiencia"></li>
+            <li class="prof-card__preco"></li>
+          </ul>
+
+          <div class="prof-card__acoes">
+            <a href="Contratar.html" class="btn btn-primary ver-perfil-link">
+              Ver Perfil
+            </a>
+          </div>
+        </div>
+      </article>
+    </template>
+
+  </main>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <picture>
+          <source srcset="assets/images/logo-200.png" media="(min-width: 1000px)">
+          <source srcset="assets/images/logo-150.png" media="(min-width: 600px)">
+          <img src="assets/images/logo-100.png" alt="Logo do site">
+        </picture>
+        <p>O conhecimento que você procura, a um clique de distância.</p>
+      </div>
+
+      <nav class="footer-col">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre-nos.html">Sobre Nós</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 Grupo 2. Todos os direitos reservados.
+    </div>
+  </footer>
+
+  <!-- MODAL 1 -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h2>Login</h2>
+
+      <div class="actions">
+        <!-- Login para estudante -->
+        <div class="login-option">
+          <img src="assets/images/student.jpg" alt="Estudante" class="login-img">
+          <a class="btn" href="./student/login.html">Login para estudante</a>
+        </div>
+
+        <!-- Login para instrutor -->
+        <div class="login-option">
+          <img src="assets/images/teacher.png" alt="Instrutor" class="login-img">
+          <a class="btn" href="./teachers/login.html">Login para instrutor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2 -->
+  <div id="modalCadastro" class="modal">
+    <div class="modal-content">
+      <span id="closeModalCadastro" class="close">&times;</span>
+      <h2>Cadastro</h2>
+
+      <div class="actions">
+        <!-- Login para estudante -->
+        <div class="login-option">
+          <img src="assets/images/student.jpg" alt="Estudante" class="login-img">
+          <a class="btn" href="./student/cadastrar.html">Cadastro para estudante</a>
+        </div>
+
+        <!-- Login para instrutor -->
+        <div class="login-option">
+          <img src="assets/images/teacher.png" alt="Instrutor" class="login-img">
+          <a class="btn" href="./teachers/cadastrar.html">Cadastro para instrutor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PERFIL -->
+  <!-- PERFIL DO PROFESSOR -->
+  <div class="modal">
+    <div class="prof-grid">
+      <article class="prof-card" id="profCard" data-id="">
+        <!-- CONTEÚDO À DIREITA -->
+        <div class="prof-card__body">
+          <h3 class="prof-card__nome" id="profNome">Carregando...</h3>
+          <p class="prof-card__Conteudo" id="profConteudo"></p>
+          <p class="prof-card__Certificacao" id="profCertificacao"></p>
+          <p class="prof-card__Competencias" id="profCompetencias"></p>
+          <ul class="prof-card__meta">
+            <li id="profCidade">📍 </li>
+            <li id="profExperiencia">💼 </li>
+            <li id="profPreco">💲 </li>
+          </ul>
+          <p class="prof-card__bio" id="profBio"></p>
+          <div class="endereco">
+            <p><strong>Endereço:</strong> <span id="profEndereco"></span></p>
+            <p><strong>Informações:</strong> <span id="profInfoExtra"></span></p>
+          </div>
+          <div class="mensagem">
+            <label for="msg">Envie uma mensagem:</label>
+            <textarea id="msg" placeholder="Digite sua mensagem..."></textarea>
+          </div>
+          <div class="prof-card__acoes">
+            <a href="buscar.html" class="btn btn--primario" id="btnVoltarBusca">Voltar para busca</a>
+            <a href="#" class="btn btn--secundario" id="btnAgendar">Agendar</a>
+            <button class="btn btn--primario" id="btnEnviarMensagem" type="button">Enviar mensagem</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+
+
+  <!-- Fundo do modal -->
+  <div class="modal-overlay" id="teacherModal">
+    <div class="modal modal-content modal-large">
+      <!-- Cabeçalho -->
+      <div class="modal-header--buscar">
+        <span class="close" onclick="closeModal('teacherModal')">×</span>
+      </div>
+
+      <!-- Corpo com rolagem -->
+      <div class="modal-body--buscar" id="teacherModalBody">
+        <div class="teacher-profile">
+
+          <!-- Nome e Valor -->
+          <div class="profile-header--buscar">
+            <div class="profile-info">
+              <h2 class="title">Prof. Maria Silva</h2>
+              <div class="profile-price">
+                <span class="price-large">R$ 45</span>
+                <span>/hora</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sobre o Professor -->
+          <div class="profile-section--buscar">
+            <h3>Sobre o Professor</h3>
+            <p>Especialista em matemática com foco em vestibular e ENEM. Metodologia personalizada para cada aluno.</p>
+          </div>
+
+          <!-- Interesses Acadêmicos -->
+          <div class="profile-section--buscar">
+            <h3>Interesses Acadêmicos</h3>
+            <ul class="academic-interests">
+              <li>Álgebra Avançada</li>
+              <li>Geometria Analítica</li>
+              <li>Didática da Matemática</li>
+              <li>Ensino para o ENEM</li>
+              <li>Matemática Aplicada</li>
+              <li>Lógica e Raciocínio</li>
+              <li>Metodologia Científica</li>
+            </ul>
+          </div>
+
+          <!-- Certificações -->
+          <div class="profile-section--buscar">
+            <h3>Certificações</h3>
+            <ul class="certifications-list">
+              <li>Certificação em Metodologias Ativas de Ensino - USP</li>
+              <li>Curso de Didática e Avaliação - Alura</li>
+              <li>Formação Continuada em Educação Matemática - PUC-SP</li>
+              <li>Curso de Tecnologias Educacionais - SENAI</li>
+              <li>Extensão em Avaliação da Aprendizagem - PUC Minas</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Rodapé fixo -->
+      <div class="profile-actions--buscar">
+        <button class="btn btn-primary btn-icon" onclick="scheduleLesson(1)">
+          <i class="fas fa-calendar-plus"></i>
+          Agendar Aula
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <script type="module" src="./scripts/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('perfilModalOpen');
+      const overlay = document.querySelector('.modal-overlay');
+      const modal = overlay?.querySelector('.modal-content');
+      const closeBtn = overlay?.querySelector('.close');
+
+      if (!openBtn || !overlay || !modal || !closeBtn) return;
+
+      // 👉 Função para abrir o modal
+      function openModal() {
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // trava o scroll da página
+      }
+
+      // 👉 Função para fechar o modal
+      function closeModal() {
+        overlay.style.display = 'none';
+        document.body.style.overflow = ''; // libera o scroll da página
+      }
+
+      // Ações
+      openBtn.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+
+      // Fecha ao clicar fora do modal (overlay)
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+      });
+
+      // Fecha ao pressionar ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    });
+  </script>
+
+  <!-- <script src="scripts/buscar.js"></script> -->
+  <script src="scripts/perfil-buscar.js"></script>
+</body>
+
 </html>

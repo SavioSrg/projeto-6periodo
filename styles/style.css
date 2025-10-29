@@ -13,6 +13,7 @@
 @import url('./components/button.css');
 @import url('./components/modal-login.css');
 @import url('./components/modal-perfil.css');
+@import url('./components/modal-perfil-buscar.css');
 /* ... outros componentes ... */
 
 /* 4. Pages (Maior Prioridade, Ajustes Finais) */
@@ -20,4 +21,5 @@
 @import url('./pages/login.css');
 @import url('./pages/perfil.css');
 @import url('./pages/dashboard.css');
+@import url('./pages/buscar.css');
 /* ... outras páginas ... */

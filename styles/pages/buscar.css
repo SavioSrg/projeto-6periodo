@@ -1,0 +1,97 @@
+    .secao-buscar {
+      display: flex;
+      align-items: center;
+    }
+
+    /* barra de busca */
+    .search {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--cor-fundo);
+      border-radius: var(--raio-borda);
+      padding: 12px 4px;
+      width: 100%;
+      max-width: 1000px;
+      box-shadow: var(--sombra-card);
+      margin: 0 auto;
+    }
+
+    .search input[type="search"] {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      padding: 10px 12px;
+      font-size: 1rem;
+      color: #111;
+    }
+
+    .search input[type="search"]::placeholder {
+      color: #666;
+    }
+
+    .search button {
+      background: var(--azul);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: filter .15s;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, .2);
+    }
+
+    .search button:hover {
+      filter: brightness(1.05);
+    }
+
+    .filtros {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      margin-top: var(--spacing-5);
+      flex-wrap: wrap;
+      gap: var(--spacing-3);
+    }
+
+    .prof-lista {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
+      gap: 12px;
+    }
+
+    .teacher-card {
+      background: white;
+      border-radius: var(--raio-borda);
+      padding: var(--spacing-6);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--black);
+      cursor: pointer;
+      transition: var(--transition-normal);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .teacher-header {
+      display: flex;
+      gap: var(--spacing-4);
+      justify-content: space-between;
+      margin-bottom: var(--spacing-4);
+    }
+
+    .price {
+      font-size: var(--font-size-2xl);
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: var(--spacing-4)
+    }
+

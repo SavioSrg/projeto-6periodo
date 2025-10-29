@@ -1,3 +1,9 @@
+.clicavel {
+    border: none;
+    background: none;
+    font-size: var(--font-size-lg);
+}
+
 .formulario {
     display: flex;
     flex-direction: column;

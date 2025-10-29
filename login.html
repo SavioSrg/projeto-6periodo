@@ -40,8 +40,9 @@
                     <h1 id="tituloLogin" class="title">Entrar no perfil</h1>
                     <p>
                         Não possui uma conta?
-                        <button id="openModalCadastro" type="button"><u>Criar
-                                cadastro</u></button>
+                        <button id="openModalCadastroForm" class="clicavel" type="button">
+                            <u>Criar cadastro</u>
+                        </button>
                     </p>
                     <form class="login-form">
                         <label class="field-label" for="email">E-mail</label>
@@ -95,37 +96,19 @@
                 <!-- Login para estudante -->
                 <div class="login-option">
                     <img src="assets/images/student.jpg" alt="Estudante" class="login-img">
-                    <a class="btn" href="./student/cadastrar.html">Cadastro para estudante</a>
+                    <a class="btn btn-primary" href="./student/cadastrar.html">Cadastro para estudante</a>
                 </div>
 
                 <!-- Login para instrutor -->
                 <div class="login-option">
                     <img src="assets/images/teacher.png" alt="Instrutor" class="login-img">
-                    <a class="btn" href="./teachers/cadastrar.html">Cadastro para instrutor</a>
+                    <a class="btn btn-primary" href="./teachers/cadastrar.html">Cadastro para instrutor</a>
                 </div>
             </div>
         </div>
     </div>
 
     <script type="module" src="./scripts/main.js"></script>
-    <script>
-        const modalCadastro = document.getElementById('modalCadastro');
-        const openModalCadastro = document.getElementById('openModalCadastro');
-        const closeModalCadastro = document.getElementById('closeModalCadastro');
-
-        openModalCadastro.addEventListener('click', () => {
-            modalCadastro.style.display = 'flex';
-        });
-
-        closeModalCadastro.addEventListener('click', () => {
-            modalCadastro.style.display = 'none';
-        });
-
-        // Fechar ao clicar fora do conteúdo
-        window.addEventListener('click', (e) => {
-            if (e.target === modalCadastro) modalCadastro.style.display = 'none';
-        });
-    </script>
     <script type="module" src="./scripts/login.js"></script>
 </body>
 
