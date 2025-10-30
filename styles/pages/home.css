@@ -56,7 +56,7 @@ section#categoria {
 .card--home {
   background-color: #e6e6e6;
   height: 140px;
-  border-radius: 10px;
+  border-radius: var(--raio-borda);
   transition: transform 0.3s, background 0.3s;
 }
 

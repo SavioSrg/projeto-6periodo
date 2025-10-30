@@ -23,7 +23,7 @@
         <a href="#categoria" class="nav-link">Categorias</a>
         <a href="#funcionamento" class="nav-link">Como funciona?</a>
         <div class="actions">
-          <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
+          <a href="login.html" class="btn btn-primary">Entrar</a>
           <button id="openModalCadastro" class="btn btn-secondary" type="button ">Cadastrar</button>
         </div>
       </nav>
@@ -60,23 +60,6 @@
     <section class="prof-lista container" id="profLista">
 
       <!-- CARD MODELO -->
-      <article class="prof-card" data-id="123">
-        <div class="prof-card__body">
-          <h3 class="prof-card__nome">Maria Souza</h3>
-          <p class="prof-card__conteudo">Professora de Matemática e Física</p>
-          <p class="prof-card__certificacao">Certificação: Licenciatura em Matemática - USP</p>
-          <p class="prof-card__competencias">Competências: Didática, Metodologia ativa, Comunicação</p>
-          <ul class="prof-card__meta">
-            <li class="prof-card__cidade">📍 São Paulo, SP</li>
-            <li class="prof-card__experiencia">💼 5 anos de experiência</li>
-            <li class="prof-card__preco">💲 R$ 60,00/h</li>
-          </ul>
-          <div class="prof-card__acoes">
-            <a href="Contratar.html?id=123" class="btn btn-primary">Ver Perfil</a>
-          </div>
-        </div>
-      </article>
-
       <div class="teacher-card">
         <div class="teacher-header">
           <div class="teacher-basic-info">
@@ -103,7 +86,7 @@
           <button id="perfilModalOpen" class="btn btn-primary btn-icon">
             Ver perfil
           </button>
-          <button class="btn btn-primary" style="gap:4px;">
+          <button id="agendarOpenModalAgendar" class="btn btn-primary" style="gap:4px;">
             <i class="fas fa-calendar-plus"></i>
             Agendar Aula
           </button>
@@ -197,54 +180,19 @@
         <!-- Login para estudante -->
         <div class="login-option">
           <img src="assets/images/student.jpg" alt="Estudante" class="login-img">
-          <a class="btn" href="./student/cadastrar.html">Cadastro para estudante</a>
+          <a class="btn btn-primary" href="./student/cadastrar.html">Cadastro para estudante</a>
         </div>
 
         <!-- Login para instrutor -->
         <div class="login-option">
           <img src="assets/images/teacher.png" alt="Instrutor" class="login-img">
-          <a class="btn" href="./teachers/cadastrar.html">Cadastro para instrutor</a>
+          <a class="btn btn-primary" href="./teachers/cadastrar.html">Cadastro para instrutor</a>
         </div>
       </div>
     </div>
   </div>
 
   <!-- MODAL PERFIL -->
-  <!-- PERFIL DO PROFESSOR -->
-  <div class="modal">
-    <div class="prof-grid">
-      <article class="prof-card" id="profCard" data-id="">
-        <!-- CONTEÚDO À DIREITA -->
-        <div class="prof-card__body">
-          <h3 class="prof-card__nome" id="profNome">Carregando...</h3>
-          <p class="prof-card__Conteudo" id="profConteudo"></p>
-          <p class="prof-card__Certificacao" id="profCertificacao"></p>
-          <p class="prof-card__Competencias" id="profCompetencias"></p>
-          <ul class="prof-card__meta">
-            <li id="profCidade">📍 </li>
-            <li id="profExperiencia">💼 </li>
-            <li id="profPreco">💲 </li>
-          </ul>
-          <p class="prof-card__bio" id="profBio"></p>
-          <div class="endereco">
-            <p><strong>Endereço:</strong> <span id="profEndereco"></span></p>
-            <p><strong>Informações:</strong> <span id="profInfoExtra"></span></p>
-          </div>
-          <div class="mensagem">
-            <label for="msg">Envie uma mensagem:</label>
-            <textarea id="msg" placeholder="Digite sua mensagem..."></textarea>
-          </div>
-          <div class="prof-card__acoes">
-            <a href="buscar.html" class="btn btn--primario" id="btnVoltarBusca">Voltar para busca</a>
-            <a href="#" class="btn btn--secundario" id="btnAgendar">Agendar</a>
-            <button class="btn btn--primario" id="btnEnviarMensagem" type="button">Enviar mensagem</button>
-          </div>
-        </div>
-      </article>
-    </div>
-  </div>
-
-
   <!-- Fundo do modal -->
   <div class="modal-overlay" id="teacherModal">
     <div class="modal modal-content modal-large">
@@ -305,7 +253,7 @@
 
       <!-- Rodapé fixo -->
       <div class="profile-actions--buscar">
-        <button class="btn btn-primary btn-icon" onclick="scheduleLesson(1)">
+        <button class="btn btn-primary btn-icon" id="agendarOpenModalPerfil">
           <i class="fas fa-calendar-plus"></i>
           Agendar Aula
         </button>
@@ -314,8 +262,65 @@
     </div>
   </div>
 
+  <!-- MODAL DE AGENDAMENTO -->
+  <dialog id="agendarModal" class="modal-agendar">
 
+    <section class="agendar-card">
 
+      <!-- Botão de fechar (X) -->
+      <button class="btn-close-modal" id="btnFecharModal" aria-label="Fechar modal">×</button>
+
+      <!-- Professor escolhido (dinâmico) -->
+      <header class="agendar-prof">
+        <div class="agendar-prof-dados">
+          <h2 class="agendar-prof-nome" id="profNome">Carregando...</h2>
+          <div class="profile-price">
+            <span class="price-large">R$ 45</span>
+            <span>/hora</span>
+            <p class="agendar-prof-Conteudo" id="profConteudo"></p>
+          </div>
+      </header>
+
+      <hr class="agendar-divisor">
+
+      <!-- Formulário -->
+      <form class="agendar-form" id="formAgendar">
+
+        <div class="agendar-row">
+
+          <div class="agendar-campo">
+            <label for="diaSemana" class="agendar-label">Dia da semana</label>
+            <select id="diaSemana" name="diaSemana" class="agendar-input" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="0">Segunda</option>
+            </select>
+          </div>
+
+          <div class="agendar-campo">
+            <label for="horarioDia" class="agendar-label">Horários disponíveis</label>
+            <select id="horarioDia" name="horarioDia" class="agendar-input" required>
+              <option value="" disabled selected>Selecione</option>
+              <option value="13:00-14:00">13:00 - 14:00</option>
+              <option value="15:00-17:00">15:00 - 17:00</option>
+            </select>
+          </div>
+        </div>
+        <div class="agendar-campo-full">
+          <fieldset class="campo-selecao">
+            <legend class="campo-legenda agendar-label">Selecione o conteúdo desejado:</legend>
+
+            <div class="opcao-checkbox">
+              <input type="checkbox" id="materia-0" name="interesses" value="materia-0" class="checkbox-input">
+              <label for="materia-0">Matéria 0 do Professor</label>
+            </div>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="btnAgendarEnvio">Confirmar Agendamento</button>
+      </form>
+    </section>
+
+  </dialog>
 
   <script type="module" src="./scripts/main.js"></script>
   <script>
@@ -354,8 +359,46 @@
       });
     });
   </script>
+  <script>
+    const modalAgendar = document.getElementById("agendarModal");
 
-  <!-- <script src="scripts/buscar.js"></script> -->
+    // Botões que abrem o modal
+    const btnAbrirPerfil = document.getElementById("agendarOpenModalPerfil");
+    const btnAbrirAgendar = document.getElementById("agendarOpenModalAgendar");
+
+    // Botão que fecha o modal
+    const btnFechar = document.getElementById("btnFecharModal");
+
+    // Abrir modal pelos dois botões
+    btnAbrirPerfil.addEventListener("click", () => {
+      modalAgendar.showModal();
+    });
+
+    btnAbrirAgendar.addEventListener("click", () => {
+      modalAgendar.showModal();
+    });
+
+    // Fechar modal
+    btnFechar.addEventListener("click", () => {
+      modalAgendar.close();
+    });
+
+    // Fechar ao clicar fora
+    modalAgendar.addEventListener("click", (e) => {
+      const dialogDimensions = modalAgendar.getBoundingClientRect();
+      if (
+        e.clientX < dialogDimensions.left ||
+        e.clientX > dialogDimensions.right ||
+        e.clientY < dialogDimensions.top ||
+        e.clientY > dialogDimensions.bottom
+      ) {
+        modalAgendar.close();
+      }
+    });
+  </script>
+
+
+  <script src="scripts/buscar.js"></script>
   <script src="scripts/perfil-buscar.js"></script>
 </body>
 

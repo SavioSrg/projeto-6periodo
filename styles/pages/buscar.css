@@ -9,6 +9,7 @@
       align-items: center;
       justify-content: center;
       background: var(--cor-fundo);
+      border:2px solid var(--cor-borda-suave);
       border-radius: var(--raio-borda);
       padding: 12px 4px;
       width: 100%;
@@ -32,10 +33,10 @@
     }
 
     .search button {
-      background: var(--azul);
+      background: var(--cor-2);
       border: none;
       border-radius: 10px;
-      padding: 12px 12px;
+      padding: 8px 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -59,16 +60,17 @@
 
     .prof-lista {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(324px, 0.6fr));
+      gap: var(--spacing-3);
+     justify-content: center;
     }
 
     .teacher-card {
-      background: white;
+      background-color: #fdfdfd;
       border-radius: var(--raio-borda);
       padding: var(--spacing-6);
-      box-shadow: var(--shadow);
-      border: 1px solid var(--black);
+      box-shadow: var(--sombra-card);
+      border: 1px solid var(--cor-borda-suave);
       cursor: pointer;
       transition: var(--transition-normal);
 
