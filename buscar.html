@@ -286,6 +286,11 @@
       <!-- Formulário -->
       <form class="agendar-form" id="formAgendar">
 
+        <div class="agendar-campo">
+          <label for="dataAgendamento" class="agendar-label">Data</label>
+          <input type="date" id="dataAgendamento" name="dataAgendamento" class="agendar-input" required>
+        </div>
+
         <div class="agendar-row">
 
           <div class="agendar-campo">
@@ -305,6 +310,7 @@
             </select>
           </div>
         </div>
+
         <div class="agendar-campo-full">
           <fieldset class="campo-selecao">
             <legend class="campo-legenda agendar-label">Selecione o conteúdo desejado:</legend>
@@ -324,6 +330,7 @@
 
   <script type="module" src="./scripts/main.js"></script>
   <script>
+    // MODAL PERFIL
     document.addEventListener('DOMContentLoaded', () => {
       const openBtn = document.getElementById('perfilModalOpen');
       const overlay = document.querySelector('.modal-overlay');
@@ -360,46 +367,13 @@
     });
   </script>
   <script>
-    const modalAgendar = document.getElementById("agendarModal");
 
-    // Botões que abrem o modal
-    const btnAbrirPerfil = document.getElementById("agendarOpenModalPerfil");
-    const btnAbrirAgendar = document.getElementById("agendarOpenModalAgendar");
-
-    // Botão que fecha o modal
-    const btnFechar = document.getElementById("btnFecharModal");
-
-    // Abrir modal pelos dois botões
-    btnAbrirPerfil.addEventListener("click", () => {
-      modalAgendar.showModal();
-    });
-
-    btnAbrirAgendar.addEventListener("click", () => {
-      modalAgendar.showModal();
-    });
-
-    // Fechar modal
-    btnFechar.addEventListener("click", () => {
-      modalAgendar.close();
-    });
-
-    // Fechar ao clicar fora
-    modalAgendar.addEventListener("click", (e) => {
-      const dialogDimensions = modalAgendar.getBoundingClientRect();
-      if (
-        e.clientX < dialogDimensions.left ||
-        e.clientX > dialogDimensions.right ||
-        e.clientY < dialogDimensions.top ||
-        e.clientY > dialogDimensions.bottom
-      ) {
-        modalAgendar.close();
-      }
-    });
   </script>
 
 
-  <script src="scripts/buscar.js"></script>
-  <script src="scripts/perfil-buscar.js"></script>
+  <!-- <script src="scripts/buscar.js"></script> -->
+  <script src="scripts/agendar--modal.js"></script>
+  <!-- <script src="scripts/perfil-buscar.js"></script> -->
 </body>
 
 </html>

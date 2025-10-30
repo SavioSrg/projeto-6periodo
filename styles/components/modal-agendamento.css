@@ -1,18 +1,19 @@
 /* ====== ÁREA CENTRAL: AGENDAMENTO ====== */
 
- .btn-close-modal {
-  position: absolute;
-  top: 0.8rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: #888;
-  cursor: pointer;
-  transition: color 0.2s;
+.btn-close-modal {
+    position: absolute;
+    top: 0.8rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.2s;
 }
+
 .btn-close-modal:hover {
-  color: #000;
+    color: #000;
 }
 
 .agendar-card {
@@ -135,32 +136,67 @@
 
 /* ====== MODAL DE AGENDAMENTO ====== */
 .modal-agendar {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-  border: none;
-  border-radius: 12px;
-  /* background: transparent; */
-  padding: 0;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-  animation: modalFadeIn 0.25s ease;
-  z-index: 9999;
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    border: none;
+    border-radius: 12px;
+    /* background: transparent; */
+    padding: 0;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    animation: modalFadeIn 0.25s ease;
+    z-index: 9999;
 }
 
 /* Fundo escuro */
 .modal-agendar::backdrop {
-  background: rgba(0, 0, 0, 0.5);
-  /* backdrop-filter: blur(3px); */
+    background: rgba(0, 0, 0, 0.5);
+    /* backdrop-filter: blur(3px); */
 }
 
 /* Animação */
 @keyframes modalFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*  Calendário */
+
+.agendar-input[type="date"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #fff;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Quando o input estiver focado */
+.agendar-input[type="date"]:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Ícone do calendário (aparece em Chrome, Edge, etc.) */
+.agendar-input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.4) sepia(1) saturate(3) hue-rotate(180deg);
+    opacity: 0.8;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.agendar-input[type="date"]::-webkit-calendar-picker-indicator:hover {
     opacity: 1;
-    transform: translateY(0);
-  }
+    transform: scale(1.1);
 }
