@@ -1,5 +1,3 @@
-import { API_SABERMAIS_URL } from "./config/apiConfig.js";
-
 /* ----------- Toggle Senha ----------- */
 function setupTogglePassword(toggleId, inputId) {
     const toggle = document.getElementById(toggleId);
@@ -15,40 +13,26 @@ function setupTogglePassword(toggleId, inputId) {
 console.log("de fora");
 setupTogglePassword("toggleSenha", "senha");
 
-document.getElementById("loginForm").addEventListener("submit", async function (event) {
-  event.preventDefault(); // impede o recarregamento da página
-  
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("senha").value;
+// Script dedicado ao modal de cadastro
 
-  try {
-    // Aqui entra exatamente o seu trecho de código de autenticação:
-    const response = await fetch(`${API_SABERMAIS_URL}/Usuarios/Authenticate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-      credentials: "include" // envia e recebe cookies automaticamente
-    });
+// Seleciona os elementos
+const modalCadastroForm = document.getElementById('modalCadastro');
+const openModalCadastroForm = document.getElementById('openModalCadastroForm');
+const closeModalCadastroForm = document.getElementById('closeModalCadastro');
 
-    if (!(response.ok)) {
-      const errorData = await response.json();
-      document.getElementById("errorMsg").style.color = "red";
-      document.getElementById("errorMsg").textContent =
-        errorData.message || "Email ou senha inválidos.";
-      return;
-    }
+// Abre o modal
+openModalCadastroForm?.addEventListener('click', () => {
+  modalCadastroForm.style.display = 'flex';
+});
 
-    // Se o login for bem-sucedido, o backend já enviou o cookie JWT.
-    // Nenhum token é manipulado no JS — apenas redirecionamos.
-    document.getElementById("errorMsg").style.color = "green";
-    document.getElementById("errorMsg").textContent = "Login realizado com sucesso!";
-    setTimeout(() => {
-      window.location.href = "../teachers/dashboard.html"; // redireciona para a área protegida
-    }, 1000);
+// Fecha ao clicar no botão de fechar
+closeModalCadastroForm?.addEventListener('click', () => {
+  modalCadastroForm.style.display = 'none';
+});
 
-  } catch (error) {
-    console.error("Erro:", error);
-    document.getElementById("errorMsg").style.color = "red";
-    document.getElementById("errorMsg").textContent = "Falha na conexão com o servidor.";
+// Fecha ao clicar fora do conteúdo
+window.addEventListener('click', (e) => {
+  if (e.target === modalCadastroForm) {
+    modalCadastroForm.style.display = 'none';
   }
 });

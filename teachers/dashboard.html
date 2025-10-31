@@ -20,18 +20,18 @@
                     <img src="../assets/images/logo-100.png" alt="Exemplo responsivo">
                 </picture>
             </a>
-            <nav class="nav-menu" id="navMenu">
-                <a href="#categoria" class="nav-link">Categorias</a>
-                <a href="dashboard.html" class="nav-link">Dashboard</a>
-                <div class="actions">
-                    <button id="openModal" class="btn btn-primary" type="button">Entrar</button>
-                </div>
-            </nav>
 
-            <div class="hamburger" id="hamburger">
-                <i class="fa-solid fa-bars"></i>
+            <div class="user-menu">
+                <button class="user-avatar btn-primary" onclick="toggleUserMenu()">A</button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="./perfil.html">Meu Perfil</a>
+                    <a href="./dashboard.html">Dashboard</a>
+                    <a href="#" class="nav-link" onclick="logout()">Sair</a>
+                </div>
             </div>
         </div>
+
+
     </header>
 
     <main class="dashboard-main">
@@ -102,6 +102,82 @@
                         </header>
                         <div class="lessons-list" id="upcomingLessons">
                             <!-- Conteúdo carregado dinamicamente -->
+
+                            <!-- Modal de Avaliação -->
+                            <dialog id="avaliacaoModal" class="modal-overlay--avaliacao">
+                                <div class="avaliacao-modal">
+                                    <h3 class="title">Avaliar Aula</h3>
+                                    <form id="avaliacaoForm" method="dialog">
+                                        <input type="hidden" id="agendamentoId">
+                                        <input type="hidden" id="avaliadorAlunoId">
+                                        <input type="hidden" id="avaliadorProfessorId">
+                                        <!-- Campo Nota -->
+                                        <div class="avaliacao-nota">
+                                            <label>Nota <span class="obrigatorio">*</span></label>
+                                            <div id="estrelas" class="estrelas">
+                                                <i class="fas fa-star" data-value="1"></i>
+                                                <i class="fas fa-star" data-value="2"></i>
+                                                <i class="fas fa-star" data-value="3"></i>
+                                                <i class="fas fa-star" data-value="4"></i>
+                                                <i class="fas fa-star" data-value="5"></i>
+                                            </div>
+                                        </div>
+                                        <!-- Campo Comentário -->
+                                        <div class="avaliacao-comentario">
+                                            <label for="avaliacaoTexto">Comentário <span
+                                                    class="obrigatorio">*</span></label>
+                                            <textarea id="avaliacaoTexto" placeholder="Descreva como foi a aula..."
+                                                maxlength="500" required></textarea>
+                                            <small id="contadorCaracteres">0 / 500</small>
+                                        </div>
+                                        <!-- Botões -->
+                                        <div class="avaliacao-botoes">
+                                            <button type="button" id="salvarAvaliacao" class="btn-evaluate">Salvar</button>
+                                            <button class="btn" type="button" onclick="fecharAvaliacao()">Cancelar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </dialog>
+
+                            <!-- <div class="card-content" id="activityTimeline">
+                                <div class="lesson-item pending">
+                                    <div class="lesson-avatar">A</div>
+                                    <div class="lesson-info">
+                                        <div class="lesson-header">
+                                            <h4>Química</h4>
+                                            <span class="lesson-status status-pending">Pendente</span>
+                                        </div>
+                                        <p class="lesson-teacher">Prof. Ana Costa</p>
+                                        <p class="lesson-topic">Química Orgânica</p>
+                                        <div class="lesson-details">
+                                            <span class="lesson-date">
+                                                <i class="fas fa-calendar"></i>
+                                                ter., 23 de jan.
+                                            </span>
+                                            <span class="lesson-time">
+                                                <i class="fas fa-clock"></i>
+                                                16:00 (90min)
+                                            </span>
+                                            <span class="lesson-type">
+                                                <i class="fas fa-video"></i>
+                                                Online
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="lesson-actions">
+                                        <button class="btn-sm btn-outline" onclick="rescheduleLesson(3)">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-sm btn-primary" onclick="joinLesson(3)">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <button class="btn-evaluate" onclick="openEvaluation()">
+                                            <i class="fas fa-star-half-alt"></i>
+                                            Avaliar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div> -->
                         </div>
                     </div>
 

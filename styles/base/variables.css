@@ -47,5 +47,7 @@
     --largura-maxima-conteudo: 1200px;
     --raio-borda: 8px;
 
+    --transition-normal: transform 0.3s, background 0.3s;
+
     --sombra-card: 0 4px 8px rgba(0, 0, 0, 0.05);
 }

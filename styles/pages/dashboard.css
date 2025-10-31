@@ -143,10 +143,13 @@
   text-decoration: underline;
 }
 
-.lessons-list, .activity-list, .calendar-widget, .favorite-teachers {
+.activity-list, .calendar-widget, .favorite-teachers {
   padding: 1rem 1.2rem;
 }
 
+.lessons-list {
+  padding: 1rem 1.2rem;
+}
 
 
 /* ======== RESPONSIVIDADE ======== */
@@ -171,4 +174,79 @@
   .stats-grid {
     grid-template-columns: 1fr;
   }
+}
+
+
+/* MODAL AVALIAÇÕES */
+/* Estrelas */
+.estrelas {
+  display: flex;
+  justify-content: center;
+  gap: .3rem;
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  margin: .4rem 0;
+}
+
+.estrelas i.ativa {
+  color: var(--cor-4);
+}
+
+.obrigatorio {
+  color: red;
+  font-weight: bold;
+}
+
+/* Contador */
+#contadorCaracteres {
+  font-size: 0.8rem;
+  color: #555;
+  display: block;
+  text-align: right;
+  margin-top: .3rem;
+}
+
+.avaliacao-modal label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.avaliacao-modal textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: .6rem;
+  margin-top: .4rem;
+  resize: none;
+}
+
+.avaliacao-botoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: .6rem;
+  margin-top: 1rem;
+}
+
+/* Modal */
+.avaliacao-modal {
+  background-color: var(--white);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 720px;
+  width: 95%;
+  border: none;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  font-family: inherit;
+}
+
+.modal-overlay--avaliacao {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
 }
