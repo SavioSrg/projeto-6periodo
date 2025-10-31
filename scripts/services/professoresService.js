@@ -41,3 +41,54 @@ export async function createProfessor(payload) {
 
     return response.json(); // retorna o objeto criado, se a API devolver
 }
+
+
+async function carregarProfessor(idProfessor) {
+  try {
+    const response = await fetch(`${API_SABERMAIS_URL}/Professores/${idProfessor}`, {
+      method: "GET",
+      credentials: "include" //envia automaticamente o cookie JWT salvo no navegador
+    });
+
+    if (response.status === 401) {
+      // Não autorizado → token inválido ou expirado
+      alert("Sessão expirada. Faça login novamente.");
+        // document.getElementById("erro").textContent = "Sessão expirada. Faça login novamente.";
+        window.location.href = "../login.html"
+    //   setTimeout(() => window.location.href = "../login.html", 2000);
+      return;
+    }
+
+    if (response.status === 404) {
+        alert("Professor não encontrado.");
+      //document.getElementById("erro").textContent = "Professor não encontrado.";
+      window.location.href = "../login.html"
+      return;
+    }
+
+    if (!response.ok) {
+        alert("Erro ao carregar informações do professor.");
+      //document.getElementById("erro").textContent = "Erro ao carregar informações do professor.";
+      window.location.href = "../login.html"
+      return;
+    }
+
+    const professor = await response.json();
+    const info = document.getElementById("info-professor");
+
+    // Exibe as informações do professor
+    info.innerHTML = `
+        <h3>${professor.nome}</h3>
+      <p><strong>ID:</strong> ${professor.id}</p>
+      <p><strong>Disciplina:</strong> ${professor.disciplina || "Não informado"}</p>
+      <p><strong>Email:</strong> ${professor.email || "Não informado"}</p>
+      `;
+  } catch (error) {
+    console.error("Erro:", error);
+    alert("Falha na conexão com o servidor.");
+    // document.getElementById("erro").textContent = "Falha na conexão com o servidor.";
+  }
+}
+
+// Executa automaticamente ao abrir a página
+carregarProfessor(19);

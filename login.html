@@ -43,7 +43,7 @@
                         <button id="openModalCadastro" type="button"><u>Criar
                                 cadastro</u></button>
                     </p>
-                    <form class="login-form">
+                    <form class="login-form" id="loginForm">
                         <label class="field-label" for="email">E-mail</label>
                         <input id="email" class="input-field org-input--field" type="email" placeholder="Seu e-mail"
                             required autocomplete="email" />
@@ -53,7 +53,8 @@
                                 placeholder="Sua senha" required />
                             <button type="button" class="btn-eye" id="toggleSenha">%</button>
                         </div>
-                        <button class="btn btn-submit" type="submit">Cadastrar</button>
+                        <button class="btn btn-submit" type="submit">Entrar</button>
+                        <p id="errorMsg"></p>
                     </form>
                 </div>
             </div>
