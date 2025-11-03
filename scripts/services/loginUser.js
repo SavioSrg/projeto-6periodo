@@ -12,7 +12,6 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
-      //credentials: "include" // envia e recebe cookies automaticamente
     });
 
     const data = await response.json(); // converte a resposta em json
@@ -40,8 +39,3 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     document.getElementById("errorMsg").textContent = "Falha na conexão com o servidor.";
   }
 });
-
-// function logout() {
-//   localStorage.removeItem("token");
-//   setTimeout(() => window.location.href = "../login.html", 2000);
-// }
