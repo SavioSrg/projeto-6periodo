@@ -12,23 +12,26 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
-      credentials: "include" // envia e recebe cookies automaticamente
+      //credentials: "include" // envia e recebe cookies automaticamente
     });
 
+    const data = await response.json(); // converte a resposta em json
+
     if (!(response.ok)) {
-      const errorData = await response.json();
       document.getElementById("errorMsg").style.color = "red";
       document.getElementById("errorMsg").textContent =
-        errorData.message || "Email ou senha inválidos.";
+        data.message || "Email ou senha inválidos.";
       return;
     }
 
+    localStorage.setItem("jwtToken", data.jwtToken); // Salva o token JWT no localStorage
+
     // Se o login for bem-sucedido, o backend já enviou o cookie JWT.
-    // Nenhum token é manipulado no JS — apenas redirecionamos.
+    // Salva dados no LocalStorage, mensagem de sucesso e redirecionamento
     document.getElementById("errorMsg").style.color = "green";
     document.getElementById("errorMsg").textContent = "Login realizado com sucesso!";
     setTimeout(() => {
-      window.location.href = "../teachers/dashboard.html"; // redireciona para a área protegida
+      window.location.href = "../home.html"; // redireciona para a área protegida
     }, 1000);
 
   } catch (error) {
@@ -37,3 +40,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     document.getElementById("errorMsg").textContent = "Falha na conexão com o servidor.";
   }
 });
+
+// function logout() {
+//   localStorage.removeItem("token");
+//   setTimeout(() => window.location.href = "../login.html", 2000);
+// }
