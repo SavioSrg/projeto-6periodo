@@ -37,6 +37,13 @@ a {
     /* margin: 0 0 var(--espacamento-grande); */
 }
 
+h3 {
+    margin: 1rem 0;
+    max-width: 54rem;
+    line-height: 1.6;
+    font-size: var(--font-size-xl);
+}
+
 .container {
     max-width: var(--largura-maxima-conteudo);
     margin: 0 auto;

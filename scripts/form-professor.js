@@ -152,6 +152,7 @@ form.addEventListener("submit", async (e) => {
 
     } catch (err) {
         alert('Erro ao cadastrar: ' + err.message);
+        console.log(payload)
 
     } finally {
         submitBtn.disabled = false;

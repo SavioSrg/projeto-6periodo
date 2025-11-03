@@ -24,4 +24,6 @@
 @import url('./pages/perfil.css');
 @import url('./pages/dashboard.css');
 @import url('./pages/buscar.css');
+@import url('./pages/disponibilidade.css');
+@import url('./pages/editar-perfil.css');
 /* ... outras páginas ... */
