@@ -12,6 +12,7 @@
 /* 3. Components (Elementos Reutilizáveis) */
 @import url('./components/button.css');
 @import url('./components/card-aula.css');
+@import url('./components/card-atividade.css');
 @import url('./components/modal-login.css');
 @import url('./components/modal-perfil.css');
 @import url('./components/modal-perfil-buscar.css');
