@@ -36,7 +36,7 @@ export async function verifyAuth() {
   }
 };
 
-async function redirecionarUsuarioLogado(usuario) {
+export async function redirecionarUsuarioLogado(usuario) {
   try {
     const response = await fetch(`${API_SABERMAIS_URL}/Usuarios/${usuario.id}`, {
       method: "GET"
