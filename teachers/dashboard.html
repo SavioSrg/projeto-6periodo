@@ -25,7 +25,7 @@
                 <button class="user-avatar btn-primary" onclick="toggleUserMenu()">A</button>
                 <div class="user-dropdown" id="userDropdown">
                     <a href="./perfil.html">Meu Perfil</a>
-                    <a href="./dashboard.html">Dashboard</a>
+                    <a href="./dashboard.html" class="hidden" id="buttonDashboard">Dashboard</a>
                     <a href="#" class="nav-link" onclick="logout()">Sair</a>
                 </div>
             </div>
@@ -41,8 +41,8 @@
             <section class="profile-header-section"></section>
             <header class="dashboard-header">
                 <div class="welcome-section">
-                    <h1>Olá, <span id="userName">Sávio Sérgio</span>! 👋</h1>
-                    <p>Bem-vinda de volta ao seu painel de controle</p>
+                    <h1>Olá, <span id="userName"></span>! 👋</h1>
+                    <p>Bem-vindo(a) de volta ao seu painel de controle.</p>
                 </div>
                 <nav class="quick-actions">
                     <button class="btn btn-primary" onclick="quickSchedule()">
@@ -60,28 +60,28 @@
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
                     <div class="stat-info">
-                        <h3>12</h3>
+                        <h3 id="aulasAgendadas"></h3>
                         <p>Aulas Agendadas</p>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
                     <div class="stat-info">
-                        <h3>45</h3>
+                        <h3 id="aulasConcluidas"></h3>
                         <p>Aulas Concluídas</p>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                     <div class="stat-info">
-                        <h3>8</h3>
+                        <h3 id="totalAlunos"></h3>
                         <p>Alunos</p>
                     </div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-clock"></i></div>
                     <div class="stat-info">
-                        <h3>67h</h3>
+                        <h3 id="horasAulas"></h3>
                         <p>Horas de Aula</p>
                     </div>
                 </div>
@@ -196,16 +196,16 @@
                 </aside>
 
                 <!-- ======== COLUNA DIREITA ======== -->
+                 <!-- Calendário -->
                 <aside class="dashboard-right">
-                    <!-- Calendário -->
-                    <div id="card-calendar" class="dashboard-card">
+                    <!-- <div id="card-calendar" class="dashboard-card">
                         <header class="card-header">
                             <h2>Calendário</h2>
                         </header>
                         <div class="calendar-widget" id="calendarWidget">
-                            <!-- Conteúdo carregado dinamicamente -->
+                            
                         </div>
-                    </div>
+                    </div> -->
         </div>
         </aside>
         </section>
@@ -238,7 +238,16 @@
     </footer>
 
     <script type="module" src="../scripts/main.js"></script>
-    <script type="module" src="../scripts/services/professoresService.js"></script>
+    <script type="module" src="../scripts/dashboard.js"></script>
+    <!-- <script type="module" src="../scripts/services/professoresService.js"></script> -->
+    <!-- <script type="module" src="../scripts/config/verifyLogin.js"></script> -->
+    <script>
+        function logout() {
+            localStorage.removeItem("jwtToken");
+            alert("Desconectando...");
+            setTimeout(() => window.location.href = "../login.html", 1000);
+        }
+    </script>
     <script>
         // Seleciona o container principal onde os cards serão inseridos
         const activityList = document.getElementById("recentActivity");

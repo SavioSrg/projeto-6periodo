@@ -1,4 +1,7 @@
-const activityTimeline = document.getElementById("upcomingLessons");
+import { API_SABERMAIS_URL } from "./config/apiConfig.js";
+import { loadUser } from "./services/dashboardService.js";
+
+// const activityTimeline = document.getElementById("upcomingLessons");
 const avaliacaoModal = document.getElementById("avaliacaoModal");
 let aulaSelecionada = null;
 
@@ -31,30 +34,30 @@ let aulaSelecionada = null;
 // }
 
 // Cria um card de aula
-function criarAula({ materia, aluno, data, hora}) {
-    const card = document.createElement("div");
-    card.className = "lesson-item";
-    card.dataset.status = "confirmar"; // estado inicial
-    card.innerHTML = `
-       <div class="lesson-avatar">${aluno[0].toUpperCase()}</div>
-       <div class="lesson-info">
-         <div class="lesson-header">
-           <h4>${materia}</h4>
-           <span class="lesson-status status-pending">Confirmar aula</span>
-         </div>
-         <p class="lesson-teacher">Aluno ${aluno}</p>
-         <div class="lesson-details">
-           <span class="lesson-date"><i class="fas fa-calendar"></i> ${data}</span>
-           <span class="lesson-time"><i class="fas fa-clock"></i> ${hora}</span>
-         </div>
-       </div>
-      <div class="lesson-actions">
-        <button class="btn-sm btn-primary" onclick="confirmarAula(this)">Confirmar</button>
-        <button class="btn-sm btn-outline" onclick="negarAula(this)">Negar</button>
-      </div>
-    `;
-    activityTimeline.appendChild(card);
-}
+// function criarAula({ materia, aluno, data, hora}) {
+//     const card = document.createElement("div");
+//     card.className = "lesson-item";
+//     card.dataset.status = "confirmar"; // estado inicial
+//     card.innerHTML = `
+//        <div class="lesson-avatar">${aluno[0].toUpperCase()}</div>
+//        <div class="lesson-info">
+//          <div class="lesson-header">
+//            <h4>${materia}</h4>
+//            <span class="lesson-status status-pending">Confirmar aula</span>
+//          </div>
+//          <p class="lesson-teacher">Aluno ${aluno}</p>
+//          <div class="lesson-details">
+//            <span class="lesson-date"><i class="fas fa-calendar"></i> ${data}</span>
+//            <span class="lesson-time"><i class="fas fa-clock"></i> ${hora}</span>
+//          </div>
+//        </div>
+//       <div class="lesson-actions">
+//         <button class="btn-sm btn-primary" onclick="confirmarAula(this)">Confirmar</button>
+//         <button class="btn-sm btn-outline" onclick="negarAula(this)">Negar</button>
+//       </div>
+//     `;
+//     activityTimeline.appendChild(card);
+// }
 
 // Confirma aula
 function confirmarAula(btn) {
@@ -175,11 +178,11 @@ document.getElementById("salvarAvaliacao").addEventListener("click", () => {
 });
 
 // Exemplo de uso:
-criarAula({
-    materia: "Português",
-    aluno: "Carlos Souza",
-    data: "Qua., 30 out",
-    hora: "14:00 (60min)",
-});
+// criarAula({
+//     materia: "Português",
+//     aluno: "Carlos Souza",
+//     data: "Qua., 30 out",
+//     hora: "14:00 (60min)",
+// });
 
-
+await loadUser(); //Carrega os dados do usuário usando o Id
