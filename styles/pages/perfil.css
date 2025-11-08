@@ -17,7 +17,7 @@
 .profile-header {
   background: var(--color-card);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
+  /* box-shadow: var(--shadow-md); */
   overflow: hidden;
 }
 
