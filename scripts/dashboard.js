@@ -59,32 +59,32 @@ let aulaSelecionada = null;
 //     activityTimeline.appendChild(card);
 // }
 
-// Confirma aula
-function confirmarAula(btn) {
-    const card = btn.closest(".lesson-item");
-    card.querySelector(".lesson-status").textContent = "Confirmado";
-    card.querySelector(".lesson-status").className = "lesson-status status-confirmed";
-    card.dataset.status = "confirmado";
+// Confirma aula --> usada no "dashboardService.js"
+// function confirmarAula(btn) {
+//     const card = btn.closest(".lesson-item");
+//     card.querySelector(".lesson-status").textContent = "Confirmado";
+//     card.querySelector(".lesson-status").className = "lesson-status status-confirmed";
+//     card.dataset.status = "confirmado";
 
-    // Substitui botões por nada até a aula ocorrer
-    card.querySelector(".lesson-actions").innerHTML = `
-      <button class="btn-sm btn-outline" disabled>Confirmado</button>
-    `;
+//     // Substitui botões por nada até a aula ocorrer
+//     card.querySelector(".lesson-actions").innerHTML = `
+//       <button class="btn-sm btn-outline" disabled>Confirmado</button>
+//     `;
 
-    // Simula passagem do tempo para teste
-    setTimeout(() => pendenteAvaliacao(card), 5000); // depois de 5s aparece a avaliação
-}
+//     // Simula passagem do tempo para teste
+//     setTimeout(() => pendenteAvaliacao(card), 5000); // depois de 5s aparece a avaliação
+// }
 
-// Cancela aula
-function negarAula(btn) {
-    const card = btn.closest(".lesson-item");
-    card.querySelector(".lesson-status").textContent = "Cancelada";
-    card.querySelector(".lesson-status").className = "lesson-status status-cancelled";
-    card.dataset.status = "cancelada";
-    card.querySelector(".lesson-actions").innerHTML = `
-      <button class="btn-sm btn-outline" disabled>Cancelada</button>
-    `;
-}
+// Cancela aula --> usada no "dashboardService.js"
+// function negarAula(btn) {
+//     const card = btn.closest(".lesson-item");
+//     card.querySelector(".lesson-status").textContent = "Cancelada";
+//     card.querySelector(".lesson-status").className = "lesson-status status-cancelled";
+//     card.dataset.status = "cancelada";
+//     card.querySelector(".lesson-actions").innerHTML = `
+//       <button class="btn-sm btn-outline" disabled>Cancelada</button>
+//     `;
+// }
 
 // Após o horário da aula
 function pendenteAvaliacao(card) {

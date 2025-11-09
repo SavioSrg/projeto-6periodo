@@ -34,6 +34,7 @@
   flex-shrink: 0;
 }
 
+.activity-icon.pending { background: var(--pending, #b700ff); }   /* Roxo - Pendente */
 .activity-icon.success { background: var(--success, #28a745); }   /* Verde - Concluída */
 .activity-icon.confirm { background: var(--confirm, #007bff); }   /* Azul - Confirmada */
 .activity-icon.cancel  { background: var(--cancel, #dc3545); }    /* Vermelho - Cancelada */
