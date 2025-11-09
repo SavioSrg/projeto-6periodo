@@ -17,6 +17,7 @@
 @import url('./components/modal-perfil.css');
 @import url('./components/modal-perfil-buscar.css');
 @import url('./components/modal-agendamento.css');
+@import url('./components/modal-filtros.css');
 /* ... outros componentes ... */
 
 /* 4. Pages (Maior Prioridade, Ajustes Finais) */
