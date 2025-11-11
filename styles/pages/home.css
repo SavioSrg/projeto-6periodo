@@ -54,15 +54,71 @@ section#categoria {
 
 /* Card base */
 .card--home {
-  background-color: #e6e6e6;
-  height: 140px;
+  background-color: #f0f0f0;
+  height: 160px;
+  padding: 20px;
   border-radius: var(--raio-borda);
   transition: transform 0.3s, background 0.3s;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .card--home:hover {
   transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   background-color: #dcdcdc;
+}
+
+/* ===== ÍCONE ===== */
+.category-icon {
+  width: 45px;
+  height: 45px;
+  background-color: #0078ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+/* ===== TÍTULO ===== */
+.card--home h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+/* ===== TEXTO ===== */
+.card--home p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 5px 0 0;
+}
+
+/* ===== SETA (ARROW) ===== */
+.category-arrow {
+  position: absolute;
+  top: var(--spacing-6);
+  right: var(--spacing-6);
+  color: var(--cor-secundaria);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: transform 0.3s ease;
+}
+
+.card--home:hover .category-arrow {
+  opacity: 1;
+  transform: translateX(8px);
+
 }
 
 .secao-funcionamento {
@@ -127,13 +183,13 @@ section#categoria {
 }
 
 .secao-anuncio {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: var(--spacing-10) 0;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-10) 0;
+  margin-top: 20px;
 }
 
 .secao-anuncio h2 {
@@ -157,5 +213,5 @@ section#categoria {
 
   .secao-anuncio p {
     display: none;
-}
+  }
 }
