@@ -1,122 +1,157 @@
 // import { escapeHtml } from './utils-if-needed.js'; // opcional
+import { API_SABERMAIS_URL } from "../config/apiConfig.js";
 
 export default function AreasModule({ inputSel, addBtnSel, suggestionsSel, tagListSel, mockAreas = [] } = {}) {
+  console.log("mock: ", mockAreas)
   const areaInput = document.querySelector(inputSel);
   const addAreaBtn = document.querySelector(addBtnSel);
   const suggestionsBox = document.querySelector(suggestionsSel);
   const tagList = document.querySelector(tagListSel);
-  const selectedAreas = [];
 
-// ===== MOCK TEMPORÁRIO =====
-const listaAreas = [
-  { Id: 1, Nome: "Matemática" },
-  { Id: 5, Nome: "Geografia" },
-  { Id: 6, Nome: "Física" },
-  { Id: 7, Nome: "Química" },
-  { Id: 8, Nome: "Biologia" },
-  { Id: 9, Nome: "Educação Física" },
-  { Id: 10, Nome: "Artes" },
-  { Id: 11, Nome: "Sociologia" },
-  { Id: 12, Nome: "Filosofia" },
-  { Id: 13, Nome: "Tecnologia da Informação" },
-  { Id: 14, Nome: "Programação" },
-  { Id: 15, Nome: "Administração" }
-];
-
-  function renderTags() {
+  // RENDERIZAR TAGS
+  async function renderTags() {
     tagList.innerHTML = '';
-    selectedAreas.forEach(area => {
+    for (const area of mockAreas) {
+      const areaNome = await buscarNomeArea(area.areaId);
       const tag = document.createElement('div');
       tag.className = 'tag';
-      tag.innerHTML = `<span>${area.Nome}</span><button aria-label="Remover área" data-id="${area.Id}">&times;</button>`;
+      tag.innerHTML = `<span>${areaNome}</span>
+        <button aria-label="Remover área" data-id="${area.areaId}">&times;</button>`;
       tag.querySelector('button').addEventListener('click', () => {
-        removeAreaById(area.Id);
+        removeAreaById(area.areaId);
       });
       tagList.appendChild(tag);
-    });
-  }
+    };
+  };
 
-  function addAreaByName(name) {
+
+  // ADICIONAR ÁREA
+  async function addAreaByName(name, id) {
     name = (name || '').trim();
     if (!name) return;
-    const found = mockAreas.find(a => a.Nome.toLowerCase() === name.toLowerCase());
-    const newArea = found || { Id: Date.now(), Nome: name };
-    if (!selectedAreas.some(a => a.Nome.toLowerCase() === newArea.Nome.toLowerCase())) {
-      selectedAreas.push(newArea);
-      renderTags();
-    }
+
+    // Busca o nome real da área
+    const areaNome = await buscarNomeArea(id);
+    if (!areaNome) return;
+
+    // Verifica se já existe essa área no mockAreas (comparando por ID)
+    const found = mockAreas.find(a => a.areaId === id);
+    if (found) return; // já existe, não adiciona novamente
+
+    // Cria novo objeto com o nome obtido da API
+    const newArea = { areaId: id, nome: areaNome };
+    mockAreas.push(newArea);
+
+    console.log("Área adicionada:", newArea);
+    await renderTags();
+
     areaInput.value = '';
     suggestionsBox.classList.add('hidden');
   }
 
+  // REMOVER ÁREA
   function removeAreaById(id) {
-    const i = selectedAreas.findIndex(a => a.Id === id);
-    if (i !== -1) selectedAreas.splice(i, 1);
+    const i = mockAreas.findIndex(a => a.areaId === id);
+    if (i !== -1) mockAreas.splice(i, 1);
     renderTags();
   }
 
   function setSelectedAreas(list) {
-    selectedAreas.length = 0;
-    (list || []).forEach(i => selectedAreas.push(i));
+    mockAreas.length = 0;
+    (list || []).forEach(i => mockAreas.push(i));
     renderTags();
   }
 
-  function getSelectedAreas() { return selectedAreas.slice(); }
+  function getSelectedAreas() { return mockAreas.slice(); }
 
 
+  // BUSCAR LISTA DE ÁREAS (API)
+  async function fetchAreas() {
+    const token = localStorage.getItem("jwtToken");
 
-// ===== FUNÇÃO FUTURA PARA BUSCAR DA API =====
-async function fetchAreas(query) {
-  // Quando a API estiver pronta, basta descomentar e ajustar:
-  // const response = await fetch(`https://suaapi.com/areas?search=${encodeURIComponent(query)}`);
-  // if (!response.ok) throw new Error("Erro ao buscar áreas");
-  // return await response.json();
+    const response = await fetch(`${API_SABERMAIS_URL}/Areas`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-  // Simulação temporária (mock)
-  return listaAreas.filter(a => a.Nome.toLowerCase().includes(query.toLowerCase()));
-}
-
-// ===== AUTOCOMPLETE =====
-areaInput.addEventListener('input', async () => {
-  const q = areaInput.value.toLowerCase().trim();
-  suggestionsBox.innerHTML = '';
-  if (!q) {
-    suggestionsBox.classList.add('hidden');
-    return;
+    if (!response.ok) throw new Error("Erro ao buscar áreas");
+    return await response.json();
   }
 
-  try {
-    const areas = await fetchAreas(q);
-    if (areas.length === 0) {
+  // BUSCAR NOME DE UMA ÁREA
+  async function buscarNomeArea(idArea) {
+    const token = localStorage.getItem("jwtToken");
+    try {
+      const resp = await fetch(`${API_SABERMAIS_URL}/Areas/${idArea}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
+      if (!resp.ok) throw new Error("Erro ao buscar nome da área");
+      const area = await resp.json();
+      return area.nome || `Área ${idArea}`;
+    } catch (erro) {
+      console.error("Erro ao buscar nome da matéria:", erro);
+      return false;
+    }
+  }
+
+  // ===== AUTOCOMPLETE =====
+  areaInput.addEventListener('input', async () => {
+    const q = areaInput.value.toLowerCase().trim();
+    suggestionsBox.innerHTML = '';
+    if (!q) {
       suggestionsBox.classList.add('hidden');
       return;
     }
 
-    areas.forEach(area => {
-      const item = document.createElement('div');
-      item.className = 'suggestion-item';
-      item.textContent = area.Nome;
-      item.addEventListener('click', () => {
-        areaInput.value = area.Nome;
-        addAreaByName(area.Nome);
-        suggestionsBox.classList.add('hidden'); // fecha após selecionar
+    try {
+      const areas = await fetchAreas();
+      const areasFiltradas = areas.filter(a =>
+        a.nome.toLowerCase().includes(q)
+      );
+
+      if (areasFiltradas.length === 0) {
+        suggestionsBox.classList.add('hidden');
+        return;
+      }
+
+      areasFiltradas.forEach(area => {
+        const item = document.createElement('div');
+        item.className = 'suggestion-item';
+        item.textContent = area.nome;
+        item.addEventListener('click', async () => {
+          areaInput.value = area.nome;
+          await addAreaByName(area.nome, area.id);
+          suggestionsBox.classList.add('hidden'); // fecha após selecionar
+        });
+        suggestionsBox.appendChild(item);
       });
-      suggestionsBox.appendChild(item);
-    });
 
-    suggestionsBox.classList.remove('hidden');
-  } catch (err) {
-    console.error('Erro ao carregar áreas:', err);
-    suggestionsBox.classList.add('hidden');
-  }
-});
+      suggestionsBox.classList.remove('hidden');
+    } catch (err) {
+      console.error('Erro ao carregar áreas:', err);
+      suggestionsBox.classList.add('hidden');
+    }
+  });
 
-// ===== OPCIONAL: FECHAR AO CLICAR FORA =====
-document.addEventListener('click', (e) => {
-  if (!suggestionsBox.contains(e.target) && e.target !== areaInput) {
-    suggestionsBox.classList.add('hidden');
-  }
-});
+  // FECHAR SUGESTÕES AO CLICAR FORA
+  document.addEventListener('click', (e) => {
+    if (!suggestionsBox.contains(e.target) && e.target !== areaInput) {
+      suggestionsBox.classList.add('hidden');
+    }
+  });
 
-  return { renderTags, addAreaByName, getSelectedAreas, setSelectedAreas, removeAreaById };
+  renderTags();
+
+  return {
+    renderTags,
+    addAreaByName,
+    getSelectedAreas,
+    setSelectedAreas,
+    removeAreaById
+  };
 }
