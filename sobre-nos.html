@@ -431,7 +431,7 @@
         <h1 class="title">Busque pelo Professor Perfeito</h1>
 
         <form class="search" id="searchForm" role="search" aria-label="Buscar professores">
-            <input id="q" name="q" type="search" placeholder="Pesquisar por nome, matéria ou habilidade..." />
+            <input id="inputBuscar" name="inputBuscar" type="search" placeholder="Pesquisar por nome, matéria ou habilidade..." />
             <button type="submit" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
         </form>
 
@@ -743,7 +743,7 @@
                 const listaEl = document.getElementById('profLista');
                 const tpl = document.getElementById('profCardTemplate');
                 const searchForm = document.getElementById('searchForm');
-                const searchInput = document.getElementById('q');
+                const searchInput = document.getElementById('inputBuscar');
 
                 // perfil
                 const overlay = document.getElementById('teacherModalOverlay');
