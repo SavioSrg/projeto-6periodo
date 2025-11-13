@@ -33,6 +33,7 @@
       border-radius: 12px;
       width: 450px;
       max-width: 90%;
+      max-height: 480px;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
       position: relative;
       animation: slideIn 0.3s;
@@ -49,20 +50,6 @@
         opacity: 1;
       }
     }
-
-    /* .close {
-      position: absolute;
-      right: 20px;
-      top: 15px;
-      font-size: 28px;
-      cursor: pointer;
-      color: #777;
-      transition: color 0.2s;
-    } */
-    /* 
-    .close:hover {
-      color: #333;
-    } */
 
     .filter-section {
       margin-bottom: 25px;
