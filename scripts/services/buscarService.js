@@ -96,6 +96,7 @@ const token = localStorage.getItem("jwtToken");
   // Estado local
   let professores = [];
   let currentProfessor = null;
+  let idArea = null;
 
   // Elementos
   const listaEl = document.getElementById('profLista');
@@ -351,7 +352,6 @@ const token = localStorage.getItem("jwtToken");
   function openBooking(prof) {
     currentProfessor = prof;
     bookingProfId.value = prof.id;
-    const professorId = prof.id;
     bookingProfName.textContent = prof.nome ?? '';
     bookingProfPrice.textContent = fmtPrice(prof.valorHora);
 
@@ -361,9 +361,11 @@ const token = localStorage.getItem("jwtToken");
     bookingTopics.innerHTML = '';
     const topics = prof.competencias && Array.isArray(prof.competencias) && prof.competencias.length ? prof.competencias : ['Conteúdo geral'];
     topics.forEach((t, i) => {
+      const idArea = i;
+      console.log(idArea);
       const id = `topic-${prof.id}-${i}`;
       const wrapper = document.createElement('div');
-      wrapper.innerHTML = `<label><input type="checkbox" name="topics" value="${t}" id="${id}" ${i === 0 ? '' : ''}> <span>${t}</span></label>`;
+      wrapper.innerHTML = `<label><input type="radio" name="topics" value="${i}" id="${id}" ${i === 0 ? '' : ''}> <span>${t}</span></label>`;
       bookingTopics.appendChild(wrapper);
     });
 
@@ -435,7 +437,7 @@ const token = localStorage.getItem("jwtToken");
       const horarios = gerarHorarios(disponibilidade.horaInicio, disponibilidade.horaFim);
       popularHorarios(bookingTime, horarios);
     });
-    
+
     function gerarHorarios(horaInicio, horaFim) {
       const [hiH, hiM] = horaInicio.split(':').map(Number);
       const [hfH, hfM] = horaFim.split(':').map(Number);
@@ -479,8 +481,10 @@ const token = localStorage.getItem("jwtToken");
     const profId = currentProfessor.id;
     const date = bookingDate.value;
     const time = bookingTime.value;
-    const topics = Array.from(
-      bookingTopics.querySelectorAll('input[name="topics"]:checked')).map(i => i.value);
+    const startTime = time.split('-')[0].trim();
+    const user = await carregarUsuarioLogado();
+
+    const topics = Number(bookingTopics.querySelector('input[name="topics"]:checked')?.value);
 
     if (!date || !time) { alert('Escolha data e horário.'); return; }
 
@@ -488,9 +492,9 @@ const token = localStorage.getItem("jwtToken");
     const payload = {
       disciplinaId: topics, //errado
       professorId: profId,
-      alunoId: 22,          //errado
+      alunoId: user.id,
       status: 0,
-      dataHora: `${date}T${time.split('-')[0]}:00`
+      dataHora: `${date}T${startTime}:00`
       //topicos: topics
     };
     console.log("payload: ", payload);
@@ -518,6 +522,39 @@ const token = localStorage.getItem("jwtToken");
       bookingDialog.close();
     }
   });
+
+  async function carregarUsuarioLogado() {
+    try {
+      const response = await fetch(`${API_SABERMAIS_URL}/Usuarios/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const user = await response.json();
+      console.log(user);
+
+      const idUsuario = user.id;
+
+      const response2 = await fetch(`${API_SABERMAIS_URL}/Usuarios/${idUsuario}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const dadosUser = await response2.json(); //Retorna as infos do usuário logado
+      console.log(dadosUser);
+
+      return dadosUser;
+    }
+    catch (error) {
+      console.error("Erro ao verificar autenticação:", error);
+      alert("Erro ao verificar autenticação.");
+      localStorage.removeItem("jwtToken");
+      //window.location.href = "../login.html";
+    }
+  }
 
   // ---------- Carregamento inicial de exemplo ao clicar em filtro: demonstração ----------
   // (já ativamos init() para carregar lista)
