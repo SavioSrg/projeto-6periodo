@@ -1,7 +1,9 @@
+import { API_SABERMAIS_URL } from "../config/apiConfig.js";
+const token = localStorage.getItem("jwtToken");
+
 (function () {
   // ---------- Configurações ----------
-  const API_BASE = 'http://localhost:5041/api'; // ajuste para produção
-  const API_PROFESSORES = API_BASE + '/professores';
+  const API_PROFESSORES = API_SABERMAIS_URL + '/Professores';
   const LIMITE_CARDS = 12;
 
   // Fallback (se a API falhar) — usei o JSON que você enviou (array com 1 item)
@@ -187,8 +189,14 @@
 
     btnSchedule.addEventListener('click', () => {
       console.log(`Agendar aula com o professor ID ${prof.id}`);
-      openBooking(prof);
-      // aqui você chama a função de abrir o modal de agendamento
+      if (!token) {
+        alert("Ops! É necessário fazer login para realizar esta ação. Entre ou cadastre-se para continuar!")
+        setTimeout(() => window.location.href = "../login.html", 1000);
+        return;
+      } else {
+        openBooking(prof);
+        // aqui você chama a função de abrir o modal de agendamento, se o usuário estiver logado
+      }
     });
 
     return clone;
@@ -250,12 +258,18 @@
     if (btn.classList.contains('btn-profile')) {
       openProfile(prof);
     } else if (btn.classList.contains('btn-schedule')) {
-      openBooking(prof);
+      if (!token) {
+        alert("Ops! É necessário fazer login para realizar esta ação. Entre ou cadastre-se para continuar!")
+        setTimeout(() => window.location.href = "../login.html", 1000);
+        return;
+      } else {
+        openBooking(prof);
+      }
     }
   });
 
   // ---------- Perfil ----------
-  function openProfile(prof) {
+  async function openProfile(prof) {
     currentProfessor = prof;
     profileName.textContent = prof.nome || '(sem nome)';
     profilePrice.textContent = fmtPrice(prof.valorHora);
@@ -263,11 +277,29 @@
     profileSubtitle.textContent = `${prof.competencias ? (Array.isArray(prof.competencias) ? prof.competencias.join(', ') : prof.competencias) : ''}`;
 
     // interesses / materias
+    const materias = prof.areas && Array.isArray(prof.areas) && prof.areas.length
+      ? prof.areas
+      : (prof.competencias || []);
+
     profileInteresses.innerHTML = '';
-    const materias = prof.areas && Array.isArray(prof.areas) && prof.areas.length ? prof.areas.map(a => a.area || `Área ${a.areaId || ''}`) : (prof.competencias || []);
-    (Array.isArray(materias) ? materias : [materias]).forEach(it => {
-      const li = document.createElement('li'); li.textContent = it || '-'; profileInteresses.appendChild(li);
-    });
+
+    for (const a of materias) {
+      const li = document.createElement('li');
+
+      let nomeArea;
+      if (a.area) {
+        // Já possui o nome da área
+        nomeArea = a.area;
+      } else if (a.areaId) {
+        // Precisa buscar o nome via requisição
+        nomeArea = await buscarNomeMateria(a.areaId);
+      } else {
+        nomeArea = '-';
+      }
+
+      li.textContent = nomeArea || '-';
+      profileInteresses.appendChild(li);
+    }
 
     // certificações
     profileCerts.innerHTML = '';
@@ -294,16 +326,36 @@
   // Ao clicar no botão de agendar dentro do perfil
   openScheduleFromProfileBtn.addEventListener('click', () => {
     if (!currentProfessor) return;
-    openBooking(currentProfessor);
-    closeProfile();
+    if (!token) {
+      alert("Ops! É necessário fazer login para realizar esta ação. Entre ou cadastre-se para continuar!")
+      setTimeout(() => window.location.href = "../login.html", 1000);
+      return;
+    } else {
+      openBooking(currentProfessor);
+      closeProfile();
+    }
   });
+
+  async function buscarNomeMateria(idArea) {
+    try {
+      const resp = await fetch(`${API_SABERMAIS_URL}/Areas/${idArea}`, {});
+      const area = await resp.json();
+      return area.nome || `Área ${idArea}`;
+    } catch (erro) {
+      console.error("Erro ao buscar nome da matéria:", erro);
+      return `Área ${idArea}`;
+    }
+  }
 
   // ---------- Agendamento (dialog) ----------
   function openBooking(prof) {
     currentProfessor = prof;
-    bookingProfId.value = prof.id ?? '';
+    bookingProfId.value = prof.id;
+    const professorId = prof.id;
     bookingProfName.textContent = prof.nome ?? '';
     bookingProfPrice.textContent = fmtPrice(prof.valorHora);
+
+    console.log(currentProfessor);
 
     // tópicos disponíveis (conteúdos)
     bookingTopics.innerHTML = '';
@@ -311,7 +363,7 @@
     topics.forEach((t, i) => {
       const id = `topic-${prof.id}-${i}`;
       const wrapper = document.createElement('div');
-      wrapper.innerHTML = `<label><input type="checkbox" name="topics" value="${t}" id="${id}" ${i === 0 ? 'checked' : ''}> <span>${t}</span></label>`;
+      wrapper.innerHTML = `<label><input type="checkbox" name="topics" value="${t}" id="${id}" ${i === 0 ? '' : ''}> <span>${t}</span></label>`;
       bookingTopics.appendChild(wrapper);
     });
 
@@ -347,6 +399,7 @@
   }
 
   function configurarDatasDisponiveis(inputDate, diasDisponiveis) {
+
     const hoje = new Date();
     const maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 2);
@@ -355,11 +408,17 @@
 
     inputDate.addEventListener('change', () => {
       if (!inputDate.value) return;
+
       const sel = new Date(inputDate.value + 'T00:00:00');
       // getDay() -> 0 domingo ... 6 sábado. Convertemos pra 0=segunda.
       const diaSemana = (sel.getDay() + 6) % 7;
       bookingDay.value = diasEnum[diaSemana] || '';
-      if (!diasDisponiveis.includes(diaSemana)) {
+      // const nomeDia = diasEnum[diaSemana];
+      // bookingDay.value = nomeDia;
+
+      const disponibilidade = diasDisponiveis.find(d => d.diaDaSemana === diaSemana);
+
+      if (!disponibilidade) {
         alert(`O professor não atende em ${bookingDay.value || 'este dia da semana'}. Escolha outra data.`);
         inputDate.value = '';
         bookingDay.value = '';
@@ -369,10 +428,45 @@
 
       // Se tivesse horários específicos por data, poderíamos buscar aqui.
       // Simulamos: se a data for par, 2 horários; se ímpar, 3 horários (apenas demo)
-      const dayNum = sel.getDate();
-      const times = (dayNum % 2 === 0) ? ['10:00-11:00', '15:00-16:00'] : ['09:00-10:00', '13:00-14:00', '18:00-19:00'];
-      populateTimes(currentProfessor, times);
+      // const dayNum = sel.getDate();
+      // const times = (dayNum % 2 === 0) ? ['10:00-11:00', '15:00-16:00'] : ['09:00-10:00', '13:00-14:00', '18:00-19:00'];
+      // populateTimes(currentProfessor, times);
+      // Gerar horários disponíveis com base em horaInicio e horaFim
+      const horarios = gerarHorarios(disponibilidade.horaInicio, disponibilidade.horaFim);
+      popularHorarios(bookingTime, horarios);
     });
+    
+    function gerarHorarios(horaInicio, horaFim) {
+      const [hiH, hiM] = horaInicio.split(':').map(Number);
+      const [hfH, hfM] = horaFim.split(':').map(Number);
+      const horarios = [];
+
+      let horaAtual = new Date();
+      horaAtual.setHours(hiH, hiM, 0, 0);
+
+      const horaFinal = new Date();
+      horaFinal.setHours(hfH, hfM, 0, 0);
+
+      while (horaAtual < horaFinal) {
+        const inicio = horaAtual.toTimeString().substring(0, 5);
+        horaAtual.setHours(horaAtual.getHours() + 1);
+        const fim = horaAtual.toTimeString().substring(0, 5);
+        horarios.push(`${inicio} - ${fim}`);
+      }
+
+      return horarios;
+    }
+
+    function popularHorarios(select, horarios) {
+      select.innerHTML = '<option value="" disabled selected>Selecione</option>';
+      horarios.forEach(h => {
+        const opt = document.createElement('option');
+        opt.value = h;
+        opt.textContent = h;
+        select.appendChild(opt);
+      });
+    }
+
   }
 
   // fechar dialog
@@ -382,23 +476,28 @@
   // submit do agendamento
   bookingForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const profId = bookingProfId.value;
+    const profId = currentProfessor.id;
     const date = bookingDate.value;
     const time = bookingTime.value;
-    const topics = Array.from(bookingTopics.querySelectorAll('input[name="topics"]:checked')).map(i => i.value);
+    const topics = Array.from(
+      bookingTopics.querySelectorAll('input[name="topics"]:checked')).map(i => i.value);
 
     if (!date || !time) { alert('Escolha data e horário.'); return; }
 
     // construir payload conforme sua API
     const payload = {
+      disciplinaId: topics, //errado
       professorId: profId,
-      dataHora: date + 'T' + time.split('-')[0] + ':00',
-      topicos: topics
+      alunoId: 22,          //errado
+      status: 0,
+      dataHora: `${date}T${time.split('-')[0]}:00`
+      //topicos: topics
     };
+    console.log("payload: ", payload);
 
     // tentativa de enviar para API (rota de agendamentos fictícia)
     try {
-      const resp = await fetch(API_BASE + '/agendamentos', {
+      const resp = await fetch(API_SABERMAIS_URL + '/Agendamentos', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -408,13 +507,13 @@
         // fallback: se a API retorna erro, apenas mostrar confirmação local
         const txt = await resp.text().catch(() => null);
         console.warn('Resposta não OK ao criar agendamento', resp.status, txt);
-        alert('Não foi possível criar agendamento na API. (Simulação local) — ver console.');
+        alert('Ops! Não foi possível criar agendamento. Tente novamente.');
       } else {
         alert('Agendamento criado com sucesso!');
       }
     } catch (err) {
-      console.warn('Erro rede ao criar agendamento (mock)', err);
-      alert('Agendamento confirmado (modo offline).');
+      console.warn('Ocorreu um erro rede ao criar agendamento: ', err);
+      alert('Ops! Erro ao registrar agendamento.');
     } finally {
       bookingDialog.close();
     }
