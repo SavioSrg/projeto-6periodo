@@ -26,24 +26,21 @@
 <body>
 
     <header class="header">
-        <div class="header-inner">
-            <a href="index.html">
+        <div class="container-header header-inner">
+            <a href="../home.html">
                 <picture>
-                    <source srcset="assets/images/logo-120.png" media="(min-width: 1000px)">
-                    <img src="assets/images/logo-100.png" alt="Exemplo responsivo">
+                    <source srcset="../assets/images/logo-120.png" media="(min-width: 1000px)">
+                    <img src="../assets/images/logo-100.png" alt="Exemplo responsivo">
                 </picture>
             </a>
-            <nav class="nav-menu" id="navMenu">
-                <a href="#principal" class="nav-link">Início</a>
-                <a href="#categoria" class="nav-link">Categorias</a>
-                <a href="#funcionamento" class="nav-link">Como funciona?</a>
-                <div class="actions">
-                    <a href="login.html" class="btn btn-primary">Entrar</a>
-                    <button id="openModalCadastro" class="btn btn-secondary" type="button ">Cadastrar</button>
+
+            <div class="user-menu">
+                <button class="user-avatar btn-primary" onclick="toggleUserMenu()">A</button>
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="./teachers/editar-perfil.html">Editar Dados</a>
+                    <a href="./teachers/dashboard.html" id="buttonDashboard">Dashboard</a>
+                    <a href="#" class="nav-link" onclick="logout()">Sair</a>
                 </div>
-            </nav>
-            <div class="hamburger" id="hamburger">
-                <i class="fa-solid fa-bars"></i>
             </div>
         </div>
     </header>
@@ -284,6 +281,13 @@
         <script type="module" src="./scripts/main.js"></script>
         <script type="module" src="./scripts/cadast/areas.js"></script>
         <script type="module" src="./scripts/services/buscarService.js"></script>
+        <script>
+        function logout() {
+            localStorage.removeItem("jwtToken");
+            alert("Desconectando...");
+            setTimeout(() => window.location.href = "../login.html", 1000);
+        }
+    </script>
 </body>
 
 </html>
