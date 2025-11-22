@@ -54,9 +54,9 @@ export async function loadUserProfile() {
             const dadosUser = await response2.json(); //Retorna as infos do usuário logado
             console.log(dadosUser);
             const tipoUsuario = dadosUser.tipo;
+            const buttonDashboard = document.getElementById("buttonDashboard"); //Botão Dashboard do menu
 
             if (tipoUsuario == 1) {
-                const buttonDashboard = document.getElementById("buttonDashboard"); //Botão Dashboard do menu
                 buttonDashboard.classList.remove("hidden");
 
                 await carregarPerfilProfessor(dadosUser);
@@ -65,9 +65,7 @@ export async function loadUserProfile() {
                 buttonDashboard.classList.add("hidden");
 
                 await carregarPerfilAluno(dadosUser);
-
             }
-
              return dadosUser;
         }
         catch (error) {

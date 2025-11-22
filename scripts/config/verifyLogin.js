@@ -35,12 +35,20 @@ import { API_SABERMAIS_URL } from "../config/apiConfig.js";
       });
 
       const dadosUser = await info.json(); //Retorna as infos do usuário logado
+      const buttonPerfil = document.getElementById("editPerfil"); //Botão Editar Dados do menu
+      const buttonPerfilHome = document.getElementById("editarPerfilHome");
 
       if (dadosUser.tipo == 1) {
         const buttonDashboard = document.getElementById("buttonDashboard"); //Botão Dashboard do menu
         buttonDashboard.classList.remove("hidden");
+        
+        buttonPerfil.href = "../teachers/editar-perfil.html";
+        buttonPerfilHome.href = "../teachers/editar-perfil.html";
+
       } if (dadosUser.tipo == 0) {
         buttonDashboard.classList.add("hidden");
+        buttonPerfil.href = "../student/editar-perfil.html";
+        buttonPerfilHome.href = "../student/editar-perfil.html";
       }
 
       console.log(dadosUser);

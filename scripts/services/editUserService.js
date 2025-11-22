@@ -188,15 +188,83 @@ export async function carregarPerfilAluno(aluno) {
   console.log("perfil aluno: ", aluno);
   const token = localStorage.getItem("jwtToken");
 
-  const response = await fetch(`${API_SABERMAIS_URL}/Alunos/${aluno.id}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  try {
+    // Busca os dados do aluno
+    const response = await fetch(`${API_SABERMAIS_URL}/Alunos/${aluno.id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
-  const alunoDados = await response.json();
-  console.log(alunoDados);
+    if (!response.ok) {
+      throw new Error(`Erro ao buscar dados do aluno: ${response.status}`);
+    }
+
+    const alunoDados = await response.json();
+    console.log("Dados do aluno:", alunoDados);
+
+    // Preenche os campos do frontend
+    document.getElementById('nome').value = alunoDados.nome || "";
+    document.getElementById('email').value = alunoDados.email || "";
+    document.getElementById('senha').value = alunoDados.password || "";
+    document.getElementById('cpf').value = alunoDados.cpf || "";
+    document.getElementById('tipo').value = alunoDados.tipo === 1 ? "Professor/Instrutor" : "Aluno(a)";
+    document.getElementById('descricao').value = alunoDados.descricao || "";
+
+    // Configura o botão de salvar
+    const saveBtn = document.getElementById("saveBtn");
+
+    // Remove event listeners antigos (evita duplicação)
+    saveBtn.replaceWith(saveBtn.cloneNode(true));
+    const newSaveBtn = document.getElementById("saveBtn");
+
+    newSaveBtn.addEventListener('click', async () => {
+
+      const inputSenha = document.getElementById('senha').value;
+      if (inputSenha == "") {
+        alert("Ops! É necessário informar sua senha para salvar os dados!");
+        return;
+      }
+
+      try {
+        const putResponse = await fetch(`${API_SABERMAIS_URL}/Alunos/${aluno.id}`, {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            id: aluno.id,
+            nome: document.getElementById("nome").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("senha").value,
+            cpf: document.getElementById("cpf").value,
+            tipo: aluno.tipo,
+            descricao: document.getElementById("descricao").value
+          })
+        });
+
+        if (!putResponse.ok) {
+          throw new Error(`Erro ao atualizar os dados: ${putResponse.status}`);
+        }
+   
+        alert("Dados atualizados com sucesso!");
+        window.location.reload();
+
+      }
+      catch (error) {
+        console.error("Erro ao atualizar aluno:", error);
+        alert("Falha ao salvar alterações. Verifique os dados e tente novamente.");
+      }
+
+    });
+  }
+  catch (error) {
+    console.error("Erro ao buscar aluno:", error);
+    alert("Erro ao buscar informações do aluno. Tente novamente.");
+  }
+
 }
 
 
