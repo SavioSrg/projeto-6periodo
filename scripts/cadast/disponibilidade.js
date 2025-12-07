@@ -12,8 +12,8 @@ export default function DisponibilidadeModule({ rowsSelector, addBtnSelector, cl
   let nextId = Date.now();
 
   function createRowObj(day = '1', start = '08:00', durationMin = 60) {
-    const id = ++nextId;
-    return { id, day: String(day), start, end: H.addMinutesToTimeString(start, durationMin) };
+    //const id = ++nextId;
+    return { day: String(day), start, end: H.addMinutesToTimeString(start, durationMin) };
   }
 
   function renderAll() {
@@ -31,7 +31,7 @@ export default function DisponibilidadeModule({ rowsSelector, addBtnSelector, cl
     state.rows.forEach(r => {
       const row = document.createElement('div');
       row.className = 'row';
-      row.dataset.id = r.id;
+      //row.dataset.id = r.id;
 
       const sel = document.createElement('select');
       sel.className = 'day input-field';

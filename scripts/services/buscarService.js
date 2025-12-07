@@ -359,15 +359,41 @@ const token = localStorage.getItem("jwtToken");
 
     // tópicos disponíveis (conteúdos)
     bookingTopics.innerHTML = '';
-    const topics = prof.competencias && Array.isArray(prof.competencias) && prof.competencias.length ? prof.competencias : ['Conteúdo geral'];
+
+     const topics = prof.areas && Array.isArray(prof.areas) && prof.areas.length ? prof.areas : ['Conteúdo geral'];
+
     topics.forEach((t, i) => {
-      const idArea = i;
-      console.log(idArea);
       const id = `topic-${prof.id}-${i}`;
       const wrapper = document.createElement('div');
-      wrapper.innerHTML = `<label><input type="radio" name="topics" value="${i}" id="${id}" ${i === 0 ? '' : ''}> <span>${t}</span></label>`;
+
+      // conteúdo inicial (placeholder)
+      wrapper.innerHTML = `
+      <label>
+        <input type="radio" name="topics" value="${t.areaId}" id="${id}">
+        <span>Carregando...</span>
+      </label>
+    `;
+
       bookingTopics.appendChild(wrapper);
+
+      buscarNomeMateria(t.areaId).then((nome) => {
+        const span = wrapper.querySelector("span");
+        if (span) span.textContent = nome ?? "Desconhecido";
+      }).catch(() => {
+        const span = wrapper.querySelector("span");
+        if (span) span.textContent = "Erro ao carregar";
+      });
     });
+
+
+    // const topics = prof.areas && Array.isArray(prof.areas) && prof.areas.length ? prof.areas : ['Conteúdo geral'];
+    // topics.forEach((t, i) => {
+
+    //   const id = `topic-${prof.id}-${i}`;
+    //   const wrapper = document.createElement('div');
+    //   wrapper.innerHTML = `<label><input type="radio" name="topics" value="${i}" id="${id}" ${i === 0 ? '' : ''}> <span>${await buscarNomeMateria(t.areaId)}</span></label>`;
+    //   bookingTopics.appendChild(wrapper);
+    // });
 
     // preencher horários (se houver disponibilidade explícita de horários, usar; senão, hora padrão)
     populateTimes(prof, []);
@@ -495,7 +521,6 @@ const token = localStorage.getItem("jwtToken");
       alunoId: user.id,
       status: 0,
       dataHora: `${date}T${startTime}:00`
-      //topicos: topics
     };
     console.log("payload: ", payload);
 

@@ -155,6 +155,7 @@ form.addEventListener("submit", async (e) => {
         form.reset();
         showStep(0);
         window.location.href = "../login.html";
+        // window.location.href = "../teachers/disponibilidade.html";
 
     } catch (err) {
         alert('Erro ao cadastrar: ' + err.message);
